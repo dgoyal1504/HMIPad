@@ -9,7 +9,7 @@ Full Source Code of the HMI Draw / HMI View apps.
 There's no explicit license so the code is open with no restrictions for any private or commercial use. The code is provided "as is" (or "as it was"). It was tested to compile on XCode version 6.3. Newer XCode versions were not tested.
 
 ## PLC Communication Drivers
-PLC Communication drivers are provided as static libraries. Please contact me if you want communication drivers source code. I may be contacted at the email address provided in my gitHub profile.
+PLC Communication drivers are provided as static libraries. Please contact me if you want the communication drivers source code. I may be contacted at the email address provided in my gitHub profile.
 
 ## Attribution
 If you have plans to use the software I would be very grateful if you drop me a note on your intended application including your company name. I will not make any use of this except for my personal records. Please note that no support is provided.
