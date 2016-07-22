@@ -2436,7 +2436,6 @@
 		4E1308A71752600600F4CDDB /* SWGestureRecognizerItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWGestureRecognizerItemController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4E1308AB1752603600F4CDDB /* SWTapRecognizerItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SWTapRecognizerItemController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4E1308AC1752603600F4CDDB /* SWTapRecognizerItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SWTapRecognizerItemController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4E143A77182E332B000CFF9F /* In-App purchase issue.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "In-App purchase issue.rtf"; sourceTree = "<group>"; };
 		4E143A7C182E42AE000CFF9F /* SWContrastedViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWContrastedViewProtocol.h; sourceTree = "<group>"; };
 		4E178E81175D255500AA7483 /* SWzzz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWzzz.h; sourceTree = "<group>"; };
 		4E178E82175D255500AA7483 /* SWzzz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWzzz.m; sourceTree = "<group>"; };
@@ -3087,7 +3086,6 @@
 		4EB898D31689C27D00752592 /* SWRevealController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealController.h; path = GenericControllers/RevealController/SWRevealController.h; sourceTree = "<group>"; };
 		4EB898D61689C54E00752592 /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reveal-icon.png"; path = "GenericControllers/RevealController/reveal-icon.png"; sourceTree = "<group>"; };
 		4EB898D71689C54E00752592 /* reveal-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reveal-icon@2x.png"; path = "GenericControllers/RevealController/reveal-icon@2x.png"; sourceTree = "<group>"; };
-		4EBA00D617742CEF00C9B439 /* AppleReview.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = AppleReview.rtf; sourceTree = "<group>"; };
 		4EBA583E18E9A67F0083D23F /* AppModelSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppModelSource.h; path = HmiPad/AppModel/AppModelSource.h; sourceTree = SOURCE_ROOT; };
 		4EBA583F18E9A67F0083D23F /* AppModelSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppModelSource.m; path = HmiPad/AppModel/AppModelSource.m; sourceTree = SOURCE_ROOT; };
 		4EBA584318E9A6D80083D23F /* AppModelDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppModelDocument.h; path = HmiPad/AppModel/AppModelDocument.h; sourceTree = SOURCE_ROOT; };
@@ -3503,7 +3501,6 @@
 		4EF1EE2B16B4200F006FDFE5 /* SWExpressionCompleter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SWExpressionCompleter.mm; sourceTree = "<group>"; };
 		4EF20549189465D70073646A /* info-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-25.png"; sourceTree = "<group>"; };
 		4EF2054A189465D70073646A /* info-25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-25@2x.png"; sourceTree = "<group>"; };
-		4EF2878B17E3029E0054496E /* Technical Support Incident.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Technical Support Incident.rtf"; sourceTree = "<group>"; };
 		4EF312061701987900D2618C /* SWPageNavigatorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SWPageNavigatorCell.xib; path = ModelControllers/PageNavigator/Views/SWPageNavigatorCell.xib; sourceTree = "<group>"; };
 		4EF355FE1626E95E00C0D2F2 /* UIView+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Scale.h"; sourceTree = "<group>"; };
 		4EF355FF1626E95F00C0D2F2 /* UIView+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Scale.m"; sourceTree = "<group>"; };
@@ -3601,7 +3598,6 @@
 		4EFC40BA176DE2C000A58F20 /* 55-networkGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "55-networkGray@2x.png"; sourceTree = "<group>"; };
 		4EFC9ED617369AC6002850EB /* AppModelCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppModelCommon.h; path = HmiPad/AppModel/AppModelCommon.h; sourceTree = SOURCE_ROOT; };
 		4EFC9ED717369AC6002850EB /* AppModelCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppModelCommon.m; path = HmiPad/AppModel/AppModelCommon.m; sourceTree = SOURCE_ROOT; };
-		4EFDC4D51681B34000E4ACA3 /* Carlton.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Carlton.rtf; sourceTree = "<group>"; };
 		4EFDFA1C198170F9001E777A /* 1099-list-1-small-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1099-list-1-small-selected.png"; sourceTree = "<group>"; };
 		4EFDFA1D198170F9001E777A /* 1099-list-1-small-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1099-list-1-small-selected@2x.png"; sourceTree = "<group>"; };
 		4EFF618119123A3A0040ED7C /* SWDataPresenterItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWDataPresenterItem.h; sourceTree = "<group>"; };
@@ -6343,12 +6339,8 @@
 				4E90590E17ABEE22006AF501 /* AssetsLibrary.framework */,
 				D29CD47B1599FBBC002EE122 /* ToDo_Next.rtf */,
 				4EADF425174C11EC00EB8D1C /* Empty.xib */,
-				4EFDC4D51681B34000E4ACA3 /* Carlton.rtf */,
 				D29CD47D1599FBD2002EE122 /* Pending.rtf */,
 				4EBFDDFF176CBFAF00927A32 /* ReleaseNotes.rtf */,
-				4EBA00D617742CEF00C9B439 /* AppleReview.rtf */,
-				4EF2878B17E3029E0054496E /* Technical Support Incident.rtf */,
-				4E143A77182E332B000CFF9F /* In-App purchase issue.rtf */,
 				4ECB2E3714F777A500E7C661 /* ToDo.rtf */,
 				D24ECAD215A60D9E00310429 /* Bugs.rtf */,
 				D28044F514DAE2850017AE3B /* HmiPad */,
