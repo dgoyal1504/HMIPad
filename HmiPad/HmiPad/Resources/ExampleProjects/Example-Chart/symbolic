@@ -1,0 +1,474 @@
+# %encoding UTF-8
+# %version 1020200
+
+Project.document = SWObject.new(Project_document);
+
+Project_document = SWDocumentModel.new;
+Project_document.selectedPageIndex = 0;
+Project_document.interfaceIdiom = 0;
+Project_document.system = SWCollection.new($Project, $System, $Location, $Motion, $Player, $Scanner, $UsersManager);
+Project_document.sources = SWCollection.new();
+Project_document.pages = SWCollection.new(page);
+Project_document.backgroundItems = SWCollection.new();
+Project_document.alarms = SWCollection.new();
+Project_document.users = SWCollection.new();
+Project_document.projectUser = -1;
+Project_document.dataLoggers = SWCollection.new(dataLog);
+Project_document.embeddedAssets = 0;
+Project_document.fileList = [];
+Project_document.projectID = 0;
+
+$Project = SWSystemItemProject.new;
+$Project.currentPageIdentifier = "";
+$Project.title = "My Project Title";
+$Project.shortTitle = "Project";
+$Project.allowedOrientation = 0;
+$Project.allowedOrientationPhone = 0;
+
+$System = SWSystemItemSystem.new;
+
+$Location = SWSystemItemLocation.new;
+
+$Motion = SWSystemItemMotion.new;
+
+$Player = SWSystemItemPlayer.new;
+$Player.play = 0;
+$Player.stop = 0;
+$Player.repeat = 0;
+$Player.title = "";
+$Player.url = "";
+
+$Scanner = SWSystemItemScanner.new;
+$Scanner.scan = 0;
+$Scanner.scanResult = "";
+
+$UsersManager = SWSystemItemUsersManager.new;
+$UsersManager.login = 0;
+$UsersManager.enableAutoLogin = 1;
+$UsersManager.backgroundColor = "";
+$UsersManager.backgroundImage = "";
+$UsersManager.companyTitle = "";
+$UsersManager.companyLogo = "";
+
+page = SWPage.new;
+page.pageIdentifier = "";
+page.title = "Title";
+page.shortTitle = "TITLE";
+page.modalStyle = 0;
+page.pageTransitionStyle = 3;
+page.enabledInterfaceIdiom = 0;
+page.color = "White";
+page.image = "";
+page.imageRatio = 1;
+page.hidden = 0;
+page.uuid = "47E10187-F218-4863-982A-17BA3B6C3446";
+page.items = SWCollection.new(group, group1, group2, segmentedControl, group5, group3);
+
+group = SWGroupItem.new;
+group.framePortrait = SM.rect(45, 12, 437, 250);
+group.frameLandscape = SM.rect(16, 37, 473, 274);
+group.framePortraitPhone = SM.rect(6, 10, 311, 160);
+group.frameLandscapePhone = SM.rect(-3, 338, 405, 158);
+group.backgroundColor = "ClearWhite";
+group.hidden = 0;
+group.locked = 0;
+group.items = SWCollection.new(chart, scale);
+
+chart = SWChartItem.new;
+chart.framePortrait = SM.rect(37, 0, 400, 250);
+chart.frameLandscape = SM.rect(35, 0, 438, 274);
+chart.framePortraitPhone = SM.rect(37, 0, 274, 160);
+chart.frameLandscapePhone = SM.rect(35, 0, 370, 158);
+chart.backgroundColor = "ClearWhite";
+chart.hidden = 0;
+chart.style = 0;
+chart.updatingStyle = 0;
+chart.chartType = 0;
+chart.options = {"pointSymbols": [], "colorFills": []};
+chart.yMin = 0;
+chart.yMax = 100;
+chart.xFirstTick = 0;
+chart.xMajorTickInterval = 1;
+chart.xMinorTicksPerInterval = 4;
+chart.yMajorTickInterval = 10;
+chart.yMinorTicksPerInterval = 2;
+chart.tintColor = "White";
+chart.borderColor = "Black";
+chart.format = "%0.4g";
+chart.labels = ["First","Second","Third","Fourth"];
+chart.colors = ["green", "blue","orange","red"];
+chart.regions = [[10, 50, 25, 75], [60, slider.continuousValue, 70, 50],[11,30,15,25],[22,40,10,31]];
+chart.locked = 0;
+chart.chartCache = SWObject.new(chart_chartCache);
+
+chart_chartCache = SWChartCache.new;
+chart_chartCache.plotGroups = SWCollection.new(chart_chartCache_plotGroups1);
+
+chart_chartCache_plotGroups1 = PlotGroup.new;
+chart_chartCache_plotGroups1.plots = SWCollection.new(chart_chartCache_plotGroups1_plots1, chart_chartCache_plotGroups1_plots2, chart_chartCache_plotGroups1_plots3, chart_chartCache_plotGroups1_plots4);
+
+chart_chartCache_plotGroups1_plots1 = PlotData.new;
+chart_chartCache_plotGroups1_plots1.plotKey = "plot000";
+chart_chartCache_plotGroups1_plots1.defaultColor = 65280;
+
+chart_chartCache_plotGroups1_plots2 = PlotData.new;
+chart_chartCache_plotGroups1_plots2.plotKey = "plot001";
+chart_chartCache_plotGroups1_plots2.defaultColor = 16747520;
+
+chart_chartCache_plotGroups1_plots3 = PlotData.new;
+chart_chartCache_plotGroups1_plots3.plotKey = "plot002";
+chart_chartCache_plotGroups1_plots3.defaultColor = 16776960;
+
+chart_chartCache_plotGroups1_plots4 = PlotData.new;
+chart_chartCache_plotGroups1_plots4.plotKey = "plot003";
+chart_chartCache_plotGroups1_plots4.defaultColor = 9055202;
+
+scale = SWScaleItem.new;
+scale.framePortrait = SM.rect(0, 0, 40, 250);
+scale.frameLandscape = SM.rect(0, 0, 40, 274);
+scale.framePortraitPhone = SM.rect(0, 0, 40, 160);
+scale.frameLandscapePhone = SM.rect(0, 0, 40, 158);
+scale.backgroundColor = "ClearWhite";
+scale.hidden = 0;
+scale.orientation = 0;
+scale.minValue = 0;
+scale.maxValue = chart.yMax;
+scale.majorTickInterval = chart.yMax/10;
+scale.minorTicksPerInterval = 5;
+scale.format = "%g";
+scale.locked = 0;
+
+group1 = SWGroupItem.new;
+group1.framePortrait = SM.rect(44, 273, 438, 250);
+group1.frameLandscape = SM.rect(522, 37, 473, 274);
+group1.framePortraitPhone = SM.rect(4, 169, 312, 160);
+group1.frameLandscapePhone = SM.rect(-3, 178, 405, 164);
+group1.backgroundColor = "ClearWhite";
+group1.hidden = 0;
+group1.locked = 0;
+group1.items = SWCollection.new(chart1, scale1);
+
+chart1 = SWChartItem.new;
+chart1.framePortrait = SM.rect(38, 0, 400, 250);
+chart1.frameLandscape = SM.rect(35, 0, 438, 274);
+chart1.framePortraitPhone = SM.rect(38, 0, 274, 160);
+chart1.frameLandscapePhone = SM.rect(35, 0, 370, 164);
+chart1.backgroundColor = "ClearWhite";
+chart1.hidden = 0;
+chart1.style = 0;
+chart1.updatingStyle = 0;
+chart1.chartType = 1;
+chart1.options = {"pointSymbols": [], "colorFills": []};
+chart1.yMin = -100;
+chart1.yMax = 100;
+chart1.xFirstTick = 0;
+chart1.xMajorTickInterval = 1;
+chart1.xMinorTicksPerInterval = 4;
+chart1.yMajorTickInterval = 10;
+chart1.yMinorTicksPerInterval = 2;
+chart1.tintColor = "White";
+chart1.borderColor = "Black";
+chart1.format = "%0.4g";
+chart1.labels = ["First","Second","Third","Fourth"];
+chart1.colors = ["green", "purple","orange","red"];
+chart1.regions = [[10, 23, -25, -75], [60, slider.continuousValue, 70, 50],[11,-30,15,25],[-22,-50,10,31]];
+chart1.locked = 0;
+chart1.chartCache = SWObject.new(chart1_chartCache);
+
+chart1_chartCache = SWChartCache.new;
+chart1_chartCache.plotGroups = SWCollection.new(chart1_chartCache_plotGroups1);
+
+chart1_chartCache_plotGroups1 = PlotGroup.new;
+chart1_chartCache_plotGroups1.plots = SWCollection.new(chart1_chartCache_plotGroups1_plots1, chart1_chartCache_plotGroups1_plots2, chart1_chartCache_plotGroups1_plots3, chart1_chartCache_plotGroups1_plots4);
+
+chart1_chartCache_plotGroups1_plots1 = PlotData.new;
+chart1_chartCache_plotGroups1_plots1.plotKey = "plot000";
+chart1_chartCache_plotGroups1_plots1.defaultColor = 65280;
+
+chart1_chartCache_plotGroups1_plots2 = PlotData.new;
+chart1_chartCache_plotGroups1_plots2.plotKey = "plot001";
+chart1_chartCache_plotGroups1_plots2.defaultColor = 16747520;
+
+chart1_chartCache_plotGroups1_plots3 = PlotData.new;
+chart1_chartCache_plotGroups1_plots3.plotKey = "plot002";
+chart1_chartCache_plotGroups1_plots3.defaultColor = 16776960;
+
+chart1_chartCache_plotGroups1_plots4 = PlotData.new;
+chart1_chartCache_plotGroups1_plots4.plotKey = "plot003";
+chart1_chartCache_plotGroups1_plots4.defaultColor = 9055202;
+
+scale1 = SWScaleItem.new;
+scale1.framePortrait = SM.rect(0, 0, 40, 250);
+scale1.frameLandscape = SM.rect(0, 0, 40, 274);
+scale1.framePortraitPhone = SM.rect(0, 0, 40, 160);
+scale1.frameLandscapePhone = SM.rect(0, 0, 40, 164);
+scale1.backgroundColor = "ClearWhite";
+scale1.hidden = 0;
+scale1.orientation = 0;
+scale1.minValue = chart1.yMin;
+scale1.maxValue = chart1.yMax;
+scale1.majorTickInterval = chart1.yMax/10;
+scale1.minorTicksPerInterval = 5;
+scale1.format = "%g";
+scale1.locked = 0;
+
+group2 = SWGroupItem.new;
+group2.framePortrait = SM.rect(40, 529, 442, 250);
+group2.frameLandscape = SM.rect(16, 372, 473, 274);
+group2.framePortraitPhone = SM.rect(4, 329, 312, 166);
+group2.frameLandscapePhone = SM.rect(-3, 22, 405, 160);
+group2.backgroundColor = "ClearWhite";
+group2.hidden = 0;
+group2.locked = 0;
+group2.items = SWCollection.new(chart2, scale2);
+
+chart2 = SWChartItem.new;
+chart2.framePortrait = SM.rect(42, 0, 400, 250);
+chart2.frameLandscape = SM.rect(35, 0, 438, 274);
+chart2.framePortraitPhone = SM.rect(38, 0, 274, 166);
+chart2.frameLandscapePhone = SM.rect(35, 0, 370, 160);
+chart2.backgroundColor = "ClearWhite";
+chart2.hidden = 0;
+chart2.style = 0;
+chart2.updatingStyle = 0;
+chart2.chartType = 2;
+chart2.options = {"pointSymbols": [], "colorFills": []};
+chart2.yMin = 0;
+chart2.yMax = sliderScale.continuousValue;
+chart2.xFirstTick = 0;
+chart2.xMajorTickInterval = 1;
+chart2.xMinorTicksPerInterval = 4;
+chart2.yMajorTickInterval = 10;
+chart2.yMinorTicksPerInterval = 2;
+chart2.tintColor = "Silver";
+chart2.borderColor = "Black";
+chart2.format = "%0.4g";
+chart2.labels = ["First","Second","Third","Fourth"];
+chart2.colors = segmentedControl.value==0?["green", "blue","orange","red"]:["grey","lightgrey","slategrey","black"];
+chart2.regions = [[10, 50, 25, 75], [60, slider.continuousValue, 70, 50],[11,30,15,25],[22,40,10,31]];
+chart2.locked = 0;
+chart2.chartCache = SWObject.new(chart2_chartCache);
+
+chart2_chartCache = SWChartCache.new;
+chart2_chartCache.plotGroups = SWCollection.new(chart2_chartCache_plotGroups1);
+
+chart2_chartCache_plotGroups1 = PlotGroup.new;
+chart2_chartCache_plotGroups1.plots = SWCollection.new(chart2_chartCache_plotGroups1_plots1, chart2_chartCache_plotGroups1_plots2, chart2_chartCache_plotGroups1_plots3, chart2_chartCache_plotGroups1_plots4);
+
+chart2_chartCache_plotGroups1_plots1 = PlotData.new;
+chart2_chartCache_plotGroups1_plots1.plotKey = "plot000";
+chart2_chartCache_plotGroups1_plots1.defaultColor = 65280;
+
+chart2_chartCache_plotGroups1_plots2 = PlotData.new;
+chart2_chartCache_plotGroups1_plots2.plotKey = "plot001";
+chart2_chartCache_plotGroups1_plots2.defaultColor = 16747520;
+
+chart2_chartCache_plotGroups1_plots3 = PlotData.new;
+chart2_chartCache_plotGroups1_plots3.plotKey = "plot002";
+chart2_chartCache_plotGroups1_plots3.defaultColor = 16776960;
+
+chart2_chartCache_plotGroups1_plots4 = PlotData.new;
+chart2_chartCache_plotGroups1_plots4.plotKey = "plot003";
+chart2_chartCache_plotGroups1_plots4.defaultColor = 9055202;
+
+scale2 = SWScaleItem.new;
+scale2.framePortrait = SM.rect(0, 0, 40, 250);
+scale2.frameLandscape = SM.rect(0, 0, 40, 274);
+scale2.framePortraitPhone = SM.rect(0, 0, 40, 166);
+scale2.frameLandscapePhone = SM.rect(0, 0, 40, 160);
+scale2.backgroundColor = "ClearWhite";
+scale2.hidden = 0;
+scale2.orientation = 0;
+scale2.minValue = 0;
+scale2.maxValue = chart2.yMax;
+scale2.majorTickInterval = (chart2.yMax/10).round;
+scale2.minorTicksPerInterval = 5;
+scale2.format = "%g";
+scale2.locked = 0;
+
+segmentedControl = SWSegmentedControlItem.new;
+segmentedControl.framePortrait = SM.rect(489, 639, 214, 30);
+segmentedControl.frameLandscape = SM.rect(163, 655, 180, 30);
+segmentedControl.framePortraitPhone = SM.rect(58, 514, 208, 30);
+segmentedControl.frameLandscapePhone = SM.rect(400, 402, 158, 30);
+segmentedControl.backgroundColor = "ClearWhite";
+segmentedControl.hidden = 0;
+segmentedControl.continuousValue = 0;
+segmentedControl.enabled = 1;
+segmentedControl.verificationText = "";
+segmentedControl.value = 0;
+segmentedControl.array = ["Color", "Black&White"];
+segmentedControl.format = "%";
+segmentedControl.color = "Default";
+segmentedControl.active = 1;
+segmentedControl.linkToPages = [];
+segmentedControl.locked = 0;
+
+group5 = SWGroupItem.new;
+group5.framePortrait = SM.rect(25, 787, 718, 150);
+group5.frameLandscape = SM.rect(561, 461, 412, 224);
+group5.framePortraitPhone = SM.rect(13, 669, 298, 286);
+group5.frameLandscapePhone = SM.rect(6, 504, 552, 184);
+group5.backgroundColor = "ClearWhite";
+group5.hidden = 0;
+group5.locked = 0;
+group5.items = SWCollection.new(shape10, label43);
+
+shape10 = SWShapeItem.new;
+shape10.framePortrait = SM.rect(0, 0, 718, 150);
+shape10.frameLandscape = SM.rect(0, 0, 412, 224);
+shape10.framePortraitPhone = SM.rect(0, 0, 298, 286);
+shape10.frameLandscapePhone = SM.rect(0, 0, 552, 184);
+shape10.backgroundColor = "ClearWhite";
+shape10.hidden = 0;
+shape10.animate = 0;
+shape10.fillStyle = 0;
+shape10.strokeStyle = 0;
+shape10.shadowStyle = 3;
+shape10.gradientDirection = 3;
+shape10.aspectRatio = 3;
+shape10.fillColor1 = "WhiteSmoke";
+shape10.fillColor2 = "gray";
+shape10.fillImage = "";
+shape10.cornerRadius = 15;
+shape10.lineWidth = 2;
+shape10.strokeColor = "grey";
+shape10.gridColumns = 1;
+shape10.gridRows = 1;
+shape10.shadowOffset = 1;
+shape10.shadowBlur = 5;
+shape10.shadowColor = "lightgrey";
+shape10.opacity = 1;
+shape10.blink = 0;
+shape10.locked = 0;
+
+label43 = SWLabelItem.new;
+label43.framePortrait = SM.rect(39, 10, 640, 130);
+label43.frameLandscape = SM.rect(20, 12, 372, 200);
+label43.framePortraitPhone = SM.rect(8, 8, 282, 270);
+label43.frameLandscapePhone = SM.rect(9, 9, 534, 166);
+label43.backgroundColor = "WhiteSmoke";
+label43.hidden = 0;
+label43.textAlignment = 0;
+label43.verticalAlignment = 0;
+label43.fontColor = "#464646";
+label43.font = "HelveticaNeue-Thin";
+label43.fontSize = 20;
+label43.value = "This example demonstrates the use of the Chart object. We use a slider to change a value in a continuous way and another slider to change the scale. The segmented control allows you to change bar colors.
+
+Objects used: slider, chart, segmented control, system expressions.";
+label43.format = "%";
+label43.locked = 0;
+
+group3 = SWGroupItem.new;
+group3.framePortrait = SM.rect(534, 157, 190, 320);
+group3.frameLandscape = SM.rect(561, 322, 412, 114);
+group3.framePortraitPhone = SM.rect(10, 576, 300, 82);
+group3.frameLandscapePhone = SM.rect(406, 38, 146, 214);
+group3.backgroundColor = "ClearWhite";
+group3.hidden = 0;
+group3.locked = 0;
+group3.items = SWCollection.new(shape, slider, sliderScale, label, label1);
+
+shape = SWShapeItem.new;
+shape.framePortrait = SM.rect(0, 0, 190, 320);
+shape.frameLandscape = SM.rect(0, 0, 412, 114);
+shape.framePortraitPhone = SM.rect(0, 0, 300, 82);
+shape.frameLandscapePhone = SM.rect(0, 0, 146, 214);
+shape.backgroundColor = "ClearWhite";
+shape.hidden = 0;
+shape.animate = 0;
+shape.fillStyle = 0;
+shape.strokeStyle = 0;
+shape.shadowStyle = 3;
+shape.gradientDirection = 3;
+shape.aspectRatio = 3;
+shape.fillColor1 = "LightGoldenRodYellow";
+shape.fillColor2 = "Green";
+shape.fillImage = "";
+shape.cornerRadius = 5;
+shape.lineWidth = 1;
+shape.strokeColor = "Black";
+shape.gridColumns = 1;
+shape.gridRows = 1;
+shape.shadowOffset = 2;
+shape.shadowBlur = 5;
+shape.shadowColor = "DarkSlateGray";
+shape.opacity = 1;
+shape.blink = 0;
+shape.locked = 0;
+
+slider = SWSliderItem.new;
+slider.framePortrait = SM.rect(20, 70, 150, 30);
+slider.frameLandscape = SM.rect(23, 21, 150, 30);
+slider.framePortraitPhone = SM.rect(9, 13, 108, 30);
+slider.frameLandscapePhone = SM.rect(14, 14, 118, 30);
+slider.backgroundColor = "ClearWhite";
+slider.hidden = 0;
+slider.continuousValue = 18.5185179114342;
+slider.enabled = 1;
+slider.verificationText = "";
+slider.orientation = 0;
+slider.value = 18.5185179114342;
+slider.color = "";
+slider.minValue = 0;
+slider.maxValue = 100;
+slider.format = "%0.4g";
+slider.locked = 0;
+
+sliderScale = SWSliderItem.new;
+sliderScale.framePortrait = SM.rect(20, 180, 150, 30);
+sliderScale.frameLandscape = SM.rect(244, 21, 150, 30);
+sliderScale.framePortraitPhone = SM.rect(170, 13, 118, 30);
+sliderScale.frameLandscapePhone = SM.rect(14, 123, 118, 30);
+sliderScale.backgroundColor = "ClearWhite";
+sliderScale.hidden = 0;
+sliderScale.continuousValue = 82.6271206140518;
+sliderScale.enabled = 1;
+sliderScale.verificationText = "";
+sliderScale.orientation = 0;
+sliderScale.value = 58.3333313465118;
+sliderScale.color = "";
+sliderScale.minValue = 5;
+sliderScale.maxValue = 150;
+sliderScale.format = "%0.4g";
+sliderScale.locked = 0;
+
+label = SWLabelItem.new;
+label.framePortrait = SM.rect(20, 107, 150, 30);
+label.frameLandscape = SM.rect(23, 60, 150, 30);
+label.framePortraitPhone = SM.rect(9, 40, 108, 30);
+label.frameLandscapePhone = SM.rect(14, 53, 118, 30);
+label.backgroundColor = "ClearWhite";
+label.hidden = 0;
+label.textAlignment = 1;
+label.verticalAlignment = 1;
+label.fontColor = "Black";
+label.font = "Helvetica-Light";
+label.fontSize = 20;
+label.value = "Value";
+label.format = "%";
+label.locked = 0;
+
+label1 = SWLabelItem.new;
+label1.framePortrait = SM.rect(20, 219, 150, 30);
+label1.frameLandscape = SM.rect(244, 60, 150, 30);
+label1.framePortraitPhone = SM.rect(170, 40, 118, 30);
+label1.frameLandscapePhone = SM.rect(14, 162, 118, 30);
+label1.backgroundColor = "ClearWhite";
+label1.hidden = 0;
+label1.textAlignment = 1;
+label1.verticalAlignment = 1;
+label1.fontColor = "Black";
+label1.font = "Helvetica-Light";
+label1.fontSize = 20;
+label1.value = "Scale";
+label1.format = "%";
+label1.locked = 0;
+
+dataLog = SWDataLoggerItem.new;
+dataLog.databaseTimeRange = 3;
+dataLog.databaseName = "sw";
+dataLog.databaseFile = "";
+dataLog.fieldNames = ["level"];
+dataLog.values = [];

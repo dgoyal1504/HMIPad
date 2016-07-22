@@ -1,0 +1,286 @@
+# %encoding UTF-8
+# %version 1020001
+
+Project.document = SWObject.new(Project_document);
+
+Project_document = SWDocumentModel.new;
+Project_document.selectedPageIndex = 0;
+Project_document.interfaceIdiom = 0;
+Project_document.system = SWCollection.new($Project, $System, $Location, $Motion, $Player);
+Project_document.sources = SWCollection.new(source, source1, source2, source3);
+Project_document.pages = SWCollection.new(page);
+Project_document.backgroundItems = SWCollection.new();
+Project_document.alarms = SWCollection.new();
+Project_document.embeddedAssets = 0;
+Project_document.fileList = [];
+Project_document.projectID = 0;
+
+$Project = SWSystemItemProject.new;
+$Project.currentPageIdentifier = "";
+$Project.title = "Project Title";
+$Project.shortTitle = "Project";
+$Project.allowedOrientation = 0;
+
+$System = SWSystemItemSystem.new;
+
+$Location = SWSystemItemLocation.new;
+
+$Motion = SWSystemItemMotion.new;
+
+$Player = SWSystemItemPlayer.new;
+$Player.play = 0;
+$Player.stop = 0;
+$Player.repeat = 0;
+$Player.title = "";
+$Player.url = "";
+
+source = SWSourceItem.new;
+source.localIP = "192.168.1.39:44818";
+source.remoteHost = ":44818";
+source.device = SWObject.new(source_device);
+source.tags = SWCollection.new(source_tags1);
+source.id = "48093";
+
+source_device = SWPlcDevice.new;
+source_device.protocol = "eip/native";
+source_device.poll_rate = 100;
+source_device.validation_tag_id = 0;
+source_device.options = 0;
+source_device.encoding = "WindowsLatin1";
+
+source_tags1 = SWSourceNode.new;
+source_tags1.name = "var";
+source_tags1.tag = SWObject.new(source_tags1_tag);
+source_tags1.write_expression = 0;
+
+source_tags1_tag = SWPlcTag.new;
+source_tags1_tag.address = "int1";
+source_tags1_tag.type = "DINT";
+source_tags1_tag.scale_rmin = 0;
+source_tags1_tag.scale_rmax = 0;
+source_tags1_tag.scale_emin = 0;
+source_tags1_tag.scale_emax = 0;
+
+source1 = SWSourceItem.new;
+source1.localIP = "192.168.1.37:102";
+source1.remoteHost = ":102";
+source1.device = SWObject.new(source1_device);
+source1.tags = SWCollection.new(source1_tags1);
+source1.id = "48093";
+
+source1_device = SWPlcDevice.new;
+source1_device.protocol = "siemens/iso_tcp";
+source1_device.poll_rate = 2000;
+source1_device.validation_tag_id = 0;
+source1_device.options = 0;
+source1_device.encoding = "WindowsLatin1";
+
+source1_tags1 = SWSourceNode.new;
+source1_tags1.name = "var";
+source1_tags1.tag = SWObject.new(source1_tags1_tag);
+source1_tags1.write_expression = 0;
+
+source1_tags1_tag = SWPlcTag.new;
+source1_tags1_tag.address = "MW0";
+source1_tags1_tag.type = "INT";
+source1_tags1_tag.scale_rmin = 0;
+source1_tags1_tag.scale_rmax = 0;
+source1_tags1_tag.scale_emin = 0;
+source1_tags1_tag.scale_emax = 0;
+
+source2 = SWSourceItem.new;
+source2.localIP = "192.168.1.40:9600";
+source2.remoteHost = ":9600";
+source2.device = SWObject.new(source2_device);
+source2.tags = SWCollection.new(source2_tags1);
+source2.id = "48093";
+
+source2_device = SWPlcDevice.new;
+source2_device.protocol = "fins/tcp";
+source2_device.poll_rate = 2000;
+source2_device.validation_tag_id = 0;
+source2_device.options = 0;
+source2_device.encoding = "WindowsLatin1";
+
+source2_tags1 = SWSourceNode.new;
+source2_tags1.name = "var";
+source2_tags1.tag = SWObject.new(source2_tags1_tag);
+source2_tags1.write_expression = 0;
+
+source2_tags1_tag = SWPlcTag.new;
+source2_tags1_tag.address = "DM0";
+source2_tags1_tag.type = "INT";
+source2_tags1_tag.scale_rmin = 0;
+source2_tags1_tag.scale_rmax = 0;
+source2_tags1_tag.scale_emin = 0;
+source2_tags1_tag.scale_emax = 0;
+
+source3 = SWSourceItem.new;
+source3.localIP = "192.168.1.38:44818";
+source3.remoteHost = ":44818";
+source3.device = SWObject.new(source3_device);
+source3.tags = SWCollection.new(source3_tags1);
+source3.id = "48093";
+
+source3_device = SWPlcDevice.new;
+source3_device.protocol = "eip/pccc";
+source3_device.poll_rate = 2000;
+source3_device.validation_tag_id = 0;
+source3_device.options = 0;
+source3_device.encoding = "WindowsLatin1";
+
+source3_tags1 = SWSourceNode.new;
+source3_tags1.name = "var";
+source3_tags1.tag = SWObject.new(source3_tags1_tag);
+source3_tags1.write_expression = 0;
+
+source3_tags1_tag = SWPlcTag.new;
+source3_tags1_tag.address = "N7:0";
+source3_tags1_tag.type = "INT";
+source3_tags1_tag.scale_rmin = 0;
+source3_tags1_tag.scale_rmax = 0;
+source3_tags1_tag.scale_emin = 0;
+source3_tags1_tag.scale_emax = 0;
+
+page = SWPage.new;
+page.pageIdentifier = "";
+page.title = "Title";
+page.shortTitle = "TITLE";
+page.modalStyle = 0;
+page.pageTransitionStyle = 3;
+page.enabledInterfaceIdiom = 0;
+page.color = "SlateGray";
+page.image = "";
+page.imageRatio = 1;
+page.hidden = 0;
+page.uuid = "8411D975-752A-4AD3-9C42-C59A8DC3AF7D";
+page.items = SWCollection.new(label, label1, label2, label3, label4, label5, label7,
+    label6);
+
+label = SWLabelItem.new;
+label.framePortrait = SM.rect(154, 113, 226, 30);
+label.frameLandscape = SM.rect(138, 77, 226, 30);
+label.framePortraitPhone = SM.rect(42, 31, 226, 30);
+label.frameLandscapePhone = SM.rect(75, 44, 226, 30);
+label.backgroundColor = "ClearWhite";
+label.hidden = 0;
+label.textAlignment = 1;
+label.verticalAlignment = 1;
+label.fontColor = "Black";
+label.font = "Helvetica";
+label.fontSize = 15;
+label.value = "Allen Bradley / control Logix";
+label.format = "%";
+label.locked = 0;
+
+label1 = SWLabelItem.new;
+label1.framePortrait = SM.rect(410, 113, 128, 30);
+label1.frameLandscape = SM.rect(394, 77, 128, 30);
+label1.framePortraitPhone = SM.rect(91, 72, 128, 30);
+label1.frameLandscapePhone = SM.rect(331, 44, 128, 30);
+label1.backgroundColor = "ClearWhite";
+label1.hidden = 0;
+label1.textAlignment = 1;
+label1.verticalAlignment = 1;
+label1.fontColor = "White";
+label1.font = "Helvetica";
+label1.fontSize = 18;
+label1.value = source.var;
+label1.format = "%";
+label1.locked = 0;
+
+label2 = SWLabelItem.new;
+label2.framePortrait = SM.rect(154, 160, 226, 30);
+label2.frameLandscape = SM.rect(138, 125, 226, 30);
+label2.framePortraitPhone = SM.rect(42, 145, 226, 30);
+label2.frameLandscapePhone = SM.rect(75, 92, 226, 30);
+label2.backgroundColor = "ClearWhite";
+label2.hidden = 0;
+label2.textAlignment = 1;
+label2.verticalAlignment = 1;
+label2.fontColor = "Black";
+label2.font = "Helvetica";
+label2.fontSize = 15;
+label2.value = "Siemens / S7 1200";
+label2.format = "%";
+label2.locked = 0;
+
+label3 = SWLabelItem.new;
+label3.framePortrait = SM.rect(410, 160, 128, 30);
+label3.frameLandscape = SM.rect(394, 125, 128, 30);
+label3.framePortraitPhone = SM.rect(91, 186, 128, 30);
+label3.frameLandscapePhone = SM.rect(331, 92, 128, 30);
+label3.backgroundColor = "ClearWhite";
+label3.hidden = 0;
+label3.textAlignment = 1;
+label3.verticalAlignment = 1;
+label3.fontColor = "White";
+label3.font = "Helvetica";
+label3.fontSize = 18;
+label3.value = source1.var;
+label3.format = "%";
+label3.locked = 0;
+
+label4 = SWLabelItem.new;
+label4.framePortrait = SM.rect(154, 207, 226, 30);
+label4.frameLandscape = SM.rect(138, 173, 226, 30);
+label4.framePortraitPhone = SM.rect(42, 261, 226, 30);
+label4.frameLandscapePhone = SM.rect(75, 140, 226, 30);
+label4.backgroundColor = "ClearWhite";
+label4.hidden = 0;
+label4.textAlignment = 1;
+label4.verticalAlignment = 1;
+label4.fontColor = "Black";
+label4.font = "Helvetica";
+label4.fontSize = 15;
+label4.value = "Omron / CJ1";
+label4.format = "%";
+label4.locked = 0;
+
+label5 = SWLabelItem.new;
+label5.framePortrait = SM.rect(410, 207, 128, 30);
+label5.frameLandscape = SM.rect(394, 173, 128, 30);
+label5.framePortraitPhone = SM.rect(91, 302, 128, 30);
+label5.frameLandscapePhone = SM.rect(331, 140, 128, 30);
+label5.backgroundColor = "ClearWhite";
+label5.hidden = 0;
+label5.textAlignment = 1;
+label5.verticalAlignment = 1;
+label5.fontColor = "White";
+label5.font = "Helvetica";
+label5.fontSize = 18;
+label5.value = source2.var;
+label5.format = "%";
+label5.locked = 0;
+
+label7 = SWLabelItem.new;
+label7.framePortrait = SM.rect(154, 254, 226, 30);
+label7.frameLandscape = SM.rect(138, 221, 226, 30);
+label7.framePortraitPhone = SM.rect(42, 382, 226, 30);
+label7.frameLandscapePhone = SM.rect(75, 188, 226, 30);
+label7.backgroundColor = "ClearWhite";
+label7.hidden = 0;
+label7.textAlignment = 1;
+label7.verticalAlignment = 1;
+label7.fontColor = "Black";
+label7.font = "Helvetica";
+label7.fontSize = 15;
+label7.value = "Allen Bradley / Micrologix";
+label7.format = "%";
+label7.locked = 0;
+
+label6 = SWLabelItem.new;
+label6.framePortrait = SM.rect(410, 254, 128, 30);
+label6.frameLandscape = SM.rect(394, 221, 128, 30);
+label6.framePortraitPhone = SM.rect(91, 423, 128, 30);
+label6.frameLandscapePhone = SM.rect(331, 188, 128, 30);
+label6.backgroundColor = "ClearWhite";
+label6.hidden = 0;
+label6.textAlignment = 1;
+label6.verticalAlignment = 1;
+label6.fontColor = "White";
+label6.font = "Helvetica";
+label6.fontSize = 18;
+label6.value = source3.var;
+label6.format = "%";
+label6.locked = 0;

@@ -1,0 +1,369 @@
+<!doctype html>
+<html>
+	<head>
+		<meta  http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Files from </title>
+		<style>
+    
+            /** headings **/
+            h1 { font-family:verdana font-size: 15px; color:rgb(50,79,133)}
+        
+			html { background-color:#eeeeee } 
+			/*body { margin-left:5%; margin-right:5%}*/
+			body { margin-left:5%; margin-right:5%; margin-top:3%; margin-bottom:5%;}
+            
+			.font1 {  font-family:verdana; font-size:13px; text-align:justify}
+			.font2 {  font-family:verdana; font-size:13px; }
+			.font3 {  font-family:verdana; font-size:10px; }
+            
+			#whole { background-color:white; border:1px solid #808080; padding:0px; border-radius:8px;}
+			
+            td.form { margin: 0; }
+            td.waiting { color:#8B0000 }
+            tr.headerRow { background:url(/resources/headerb.png_u) repeat-x ; color:white ; height:30px }
+            td.headerRow { background:url(/resources/header.png_u) repeat-x ; height:44px }
+            th.name { width:55% }
+            th.siz { width:20% }
+            th.mod { width:30% ; }
+            th.del {  }
+            
+            /* Some tables have rows marked even or odd. */
+            tr.even { }
+            tr.odd { background-color: #dddddd; }
+
+
+		</style>
+		<script type="text/javascript">
+        
+        
+        // generic XMLHTTPObject (thanks Jeremy Keith)
+        function getHTTPObject() 
+        {
+            var xhr = false;
+            if (window.XMLHttpRequest) { xhr = new XMLHttpRequest(); }
+            else if (window.ActiveXObject)
+            {
+                try { xhr = new ActiveXObject("Msxml2.XMLHTTP"); }
+                catch(e) 
+                {
+                    try { xhr = new ActiveXObject("Microsoft.XMLHTTP"); } 
+                    catch(e) { xhr = false; }
+                }
+            }
+            return xhr;
+        }
+        
+        // ask delete confirmation
+		function deleteFileValidator( fileName ) 
+        {
+			var msg = 'Are you sure you want to delete "' + fileName + '" ?';
+            var ret = confirm( msg ) ;
+            return ret ;
+		}
+        
+        // get table header
+        function tableHeader()
+        {
+         return "<table class='font2' width='100%' cellspacing=2> <tr class='headerRow' height=30> <th class='name'>Name</th> <th class='siz'>Size</th> <th class='mod'>Modified</th> <th class='del'></th></tr>" ;
+        }
+        
+        // get table footer
+        function tableFooter()
+        {
+         return "</table>" ;
+        }
+        
+        // set table
+        function setTable( inner, type )
+        {
+            var details = document.getElementById( type );
+            details.innerHTML = tableHeader() + inner + tableFooter() ;
+        }
+        
+        // set logo
+        function setLogo( isHidden )
+        {
+            var image = document.getElementById('logoImage');
+            var checkbox = document.formLogo.logoselection ;
+            var now = new Date();
+            image.src = "/logofile/x.png" + '&ei=' + now.getTime() ;
+            checkbox.checked = ! parseInt(isHidden) ;
+            
+            //details.innerHTML = tableHeader() + inner + tableFooter() ;
+        }
+        
+        // set main content
+        function setDetailedContent( inner )
+        {
+            var detailedContent = document.getElementById('detailedContent');
+            detailedContent.innerHTML = inner ;
+        }
+        
+        // alert user of error in GET.
+        function alertError()
+        {
+            alert( 'Error: Could not process GET request' ) ;
+        }
+        
+        // response from GET
+        function parseResponse( request, type ) 
+        {
+            if (request.readyState == 4)
+            {
+                if (request.status == 200 || request.status == 304)
+                {
+                    // details
+                    if ( type == 'sourceTable' )
+                    {
+                        setTable( request.responseText, type ) ;
+                    }
+                    else if ( type == 'recipeTable' )
+                    {
+                        setTable( request.responseText, type ) ;
+                    }
+                    else if ( type == 'docTable' )
+                    {
+                        setTable( request.responseText, type ) ;
+                    }
+                    else if ( type == 'databaseTable' )
+                    {
+                        setTable( request.responseText, type ) ;
+                    }
+                    else if ( type == 'logo' )
+                    {
+                    	setLogo( request.responseText ) ;
+                    }
+                    
+                    // detailed content
+                    else if ( type == 'homeContent' )
+                    {
+                    	setDetailedContent( request.responseText ) ;
+                    }
+                    else if ( type == 'sourceContent' )
+                    {
+                    	setDetailedContent( request.responseText ) ;
+                        updateList( 'sourceTable' ) ;
+                    }
+                    else if ( type == 'recipeContent' )
+                    {
+                    	setDetailedContent( request.responseText ) ;
+                        updateList( 'recipeTable' ) ;
+                    }
+                    else if ( type == 'docFilesContent' )
+                    {
+                    	setDetailedContent( request.responseText ) ;
+                        updateList( 'docTable' ) ;
+                    }
+                    else if ( type == 'databaseFilesContent' )
+                    {
+                    	setDetailedContent( request.responseText ) ;
+                        updateList( 'databaseTable' ) ;
+                    }
+                    else if ( type == 'logoContent' )
+                    {
+                    	setDetailedContent( request.responseText ) ;
+                        updateLogo() ;
+                    }
+                }
+                else
+                {
+                   alert( "Could not perform operation because communication with ${SW_DISPLAY_NAME} File Server is lost.\n\nBe sure ${SW_DISPLAY_NAME} File Server is running on your iPhone or iPod touch.\n\nReported Status: " + request.status ) ;
+                }
+            }
+        }
+        
+        // do GET with the parameter; type indicates what operation to do on return
+        /*
+        function doGetOperation( param, type )
+        {
+            var request = getHTTPObject();
+            if (request) 
+            {
+                request.onreadystatechange = function() { parseResponse( request, type ); };
+                request.onerror = function() { alertError(); };
+                var now = new Date() ;
+                if ( type == 'mainContent' ) request.open('GET', param, true);
+                else request.open('GET', param + '&ei=' + now.getTime(), true);
+                request.send(null);
+            }
+        }
+        */
+        
+        // do GET with the parameter; type indicates what operation to do on return
+        function doGetOperation( file, param, type )
+        {
+            var request = getHTTPObject();
+            if (request) 
+            {
+                request.onreadystatechange = function() { parseResponse( request, type ); };
+                request.onerror = function() { alertError(); };
+                
+                var ei = '' ;
+                if ( param != '' )
+                {
+                    var now = new Date() ;
+                    ei = '&ei' + now.getTime() ;
+                }
+                
+                request.open('GET', file + param + ei, true);
+                request.send(null);
+            }
+        }
+        
+        
+        // GET delete source
+        function deleteFileInList(file, fileUtf8, type ) 
+        {
+            if ( deleteFileValidator(fileUtf8) == true ) 
+            {
+                if ( type == 'sourceTable' ) doGetOperation( file, '?action=deleteSource', type ) ;
+                else if ( type == 'recipeTable' ) doGetOperation( file, '?action=deleteRecipe', type ) ;
+                else if ( type == 'docTable' ) doGetOperation( file, '?action=deleteDoc', type ) ;
+                else if ( type == 'databaseTable' ) doGetOperation( file, '?action=deleteDatabase', type ) ;
+            }
+        }
+
+        
+    	// GET update logo
+        function updateLogo()
+        {
+            doGetOperation( '', '?action=updateLogo', 'logo' ) ;
+        }
+        
+        // GET load templates
+        function loadTemplates()
+        {
+            doGetOperation( '', '?action=loadTemplates', 'sourceTable' ) ;
+        }        
+        
+        // GET update list
+        function updateList( type )
+        {
+            doGetOperation( '', '?action=updateTable_'+type, type ) ;
+        }
+        
+        // GET load main content
+        function loadDetailedContent( file, kind )
+        {
+            doGetOperation( file, '', kind ) ;
+        }
+
+        
+        // POST upload through form submission
+        function submitFormToServer( inputElement ) 
+        {
+        	var form = inputElement.form ;
+        	if ( form.name == 'formLogo' )
+            {
+                var logodata = form.logodata ;
+                if ( inputElement.name == 'logoselection' ) logodata.value = 'select' ;
+                else if ( inputElement.name == 'logoreset' ) logodata.value = 'reset' ;
+                else logodata.value = 'update'
+            }
+            form.submit() ;
+            doGetOperation( '?action=hello', 'hello' ) ;
+        }
+        
+    	// handle response from POST through hidden iframe
+        function updateDocumentFromWrappedDoc( doc )
+        {
+            var wrap ;
+            var type ;
+            
+            type = 'sourceTable' ;
+            wrap = doc.getElementById( type ) ;
+            if ( wrap )
+            {
+                setTable( wrap.innerHTML, type ) ;
+                return ;
+            }
+            
+            type = 'recipeTable' ;
+            wrap = doc.getElementById( type ) ;
+            if ( wrap )
+            {
+                setTable( wrap.innerHTML, type ) ;
+                return ;
+            }
+            
+            type = 'docTable' ;
+            wrap = doc.getElementById( type ) ;
+            if ( wrap )
+            {
+                setTable( wrap.innerHTML, type ) ;
+                return ;
+            }
+            
+            type = 'databaseTable' ;
+            wrap = doc.getElementById( type ) ;
+            if ( wrap )
+            {
+                setTable( wrap.innerHTML, type ) ;
+                return ;
+            }
+            
+            type = 'logo' ;
+            wrap = doc.getElementById( type ) ;
+            if ( wrap )
+            {
+                setLogo( wrap.innerHTML ) ;
+                return ;
+            }
+        }
+
+        </script>
+        
+	</head>
+    
+	<body onload="loadDetailedContent('/resources/Home.html', 'homeContent');">
+    
+        <br> 
+        
+        <table id="whole" class="font1" width=100% cellspacing=0px cellpadding=15px> 
+        
+        <tr>
+            <td width=120px valign="top"> 
+                <!Left menu goes here>
+                <img src="/resources/HMiPad_57.png_u">
+            </td>
+            <td> 
+                <!Detailed view goes here>
+                <h1 align="left">${SW_DISPLAY_NAME} Web Server</h1>
+            </td>
+        </tr>
+
+        </table>
+    
+        <br>
+        <table id="whole" class="font1" width=100% cellspacing=0px cellpadding=15px>
+        
+            <tr>
+                <td class="leftv" width=110px valign="top" style="line-height:2" >
+                    <a href="" onclick="loadDetailedContent('/resources/Home.html', 'homeContent'); return false;">Home</a><br>
+                    <a href="" onclick="loadDetailedContent('/resources/SourceFiles.html', 'sourceContent'); return false;">Project Files</a><br>
+                    <!-- <a href="" onclick="loadDetailedContent('/resources/RecipeFiles.html', 'recipeContent'); return false;">Recipes</a><br>  -->
+                    <a href="" onclick="loadDetailedContent('/resources/DocumentFiles.html', 'docFilesContent'); return false;">Asset Files</a><br>
+                    <a href="" onclick="loadDetailedContent('/resources/DatabaseFiles.html', 'databaseFilesContent'); return false;">Databases</a><br>
+                    <!-- <a href="" onclick="loadDetailedContent('/resources/CompanyLogo.html', 'logoContent'); return false;">Company Logo</a><br> -->
+                </td>
+                <td id="detailedContent">
+                </td>
+            </tr>
+            
+            <tr>
+                <td colspan="2"> 
+                    <!footer here>
+                </td>
+            </tr>
+            
+        </table>
+        
+        <label class="font3" >
+        ${SW_COMPANY_COPYRIGHT_INNER_HTML}
+        </label>
+        <br>
+
+        <iframe name="postframe" id="postframe" style="visibility:hidden;display:none" onError="alertError()" onload="updateDocumentFromWrappedDoc(this.contentWindow?this.contentWindow.document:this.contentDocument);"></iframe>
+
+    </body>
+</html>

@@ -1,0 +1,111 @@
+# %encoding UTF-8
+
+Project.document = SWObject.new(Project_document);
+
+Project_document = SWDocumentModel.new;
+Project_document.selectedPageIndex = 0;
+Project_document.interfaceIdiom = 0;
+Project_document.system = SWCollection.new($Project, $System, $Location, $Motion, $Player);
+Project_document.sources = SWCollection.new();
+Project_document.pages = SWCollection.new(page);
+Project_document.backgroundItems = SWCollection.new(localized, languages);
+Project_document.alarms = SWCollection.new();
+Project_document.embeddedAssets = 0;
+Project_document.fileList = [];
+Project_document.projectID = 2;
+
+$Project = SWSystemItemProject.new;
+$Project.currentPageIdentifier = "";
+$Project.title = "Project Title";
+$Project.shortTitle = "Project";
+$Project.allowedOrientation = 0;
+
+$System = SWSystemItemSystem.new;
+
+$Location = SWSystemItemLocation.new;
+
+$Motion = SWSystemItemMotion.new;
+
+$Player = SWSystemItemPlayer.new;
+$Player.play = 0;
+$Player.stop = 0;
+$Player.repeat = 0;
+$Player.title = "";
+$Player.url = "";
+
+page = SWPage.new;
+page.pageIdentifier = "";
+page.title = "Title";
+page.shortTitle = "TITLE";
+page.modalStyle = 0;
+page.pageTransitionStyle = 3;
+page.enabledInterfaceIdiom = 0;
+page.color = "White";
+page.image = "";
+page.imageRatio = 1;
+page.hidden = 0;
+page.uuid = "81D70FF7-979C-4D12-BFD0-BE9AFFE1D49F";
+page.items = SWCollection.new(languagePicker, label, label1);
+
+languagePicker = SWArrayPickerItem.new;
+languagePicker.framePortrait = SM.rect(308, 341, 152, 30);
+languagePicker.frameLandscape = SM.rect(400, 251, 226, 30);
+languagePicker.framePortraitPhone = SM.rect(83, 155, 152, 30);
+languagePicker.frameLandscapePhone = SM.rect(146, 96, 226, 30);
+languagePicker.backgroundColor = "ClearWhite";
+languagePicker.hidden = 0;
+languagePicker.continuousValue = 2;
+languagePicker.enabled = 1;
+languagePicker.verificationText = "";
+languagePicker.value = 2;
+languagePicker.array = languages.value;
+languagePicker.format = "%";
+languagePicker.color = "DimGray";
+languagePicker.textAlignment = 1;
+languagePicker.verticalAlignment = 1;
+languagePicker.font = "Helvetica-Bold";
+languagePicker.fontSize = 15;
+languagePicker.active = 1;
+languagePicker.linkToPages = [];
+languagePicker.locked = 0;
+
+label = SWLabelItem.new;
+label.framePortrait = SM.rect(203, 432, 362, 54);
+label.frameLandscape = SM.rect(305, 359, 416, 68);
+label.framePortraitPhone = SM.rect(9, 277, 300, 54);
+label.frameLandscapePhone = SM.rect(51, 167, 416, 68);
+label.backgroundColor = "ClearWhite";
+label.hidden = 0;
+label.textAlignment = 1;
+label.verticalAlignment = 1;
+label.fontColor = "Black";
+label.font = "Helvetica";
+label.fontSize = 36;
+label.value = localized.value["language"][languagePicker.value];
+label.format = "%";
+label.locked = 0;
+
+label1 = SWLabelItem.new;
+label1.framePortrait = SM.rect(238, 303, 292, 30);
+label1.frameLandscape = SM.rect(400, 214, 226, 30);
+label1.framePortraitPhone = SM.rect(13, 119, 292, 30);
+label1.frameLandscapePhone = SM.rect(146, 59, 226, 30);
+label1.backgroundColor = "ClearWhite";
+label1.hidden = 0;
+label1.textAlignment = 1;
+label1.verticalAlignment = 1;
+label1.fontColor = "Black";
+label1.font = "Helvetica";
+label1.fontSize = 15;
+label1.value = localized.value["chooser"][languagePicker.value];
+label1.format = "%";
+label1.locked = 0;
+
+localized = SWBackgroundItemExpression.new;
+localized.value = {
+"chooser":["Select Language","Selecciona Lengua","Wählen Sie die Sprache","言語の選択"],
+"language":["This is English","Esto es Español","Dies ist Deutsch","これは日本で"]
+};
+
+languages = SWBackgroundItemExpression.new;
+languages.value = ["English","Español","Deutsch","日本の"];

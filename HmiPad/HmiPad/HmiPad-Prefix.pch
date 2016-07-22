@@ -1,0 +1,117 @@
+//
+// Prefix header for all source files of the 'PageController' target in the 'PageController' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_7_0
+#warning "This project requires iOS SDK 7.0."
+#endif
+
+#define _AFNETWORKING_PIN_SSL_CERTIFICATES_
+
+#define TOL 0.000001
+//#define SOURCE_ITEM_LOGS
+
+//#define CURRENT_MODEL_VERSION 1
+
+//#define STRBOOL(bool) ((bool)?@"YES":@"NO")
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <tgmath.h>
+#endif
+
+
+// Funcio i macro per detectar la versio del iOS
+extern NSUInteger DeviceSystemMajorVersion();
+extern UIUserInterfaceIdiom DeviceUserInterfaceIdiom();
+#define IS_IOS7 (DeviceSystemMajorVersion() >= 7)
+#define IS_IOS8 (DeviceSystemMajorVersion() >= 8)
+#define IS_IPHONE (DeviceUserInterfaceIdiom() == UIUserInterfaceIdiomPhone)
+
+// ATENCIO: posar tot a 0 per distribucio via App Store
+#define SWISSandBox                     0
+#define SWITunesFileSharing             0   // ATENCIO: Posar el mateix valor a la key UIFileSharingEnabled
+#define GEN_IMAGE                       0
+#define SWIgnoreVersionOnSymbolicLoad   0
+
+#define SWEmbeddedWebServer 1
+
+// versio 1AABBCC  per exemple 2.1.3 seria 1020103
+//#define SWVersion 1010201
+#define SWVersion 1030003
+#define SWVersionText "3.0.3"
+#define HMiPadDevBeta 0         // << --- atencio posar 0 per final release 
+
+
+#define SWMinVersionICloud 1030000
+//#define SWMinVersionICloud 1020302
+
+#define SWSupportEmail "support@sweetwilliamsl.com"
+
+// target
+//#define HMiPadIntegrator true
+//#define HMiPadClient false
+#if HMiPadIntegrator
+    #define HMiPadDev true
+    #define AppName "HMI Draw"
+    #define HMiPadID "604708439";    // HMiPad    << ----- posar
+    //#define HMiPadID "324515280";    // ScadaMobile
+
+#else
+    #define HMiPadDev false
+#endif
+
+#if HMiPadClient
+    #define HMiPadRun true
+    #define AppName "HMI View"
+    #define HMiPadID "??";        // << ----- posar
+#else
+    #define HMiPadRun false
+#endif
+
+// administrador 
+#define SWAdminUser "integrator"
+#define SWAdminUserId (0xffffffff)
+#define SWEndUser "default"
+#define SWEndUserId (0xfffffffe)
+
+// password per defecte de administrador
+#ifndef SWAdminUserPass
+    #define SWAdminUserPass "admin"
+#endif
+
+#ifndef SWEndUserPass
+    #define SWEndUserPass "default"
+#endif
+
+#if HMiPadClient
+    #define SWDefaultUser SWEndUser
+    #define SWDefaultUserId SWEndUserId
+    #define SWDefaultUserPass SWEndUserPass
+#endif
+
+// usuari de defecte per defecte
+#ifndef SWDefaultUser
+    #define SWDefaultUser SWAdminUser
+#endif
+
+#ifndef SWDefaultUserId
+    #define SWDefaultUserId SWAdminUserId
+#endif
+
+#ifndef SWDefaultUserPass
+    #define SWDefaultUserPass SWAdminUserPass
+#endif
+
+// nom per defecte de la aplicacio
+#ifndef AppName
+    #define AppName "HMI Draw Pad"
+#endif
+
+// nom per defecte del playlist
+#ifndef PlayListName
+    #define PlayListName "HMiPad"
+#endif

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>options</key>
+	<array>
+		<dict>
+			<key>title</key>
+			<string>Text Items</string>
+			<key>options</key>
+			<array>
+				<dict>
+					<key>title</key>
+					<string>SWTextFieldItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWLabelItem</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Image Items</string>
+			<key>options</key>
+			<array>
+				<dict>
+					<key>title</key>
+					<string>SWImageItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWShapeItem</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Control Items</string>
+			<key>options</key>
+			<array>
+				<dict>
+					<key>title</key>
+					<string>SWButtonItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWStyledSwitchItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWCustomSwitchItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWSliderItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWKnobItem</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Data Visualization Items</string>
+			<key>options</key>
+			<array>
+				<dict>
+					<key>title</key>
+					<string>SWBarLevelItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWTrendItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWScaleItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWGaugeItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWLampItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWHorizontalPipeItem</string>
+				</dict>
+				<dict>
+					<key>title</key>
+					<string>SWVerticalPipeItem</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>title</key>
+			<string>Web Items</string>
+			<key>options</key>
+			<array>
+				<dict>
+					<key>title</key>
+					<string>SWWebItem</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

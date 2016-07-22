@@ -1,0 +1,49 @@
+<table cellpadding=10px>
+    <tr> 
+        <td>
+            <label>
+                <b>Archivos de Recetas</b><br>
+                <br>
+                Las Recetas son archivos csv que contienen datos de recetas.<br>
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>
+                <br>
+                <b>Descarga de Archivos (${SW_DISPLAY_NAME} -> PC)</b><br>
+                <br>
+                Haz click sobre un archivo para bajarlo de nuevo a tu ordenador.
+                Usa 'Borrar' para eliminar archivos de tu iPhone o iPod.
+            </label>
+        </td>
+    </tr>
+    <tr> 
+        <td id='recipeTable'>
+        </td> 
+    </tr>
+    <tr>
+        <td>
+            <label>
+                <br>
+                <b>Subida de Archivos (PC -> ${SW_DISPLAY_NAME})</b><br>
+                <br>
+                Pulsa el boton de abajo y selecciona un archivo para trasferirlo desde tu PC hasta tu iPhone o iPod touch.
+                Si necesitas enviar cambios en el archivo que acabas de subir, usa "Re-enviar archivo" despues de guardar en Excel.
+            </label>
+        </td>
+    </tr>
+    <tr> 
+        <td>   
+            <form action="/" method="post" enctype="multipart/form-data" name="formRecipes" target="postframe" onError="alertError()">
+                <table width="100%">
+                    <tr>
+                        <td align="left"> <input type="file" name="recipefile" id="file" size=40 onChange="submitFormToServer(this)"/> </td>
+                        <td align="right"> <input type="button" value="Re-enviar archivo" onClick="submitFormToServer(this)" /> </td>
+                    </tr>
+                </table>
+            </form>
+        </td> 
+    </tr>
+</table>

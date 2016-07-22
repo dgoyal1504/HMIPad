@@ -1,0 +1,342 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D2B8861E159B71B30047AD50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B8861D159B71B30047AD50 /* UIKit.framework */; };
+		D2B88620159B71B30047AD50 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B8861F159B71B30047AD50 /* Foundation.framework */; };
+		D2B88622159B71B30047AD50 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B88621159B71B30047AD50 /* CoreGraphics.framework */; };
+		D2B88628159B71B30047AD50 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2B88626159B71B30047AD50 /* InfoPlist.strings */; };
+		D2B8862A159B71B30047AD50 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B88629159B71B30047AD50 /* main.m */; };
+		D2B8862E159B71B30047AD50 /* SWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B8862D159B71B30047AD50 /* SWAppDelegate.m */; };
+		D2B88631159B71B30047AD50 /* SWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B88630159B71B30047AD50 /* SWViewController.m */; };
+		D2B88634159B71B30047AD50 /* SWViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2B88632159B71B30047AD50 /* SWViewController_iPhone.xib */; };
+		D2B88637159B71B30047AD50 /* SWViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2B88635159B71B30047AD50 /* SWViewController_iPad.xib */; };
+		D2B88649159B71D80047AD50 /* SWPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B8863F159B71D80047AD50 /* SWPathUtilities.m */; };
+		D2B8864B159B71D80047AD50 /* SWFloatingFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B88641159B71D80047AD50 /* SWFloatingFrameView.m */; };
+		D2B8864D159B71D80047AD50 /* SWClearNavitagionBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B88643159B71D80047AD50 /* SWClearNavitagionBar.m */; };
+		D2B8864F159B71D80047AD50 /* SWFloatingContentOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B88645159B71D80047AD50 /* SWFloatingContentOverlayView.m */; };
+		D2B88651159B71D80047AD50 /* SWFloatingPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B88647159B71D80047AD50 /* SWFloatingPopoverController.m */; };
+		D2BE7673159B8F5B000F3863 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BE766F159B8F0C000F3863 /* DemoTableViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D2B88619159B71B30047AD50 /* FloatingPopover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatingPopover.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2B8861D159B71B30047AD50 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D2B8861F159B71B30047AD50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2B88621159B71B30047AD50 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D2B88625159B71B30047AD50 /* FloatingPopover-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FloatingPopover-Info.plist"; sourceTree = "<group>"; };
+		D2B88627159B71B30047AD50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2B88629159B71B30047AD50 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D2B8862B159B71B30047AD50 /* FloatingPopover-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FloatingPopover-Prefix.pch"; sourceTree = "<group>"; };
+		D2B8862C159B71B30047AD50 /* SWAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.objj.h; path = SWAppDelegate.h; sourceTree = "<group>"; };
+		D2B8862D159B71B30047AD50 /* SWAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWAppDelegate.m; sourceTree = "<group>"; };
+		D2B8862F159B71B30047AD50 /* SWViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.objj.h; path = SWViewController.h; sourceTree = "<group>"; };
+		D2B88630159B71B30047AD50 /* SWViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWViewController.m; sourceTree = "<group>"; };
+		D2B88633159B71B30047AD50 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SWViewController_iPhone.xib; sourceTree = "<group>"; };
+		D2B88636159B71B30047AD50 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SWViewController_iPad.xib; sourceTree = "<group>"; };
+		D2B8863E159B71D80047AD50 /* SWPathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPathUtilities.h; sourceTree = "<group>"; };
+		D2B8863F159B71D80047AD50 /* SWPathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWPathUtilities.m; sourceTree = "<group>"; };
+		D2B88640159B71D80047AD50 /* SWFloatingFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWFloatingFrameView.h; sourceTree = "<group>"; };
+		D2B88641159B71D80047AD50 /* SWFloatingFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFloatingFrameView.m; sourceTree = "<group>"; };
+		D2B88642159B71D80047AD50 /* SWClearNavitagionBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = SWClearNavitagionBar.h; sourceTree = "<group>"; };
+		D2B88643159B71D80047AD50 /* SWClearNavitagionBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWClearNavitagionBar.m; sourceTree = "<group>"; };
+		D2B88644159B71D80047AD50 /* SWFloatingContentOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWFloatingContentOverlayView.h; sourceTree = "<group>"; };
+		D2B88645159B71D80047AD50 /* SWFloatingContentOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFloatingContentOverlayView.m; sourceTree = "<group>"; };
+		D2B88646159B71D80047AD50 /* SWFloatingPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = SWFloatingPopoverController.h; sourceTree = "<group>"; };
+		D2B88647159B71D80047AD50 /* SWFloatingPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFloatingPopoverController.m; sourceTree = "<group>"; };
+		D2BE766E159B8F0C000F3863 /* DemoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
+		D2BE766F159B8F0C000F3863 /* DemoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2B88616159B71B30047AD50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2B8861E159B71B30047AD50 /* UIKit.framework in Frameworks */,
+				D2B88620159B71B30047AD50 /* Foundation.framework in Frameworks */,
+				D2B88622159B71B30047AD50 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D2B8860E159B71B20047AD50 = {
+			isa = PBXGroup;
+			children = (
+				D2B88623159B71B30047AD50 /* FalsePopover */,
+				D2B8861C159B71B30047AD50 /* Frameworks */,
+				D2B8861A159B71B30047AD50 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2B8861A159B71B30047AD50 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2B88619159B71B30047AD50 /* FloatingPopover.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2B8861C159B71B30047AD50 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2B8861D159B71B30047AD50 /* UIKit.framework */,
+				D2B8861F159B71B30047AD50 /* Foundation.framework */,
+				D2B88621159B71B30047AD50 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2B88623159B71B30047AD50 /* FalsePopover */ = {
+			isa = PBXGroup;
+			children = (
+				D2B8863D159B71BC0047AD50 /* FalsePopover */,
+				D2B8862C159B71B30047AD50 /* SWAppDelegate.h */,
+				D2B8862D159B71B30047AD50 /* SWAppDelegate.m */,
+				D2B8862F159B71B30047AD50 /* SWViewController.h */,
+				D2B88630159B71B30047AD50 /* SWViewController.m */,
+				D2B88632159B71B30047AD50 /* SWViewController_iPhone.xib */,
+				D2B88635159B71B30047AD50 /* SWViewController_iPad.xib */,
+				D2BE766E159B8F0C000F3863 /* DemoTableViewController.h */,
+				D2BE766F159B8F0C000F3863 /* DemoTableViewController.m */,
+				D2B88624159B71B30047AD50 /* Supporting Files */,
+			);
+			path = FalsePopover;
+			sourceTree = "<group>";
+		};
+		D2B88624159B71B30047AD50 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2B88625159B71B30047AD50 /* FloatingPopover-Info.plist */,
+				D2B88626159B71B30047AD50 /* InfoPlist.strings */,
+				D2B88629159B71B30047AD50 /* main.m */,
+				D2B8862B159B71B30047AD50 /* FloatingPopover-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2B8863D159B71BC0047AD50 /* FalsePopover */ = {
+			isa = PBXGroup;
+			children = (
+				D2B8863E159B71D80047AD50 /* SWPathUtilities.h */,
+				D2B8863F159B71D80047AD50 /* SWPathUtilities.m */,
+				D2B88640159B71D80047AD50 /* SWFloatingFrameView.h */,
+				D2B88641159B71D80047AD50 /* SWFloatingFrameView.m */,
+				D2B88642159B71D80047AD50 /* SWClearNavitagionBar.h */,
+				D2B88643159B71D80047AD50 /* SWClearNavitagionBar.m */,
+				D2B88644159B71D80047AD50 /* SWFloatingContentOverlayView.h */,
+				D2B88645159B71D80047AD50 /* SWFloatingContentOverlayView.m */,
+				D2B88646159B71D80047AD50 /* SWFloatingPopoverController.h */,
+				D2B88647159B71D80047AD50 /* SWFloatingPopoverController.m */,
+			);
+			name = FalsePopover;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2B88618159B71B30047AD50 /* FloatingPopover */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2B8863A159B71B30047AD50 /* Build configuration list for PBXNativeTarget "FloatingPopover" */;
+			buildPhases = (
+				D2B88615159B71B30047AD50 /* Sources */,
+				D2B88616159B71B30047AD50 /* Frameworks */,
+				D2B88617159B71B30047AD50 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FloatingPopover;
+			productName = FalsePopover;
+			productReference = D2B88619159B71B30047AD50 /* FloatingPopover.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2B88610159B71B20047AD50 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SW;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Sweet William SL";
+			};
+			buildConfigurationList = D2B88613159B71B20047AD50 /* Build configuration list for PBXProject "FloatingPopover" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D2B8860E159B71B20047AD50;
+			productRefGroup = D2B8861A159B71B30047AD50 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2B88618159B71B30047AD50 /* FloatingPopover */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2B88617159B71B30047AD50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2B88628159B71B30047AD50 /* InfoPlist.strings in Resources */,
+				D2B88634159B71B30047AD50 /* SWViewController_iPhone.xib in Resources */,
+				D2B88637159B71B30047AD50 /* SWViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2B88615159B71B30047AD50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2BE7673159B8F5B000F3863 /* DemoTableViewController.m in Sources */,
+				D2B8862A159B71B30047AD50 /* main.m in Sources */,
+				D2B8862E159B71B30047AD50 /* SWAppDelegate.m in Sources */,
+				D2B88631159B71B30047AD50 /* SWViewController.m in Sources */,
+				D2B88649159B71D80047AD50 /* SWPathUtilities.m in Sources */,
+				D2B8864B159B71D80047AD50 /* SWFloatingFrameView.m in Sources */,
+				D2B8864D159B71D80047AD50 /* SWClearNavitagionBar.m in Sources */,
+				D2B8864F159B71D80047AD50 /* SWFloatingContentOverlayView.m in Sources */,
+				D2B88651159B71D80047AD50 /* SWFloatingPopoverController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D2B88626159B71B30047AD50 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2B88627159B71B30047AD50 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D2B88632159B71B30047AD50 /* SWViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2B88633159B71B30047AD50 /* en */,
+			);
+			name = SWViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		D2B88635159B71B30047AD50 /* SWViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2B88636159B71B30047AD50 /* en */,
+			);
+			name = SWViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2B88638159B71B30047AD50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D2B88639159B71B30047AD50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2B8863B159B71B30047AD50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FalsePopover/FloatingPopover-Prefix.pch";
+				INFOPLIST_FILE = "FalsePopover/FloatingPopover-Info.plist";
+				PRODUCT_NAME = FloatingPopover;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D2B8863C159B71B30047AD50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FalsePopover/FloatingPopover-Prefix.pch";
+				INFOPLIST_FILE = "FalsePopover/FloatingPopover-Info.plist";
+				PRODUCT_NAME = FloatingPopover;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2B88613159B71B20047AD50 /* Build configuration list for PBXProject "FloatingPopover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2B88638159B71B30047AD50 /* Debug */,
+				D2B88639159B71B30047AD50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2B8863A159B71B30047AD50 /* Build configuration list for PBXNativeTarget "FloatingPopover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2B8863B159B71B30047AD50 /* Debug */,
+				D2B8863C159B71B30047AD50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2B88610159B71B20047AD50 /* Project object */;
+}

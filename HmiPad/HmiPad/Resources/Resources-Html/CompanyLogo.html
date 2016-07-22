@@ -1,0 +1,35 @@
+<table cellpadding=10px>
+    <tr>
+        <td>
+            <label class="font1">
+                <b>Company Logo</b><br>
+                <br>
+                Chose a suitable image such as your company logo (png, jpg, gif) to show on top of ${SW_DISPLAY_NAME} home view.
+                Best results are achieved with transparent background 40 pixel high png files designed to show on dark backgrounds. On retina display devices a 80 pixel height image will show at full resolution.<br>
+            </label>
+        </td>
+    </tr>
+    <tr> 
+        <td>   
+            <form action="/" method="post" enctype="multipart/form-data" name="formLogo" target="postframe" onError="alertError()">
+                <table width="100%" class="font1"> 
+                    <tr>
+                        <td align="left" class="font1"> 
+                            <input type="checkbox" name="logoselection" value="on" onClick="submitFormToServer(this)"/>
+                            <input type="hidden" name="logodata" value=""/>Display Image on Header
+                        </td>
+                        <td align="center" width=280 height=44px class="headerRow"> <img id='logoImage' src="" height=40px/> </td>
+                    </tr>
+                    <tr>
+                        <td align="left"> <input type="file" name="logofile" id="file" size=40px onChange="submitFormToServer(this)"/>
+                            <input type="button" value="Re-submit File" onClick="submitFormToServer(this)" /> 
+                        </td>
+                        <td align="right"> <input type="button" name="logoreset" value="Use factory default" onClick="submitFormToServer(this)" />
+                        </td>
+                                                        
+                    </tr>
+                </table>
+            </form>
+        </td> 
+    </tr>
+</table>

@@ -1,0 +1,128 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green128\blue64;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \
+####################################################################\
+#####################							#####################\
+#####################		
+\b LLISTA DE BUGS		
+\b0 #####################\
+#####################							#####################\
+####################################################################
+\b \
+
+\b0 \
+En aquest fitxer es llisten els bugs trobats en el programa en forma de pila. Sempre afegir per la part superior i sempre omplir tots els camps.\
+Conforme es resolguin, s'ha d'actualitzar el fitxer.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b \cf0       N\'fam  	    Resolt 		   Data	       Data Res.		Descripci\'f3 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b0 \cf0 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\
+\
+\
+\
+	62		No		23/02/13		-			Peta al guardar simbolic si hem obert en un encodings no UTF8, es culpa de la codificacio de la source expression\
+	61		No		23/02/13		-			S'inserta un offset exagerat en el model browser (i possiblement altres) quan el fem apareixer si hi ha el teclat en mode portrait, a mes si rotem desapareix de la vista\
+	60		No		23/02/13		-			El view del teclat no deixa tocar elements que estan proxims \
+	59		No		23/02/13		-			El menu de items no presenta les opcions correctes quan hi ha el teclat\
+	58		No		23/02/13		-			El color picker te un conflicte amb el pan recognizer del floating popover \
+	57		No		11/11/12		-			el content offset del SWSourceItemConfiguratorController i el SWNodeConfigurator controller no s'actualitza al tornar al mode edit, es totalment un misteri, funciona perfectament per el SWObjectConfiguratorController el SWArrayTypeBrowserController el SWPageBrowserController etc.\
+	56		No		11/08/12		-			quan estem editant texte en un camp mode run el model ens pot canviar el valor en mig de la edicio (tricky)\
+	54		No		11/08/12		-			La imatge de fons de pantalla no puja quan estem editant texte en un camp mode run\
+	53		No		11/08/12		-			Els configuradors de items haurien de posar-se al devant despres de una segona selecci\'f3\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf2 	52		Si		10/10/12		10/30/12		Peta al afegir un item (+) en un projecte sense pagines\
+	51		Si		09/05/12		09/14/12		En mode monoselection, es pot tenir un item selecionat i moure'n un altre. Una mica extrany, no?\
+	50		Si		09/05/12		09/14/12		El paste dona items sel\'b7leccionats, independentment de l'estat de "allowed multiple selection"\cf0 \
+\cf2 	49		Si		09/05/12		09/20/12		Tots els controladors en el view appear s'han d'actualitzar (al menys model browser!) // <---- El que es fa \'e9s observar fins al dealloc!\cf0 \
+\cf2 	48		Si		09/05/12		10/30/12		Els popovers s'obren i es tanquen amb el bot\'f3 edit en ordre diferent (en profunditat)\
+	47		Si		09/05/12		?			Els configuradors no retornen a la posicio de scroll anterior al tornar al modo edit\
+	46		Si		09/05/12		?			Els configuradors de tags queden actius al sortir del mode edit\
+	45 		Si		08/28/12		09/20/12		Al model browser: Crea pagina/source + push ctrll corresponent (per veure lista de items/tags) + undo = model browser corrupte!\cf0 \
+\cf2 	44		Si		08/26/12		09/14/12		Si una imatge no existeix el item queda buit. Hauria de mostrar una imatge per defecte amb un "not found"\cf0 \
+\cf2 	43		Si		08/26/12		09/04/12		La lupa en textFields sempre busca tipus string encara que el inputType sigui numeric.\cf0 \
+	42		No		08/19/12		-			Les imatges poden quedar "Misaligned" a la pantalla provocant una aparen\'e7a borrosa.\
+	41		No		08/19/12		-			El "RightButton" s'ha de reimplementar per recuperar valors del model (amb delegat) en lloc de guardar les strings.\
+\cf2 	40		Si		08/10/12		27/28/12 		Quan eliminem una pagina que estem mostrant, la app fa un crash.\cf0 \
+\cf2 	39		Si		07/31/12		?			Bug 26 - El cas general no esta solucionat, necesita reimplementacio\
+	38		Si		07/30/12		?			El canvi de pagina crida el undo encara que estem en mode no-edit. Aix\'f2 provoca guardat automatic del document. En mode no-edit el document no s'hauria de guardar mai.\
+	37		SI		07/27/12		07/28/12		El resize de imatges no funciona si hi ha un tint color (culpa del SWTintedImageView)\
+	36		Si		07/27/12		09/05/12		Problema de alineament i animacio en la icona de error del configurador quan una expressio dona un error i al recuperarse del error\cf0 \
+\cf2 	35		Si		07/24/12		07/31/12		Desel\'b7lecci\'f3 de items en multiple selection. Quan es toca un que esta sel\'b7leccionat, s'ha de desel\'b7leccionar.\cf0 \
+\cf2 	34		Si		07/24/12		07/31/12		Qualsevol item es pot resizar des de la cantonada superior dreta.\cf0 \
+\cf2 	33		SI		07/22/12		10/08/12		La aparicio del SWPageBrowser o SWObjectBrowser en un popover normal es molt lenta, especialment per retina display.\
+	32		Si		07/22/12		09/05/12		S'ha de resoldre millor el mode enabled/disabled dels controls.\cf0 \
+	31		No		07/22/12		-			El sistema de cache de imatges falla si en el directori es canvia la imatge original per un altre del mateix nom -> falta mirar la data de creacio/modificacio.\
+\cf2 	30		Si		07/13/12		07/18/12		El popover de seleccio de imatge es (sempre) lent per apareixer. Suposo que falta utilitzar la cache de images.\cf0 \
+	29		No		07/13/12		-			En el popover de colors el slider de opacitat queda inoperatiu quan va a zero.\
+	28		No		07/13/12		-			Es mostra un ruler incorrecte amb resizes a prop de la mida m\'ednima.\
+\cf2 	27		Si		07/13/12		?			Les zones de edicio de frame s\'f3n massa petites i es difici de fer resizes en un iPad real.\
+	26		Si		07/13/12		07/31/12		No es posible editar el frame d'objectes que queden a sota d'altres.\cf0 \
+\cf2 	25		Si		07/13/12		07/18/12		El placeholder de values en el configurador de items diu 'string' encara que s'esperi una entrada numerica.   \cf0 \
+	24		No		07/13/12		-			El configurador de items no fa el scroll automatic del table view amb el teclat (ex en el configurador de SWShape.)\
+\cf2 	23		Si		07/08/12		09/06/12		La propietat Hidden funciona parcialment.\cf0 \
+\cf2 	22		Si		07/08/12		07/13/12		El Undo despres de crear item fa un efecte visual extrany: el item es torna petit de cop abans de desapareixer.\cf0 \
+\cf2 	21		Si		07/08/12		07/25/12		El sliderItem es una subclase del barLevelItem pero el seu controlador no implementa tots els values i expressions.\cf0 \
+\cf2 	20		Si		07/08/12		09/12/12		Els errors de descodificacio simbolica no es mostren al usuari.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 	19 		No		07/08/12		-			Les opcions de orientacio vertical del SWScale no funcionen.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf2 	18 		Si		07/08/12		08/10/12		[uj7211] WARNING: Unknown file type: dyn.age81g5pc -> seguit de destrucci\'f3 completa del projecte.\
+	17		Si	
+\b 	
+\b0 07/08/12		07/08/12		El trend no actualiza el tint color a la primera aparicio.\
+	16		Si	
+\b 	
+\b0 07/08/12		07/08/12		Les opcions de direccio en el barItem no son les correctes.\
+	15		SI	
+\b 	
+\b0 07/08/12		07/08/12		Els fitxers smb no son compatibles entre del simulador i el iPad. Peta en el ipad al descodificar-ne un fet amb el simulador\
+	14		Si	
+\b 	
+\b0 07/08/12		07/09/12		La direcci\'f3 del gradient en els barItems es incorrecta (s'ha trencat en algun moment).\cf0 \
+\cf2 	13		Si
+\b 		
+\b0 07/08/12		07/12/12		Durant el resize de les imatges no es te en compte la resolucio de la pantalla (retina display).\cf0 \
+\cf2 	12		SI	
+\b 	
+\b0 07/08/12		08/10/12		La expressio de escritura de un Tag hauria d'admetre varis origens alternatius.\
+	11		Si	
+\b 	
+\b0 07/08/12		09/05/!2		La seleccio de fonts o color es blau fosc, pero la seleccio queda blau clar. Hauria de seleccionar-se nomes amb blau clar.\cf0 \
+\cf2 	10		Si	
+\b 	
+\b0 07/08/12		07/31/12		El copy/paste no conserva la posicio relativa entre els elements copiats, es posen tots un a sobre de l'altre.\cf0 \
+\cf2 	9		Si	
+\b 	
+\b0 07/08/12		07/12/12		No es permet entrar una expresio o value buit en el configurador. En aquest cas hauria d'agafar un valor per defecte.\cf0 \
+\cf2 	8		Si	
+\b 	
+\b0 07/08/12		07/12/12		La decodificacio simb\'f3lica de valors o expressions que no s'havien codificat es sempre el valor 0. Hauria d'agafar un valor per defecte.\cf0 \
+	7		No	
+\b 	
+\b0 07/08/12		-			Idem que el bug 41.\
+\cf2 	6		Si	
+\b 	
+\b0 07/08/12		09/05/12		Els popover de colors o font tenen precedencia respecte al punt blau, inabilitant la funcionalitat de cancel-lar.\cf0 \
+\cf2 	5		Si	
+\b 	
+\b0 07/08/12		09/05/12		Els popover de colors o font poden quedar amagats sota el teclat.\cf0 \
+\cf2 	4		Si	
+\b 	
+\b0 07/08/12		07/14/12		El Floating popover mostra part del contingut en el navigator bar durant la transicio de desaparicio del teclat.\
+	3		Si	
+\b 	
+\b0 07/08/12		07/??/12		En el config del Styled switch, si hi ha desplegat el Styled Switch aleshores la part superior del triangle del Switch no reacciona als 'clicks'.\cf0 \
+\cf2 	2		Si		07/05/12		07/27/12		Bug en el "paste" a la p\'e0gina: sols apareix el men\'fa de paste un cop ja ha aparegut sobre un item.
+\b \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b0 \cf0 	\cf2 1		Si		07/05/12		07/06/12		Problema en la sel\'b7lecci\'f3 dels SWLayoutViewCells quan es t\'e9 una cel\'b7la sel\'b7leccionada i se'n mou una de no sel\'b7lecionada. \
+}

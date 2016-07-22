@@ -1,0 +1,341 @@
+<!doctype html>
+<html>
+	<head>
+		<meta  http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Files from </title>
+		<style>
+    
+            /** headings **/
+            h1 { font-size: 140%; }
+        
+			html { background-color:#eeeeee } 
+			/*body { margin-left:5%; margin-right:5%}*/
+			body { margin-left:5%; margin-right:5%; margin-top:3%; margin-bottom:5%;}
+            
+			.font1 {  font-family:sans-serif; font-size:14; text-align:justify}
+			.font2 {  font-family:sans-serif; font-size:14; }
+            
+			/* #whole { background-color:white; border:3px solid #006600; padding:15px ;} */
+			#whole { background-color:white; border:1px solid #808080; padding:15px; -webkit-border-radius:8px; -moz-border-radius:8px;}
+            td.form { margin: 0; }
+            td.waiting { color:#8B0000 }
+            tr.headerRow { background:url(/resources/headerb.png_u) repeat-x ; color:white ; height:30px }
+            td.headerRow { background:url(/resources/header.png_u) repeat-x ; height:44px }
+            th.name { width:55% }
+            th.siz { width:15% }
+            th.mod { width:30% ; }
+            th.del {  }
+            
+            /* Some tables have rows marked even or odd. */
+            tr.even { }
+            tr.odd { background-color: #eee; }
+
+
+		</style>
+		<script type="text/javascript">
+        
+        
+        // generic XMLHTTPObject (thanks Jeremy Keith)
+        function getHTTPObject() 
+        {
+            var xhr = false;
+            if (window.XMLHttpRequest) { xhr = new XMLHttpRequest(); }
+            else if (window.ActiveXObject)
+            {
+                try { xhr = new ActiveXObject("Msxml2.XMLHTTP"); }
+                catch(e) 
+                {
+                    try { xhr = new ActiveXObject("Microsoft.XMLHTTP"); } 
+                    catch(e) { xhr = false; }
+                }
+            }
+            return xhr;
+        }
+        
+        // ask delete confirmation
+		function deleteFileValidator( fileName ) 
+        {
+			var msg = 'Are you sure you want to delete "' + fileName + '" ?';
+            var ret = confirm( msg ) ;
+            return ret ;
+		}
+        
+        // get table header
+        function tableHeader()
+        {
+         return "<table class='font2' width='100%' cellspacing=2> <tr class='headerRow' height=30> <th class='name'>Name</th> <th class='siz'>Size</th> <th class='mod'>Modified</th> <th class='del'></th></tr>" ;
+        }
+        
+        // get table footer
+        function tableFooter()
+        {
+         return "</table>" ;
+        }
+        
+        // set table
+        function setTable( inner )
+        {
+            var details = document.getElementById('details');
+            details.innerHTML = tableHeader() + inner + tableFooter() ;
+        }
+        
+        // set logo
+        function setLogo( isHidden )
+        {
+            var image = document.getElementById('logoimage');
+            var checkbox = document.form2.logoselection ;
+            var now = new Date();
+            image.src = "/logofile/x.png" + '&ei=' + now.getTime() ;
+            checkbox.checked = ! parseInt(isHidden) ;
+            
+            //details.innerHTML = tableHeader() + inner + tableFooter() ;
+        }
+        
+        // alert user of error in GET.
+        function alertError()
+        {
+            alert( 'Error: Could not process GET request' ) ;
+        }
+        
+        // response from GET
+        function parseResponse( request, type ) 
+        {
+            if (request.readyState == 4)
+            {
+                if (request.status == 200 || request.status == 304)
+                {
+                    if ( type == 'table' )
+                    {
+                        setTable( request.responseText ) ;
+                    }
+                    else if ( type == 'logo' )
+                    {
+                    	setLogo( request.responseText ) ;
+                    }
+                }
+                else
+                {
+                   alert( "Could not perform operation because communication with ${SW_DISPLAY_NAME} File Server is lost.\n\nBe sure ${SW_DISPLAY_NAME} File Server is running on your iPhone or iPod touch.\n\nReported Status: " + request.status ) ;
+                }
+            }
+        }
+        
+        // do GET with the parameter 
+        function doGetOperation( param, type )
+        {
+            var request = getHTTPObject();
+            if (request) 
+            {
+                request.onreadystatechange = function() { parseResponse( request, type ); };
+                request.onerror = function() { alertError(); };
+                var now = new Date() ;
+                request.open('GET', param + '&ei=' + now.getTime(), true);
+                request.send(null);
+            }
+        }
+        
+        // GET delete file
+        function deleteFileInList(file, fileUtf8) 
+        {
+            if ( deleteFileValidator(fileUtf8) == true ) doGetOperation( file+'?action=delete', 'table' ) ;
+        }
+        
+        // GET update list
+        function updateList()
+        {
+            doGetOperation( '?action=updatetable', 'table' ) ;
+        }
+        
+    	// GET update logo
+        function updateLogo()
+        {
+            doGetOperation( '?action=updatelogo', 'logo' ) ;
+        }
+        
+        // GET load templates
+        function loadTemplates()
+        {
+            doGetOperation( '?action=loadTemplates', 'table' ) ;
+        }
+
+        
+        // POST upload through form submission
+        function submitFormToServer( inputElement ) 
+        {
+        	var form = inputElement.form ;
+        	if ( form.name == "form2" )
+            {
+                //var logoselection = form.logoselection ;
+                var logodata = form.logodata ;
+                //if ( logoselection.value == 'on' ) logodata.value = 'show' ;
+                //else logodata.value = 'hide' ;
+                //if ( inputElement.name == 'logoreset' ) logodata.value = logodata.value + ',reset' ;
+                
+                if ( inputElement.name == 'logoselection' ) logodata.value = 'select' ;
+                else if ( inputElement.name == 'logoreset' ) logodata.value = 'reset' ;
+                else logodata.value = 'update'
+            }
+            form.submit() ;
+            doGetOperation( '?action=hello', 'hello' ) ;
+        }
+        
+    	// handle response from POST through hidden iframe
+        function updateDocumentFromWrappedDoc( doc )
+        {
+            var wrap = doc.getElementById('tablewrap') ;
+            if ( wrap )
+            {
+                setTable( wrap.innerHTML ) ;
+            }
+            else
+            {
+            	wrap = doc.getElementById('logowrap') ;
+                if ( wrap )
+                {
+                	setLogo( wrap.innerHTML )
+                }
+            }
+        }
+
+        </script>
+        
+	</head>
+    
+	<body onload="updateList(); updateLogo()">
+    
+        <br/> 
+        
+        <table id="whole" class="font1" cellspacing=20>
+            <tr>
+                <td class="leftv">
+                    <br/><br/><br/><br/>
+                </td>
+                <td>
+                    <table class="font1" cellspacing=20>
+                        
+                        <tr> 
+                            <td>
+                                <label class="font1">
+                                <h1>${SW_DISPLAY_NAME} 2.0 File Server</h1><br/>
+                                    Use this tool to transfer files to and from your PC and ${SW_DISPLAY_NAME} using the relevant sections below.
+                                    ${SW_DISPLAY_NAME} natively supports cxr symbol and program section files created with Omron's CX-Programmer Software and
+                                    csv tag export files created with Allen Bradley's RSLogix. 
+                                    Excel generated csv and txt files are also supported.
+                                    You can also use ${SW_DISPLAY_NAME} to store any kind of complementary files such as
+                                    project or documentation files for latter retrieval.<br/>
+                                <br/>
+                                    Download the relevant user manual for this version from here
+                                    <a href="${SW_USER_MANUAL_LINK}">${SW_USER_MANUAL_LINK_INNER_HTML}</a><br/>
+                                <br/>
+                                    You can visit
+                                    <a href="${SW_COMPANY_LINK}">${SW_COMPANY_LINK_INNER_HTML}</a> for further assistance.<br/>
+                                </label>
+                            </td>
+                        </tr>
+                        
+                        <tr> 
+                            <td>
+                                <label class="font1">
+                                <br/>
+                                    <b>Example Templates</b><br/>
+                                <br/>
+                                    Example template applications are provided with the installation of the ${SW_DISPLAY_NAME} package.
+                                    They can be deleted at any time and recreated later by clicking on the 'Load Examples' button after this paragraph.
+                                    Note however that existing files with same names as default templates (for example, user modified template files) 
+                                    will be preserved, so you may have to delete them in order to recover full original state.<br/>
+                                <br/>
+                                    <input type="button" onclick="loadTemplates()" value="Load Examples"/><br/>
+                                </label>
+                            </td>
+                        </tr>
+
+                        
+                        <tr>
+                            <td>
+                                <label class="font1">
+                                <br/>
+                                    <b>File Download (${SW_DISPLAY_NAME} -> PC)</b><br/>
+                                <br/>
+                                    Click or Right-Click on a file name in the list to download it to your computer.
+                                    Click "Delete" to remove a file from your iPhone or iPod. <br/>
+                                </label>
+                            </td>
+                        </tr>
+                        
+                        <tr> 
+                            <td id='details'>
+                            </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <label class="font1">
+                                <br/><b>File Upload (PC -> ${SW_DISPLAY_NAME})</b><br/>
+                                <br/>
+                                    Click on the button below to chose a file from your PC to transfer to your iPhone or iPod touch.
+                                    Commit further changes on the chosen file, for example after saving it from Excel, by using the "Re-submit File" button.<br/>
+                                </label>
+                            </td>
+                        </tr>
+                        
+                        <tr> 
+                            <td>   
+                                <form action="/" method="post" enctype="multipart/form-data" name="form1" target="postframe" onError="alertError()">
+                                
+                                    <table width="100%">
+                                        <tr>
+                                            <td align="left"> <input type="file" name="file" id="file" size=40 onChange="submitFormToServer(this)"/> </td>
+                                            <td align="right"> <input type="button" value="Re-submit File" onClick="submitFormToServer(this)" /> </td>
+                                        </tr>
+                                    </table>
+                                    
+                                </form>
+                            </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <label class="font1">
+                                <br/><b>Company Logo</b><br/>
+                                <br/>
+                                    Chose a suitable image such as your company logo (png, jpg, gif) to show on top of ${SW_DISPLAY_NAME} home wiew.
+                                    Best results are achieved with 40 pixel high png files with transparent background<br/>
+                                </label>
+                            </td>
+                        </tr>
+        
+                        <tr> 
+                            <td>   
+                                <form action="/" method="post" enctype="multipart/form-data" name="form2" target="postframe" onError="alertError()">
+                                
+                                    <table width="100%" class="font1">                                        
+                                    	<tr>
+                                         	<td align="left" class="font1"> 
+                                            			<input type="checkbox" name="logoselection" value="on" onClick="submitFormToServer(this)"/>
+                                                        <input type="hidden" name="logodata" value=""/>Display Image on Header</td>
+                                            <td align="center" width=280 height=44px class="headerRow"> <img id='logoimage' src="" height=40px/> </td>
+ 										</tr>
+                                        <tr>
+                                            <td align="left"> <input type="file" name="logofile" id="file" size=40px onChange="submitFormToServer(this)"/>
+                                            				  <input type="button" value="Re-submit File" onClick="submitFormToServer(this)" /> </td>
+                                            <td align="right"> <input type="button" name="logoreset" value="Use factory default" onClick="submitFormToServer(this)" /> </td>
+                                                        
+                                        </tr>
+                                	</table>
+                                    
+                                </form>
+                            </td> 
+                        </tr>
+
+                        
+                    </table>
+                </td>
+            </tr>
+        </table>
+        
+        <br/>
+
+        <iframe name="postframe" id="postframe" style="visibility:hidden;display:none" onError="alertError()" onload="updateDocumentFromWrappedDoc(this.contentWindow?this.contentWindow.document:this.contentDocument);"></iframe>
+
+    </body>
+</html>

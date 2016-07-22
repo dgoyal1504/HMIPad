@@ -1,0 +1,204 @@
+# %encoding UTF-8
+# %version 1020102
+
+Project.document = SWObject.new(Project_document);
+
+Project_document = SWDocumentModel.new;
+Project_document.selectedPageIndex = 0;
+Project_document.interfaceIdiom = 0;
+Project_document.system = SWCollection.new($Project, $System, $Location, $Motion, $Player, $Scanner, $UsersManager);
+Project_document.sources = SWCollection.new();
+Project_document.pages = SWCollection.new(page3);
+Project_document.backgroundItems = SWCollection.new();
+Project_document.alarms = SWCollection.new();
+Project_document.users = SWCollection.new();
+Project_document.projectUser = -1;
+Project_document.dataLoggers = SWCollection.new();
+Project_document.embeddedAssets = 0;
+Project_document.fileList = [];
+Project_document.projectID = 2;
+
+$Project = SWSystemItemProject.new;
+$Project.currentPageIdentifier = "Segona";
+$Project.title = "Municipal Water Tank";
+$Project.shortTitle = "Project";
+$Project.allowedOrientation = 0;
+$Project.allowedOrientationPhone = 0;
+
+$System = SWSystemItemSystem.new;
+
+$Location = SWSystemItemLocation.new;
+
+$Motion = SWSystemItemMotion.new;
+
+$Player = SWSystemItemPlayer.new;
+$Player.play = 0;
+$Player.stop = 0;
+$Player.repeat = 0;
+$Player.title = "";
+$Player.url = "";
+
+$Scanner = SWSystemItemScanner.new;
+$Scanner.scan = 0;
+$Scanner.scanResult = "";
+
+$UsersManager = SWSystemItemUsersManager.new;
+$UsersManager.login = <unknown>;
+$UsersManager.enableAutoLogin = 1;
+$UsersManager.backgroundColor = "";
+$UsersManager.backgroundImage = "bg_flowers.jpg";
+$UsersManager.companyTitle = "Blue Sun";
+$UsersManager.companyLogo = " ";
+
+page3 = SWPage.new;
+page3.pageIdentifier = "";
+page3.title = "Title";
+page3.shortTitle = "TITLE";
+page3.modalStyle = 0;
+page3.pageTransitionStyle = 3;
+page3.enabledInterfaceIdiom = 0;
+page3.color = "White";
+page3.image = "";
+page3.imageRatio = 1;
+page3.hidden = 0;
+page3.uuid = "96E6B420-08AD-4487-896D-AEE9951D00AE";
+page3.items = SWCollection.new(textFieldString, textFieldKey, label6, label7, label8, label9, labelEncrypted,
+    labelDecrypted);
+
+textFieldString = SWStringTextFieldItem.new;
+textFieldString.framePortrait = SM.rect(103, 236, 222, 62);
+textFieldString.frameLandscape = SM.rect(147, 195, 244, 60);
+textFieldString.framePortraitPhone = SM.rect(19, 64, 282, 48);
+textFieldString.frameLandscapePhone = SM.rect(26, 64, 204, 58);
+textFieldString.backgroundColor = "White";
+textFieldString.hidden = 0;
+textFieldString.continuousValue = "Un dos tres quatre cinc";
+textFieldString.enabled = 1;
+textFieldString.verificationText = "";
+textFieldString.textSelectionStyle = 0;
+textFieldString.textAlignment = 1;
+textFieldString.fontColor = "Black";
+textFieldString.font = "Helvetica";
+textFieldString.fontSize = 15;
+textFieldString.value = "Un dos tres quatre cinc";
+textFieldString.style = 1;
+textFieldString.secureInput = 0;
+textFieldString.format = "%";
+textFieldString.locked = 0;
+
+textFieldKey = SWStringTextFieldItem.new;
+textFieldKey.framePortrait = SM.rect(399, 236, 222, 32);
+textFieldKey.frameLandscape = SM.rect(581, 195, 242, 32);
+textFieldKey.framePortraitPhone = SM.rect(19, 173, 282, 30);
+textFieldKey.frameLandscapePhone = SM.rect(318, 64, 216, 34);
+textFieldKey.backgroundColor = "White";
+textFieldKey.hidden = 0;
+textFieldKey.continuousValue = "0";
+textFieldKey.enabled = 1;
+textFieldKey.verificationText = "";
+textFieldKey.textSelectionStyle = 0;
+textFieldKey.textAlignment = 1;
+textFieldKey.fontColor = "Black";
+textFieldKey.font = "Helvetica";
+textFieldKey.fontSize = 15;
+textFieldKey.value = "0";
+textFieldKey.style = 1;
+textFieldKey.secureInput = 0;
+textFieldKey.format = "%";
+textFieldKey.locked = 0;
+
+label6 = SWLabelItem.new;
+label6.framePortrait = SM.rect(145, 193, 138, 30);
+label6.frameLandscape = SM.rect(200, 154, 138, 30);
+label6.framePortraitPhone = SM.rect(91, 28, 138, 30);
+label6.frameLandscapePhone = SM.rect(76, 21, 126, 28);
+label6.backgroundColor = "ClearWhite";
+label6.hidden = 0;
+label6.textAlignment = 1;
+label6.verticalAlignment = 1;
+label6.fontColor = "Black";
+label6.font = "Helvetica";
+label6.fontSize = 15;
+label6.value = "Enter String";
+label6.format = "%";
+label6.locked = 0;
+
+label7 = SWLabelItem.new;
+label7.framePortrait = SM.rect(441, 193, 138, 30);
+label7.frameLandscape = SM.rect(632, 154, 138, 30);
+label7.framePortraitPhone = SM.rect(91, 134, 138, 30);
+label7.frameLandscapePhone = SM.rect(357, 21, 138, 28);
+label7.backgroundColor = "ClearWhite";
+label7.hidden = 0;
+label7.textAlignment = 1;
+label7.verticalAlignment = 1;
+label7.fontColor = "Black";
+label7.font = "Helvetica";
+label7.fontSize = 15;
+label7.value = "Enter Key";
+label7.format = "%";
+label7.locked = 0;
+
+label8 = SWLabelItem.new;
+label8.framePortrait = SM.rect(145, 405, 138, 30);
+label8.frameLandscape = SM.rect(200, 403, 138, 30);
+label8.framePortraitPhone = SM.rect(91, 238, 138, 30);
+label8.frameLandscapePhone = SM.rect(64, 146, 138, 30);
+label8.backgroundColor = "ClearWhite";
+label8.hidden = 0;
+label8.textAlignment = 1;
+label8.verticalAlignment = 1;
+label8.fontColor = "Black";
+label8.font = "Helvetica";
+label8.fontSize = 15;
+label8.value = "Encrypted String";
+label8.format = "%";
+label8.locked = 0;
+
+label9 = SWLabelItem.new;
+label9.framePortrait = SM.rect(441, 405, 138, 30);
+label9.frameLandscape = SM.rect(632, 403, 138, 30);
+label9.framePortraitPhone = SM.rect(91, 360, 138, 30);
+label9.frameLandscapePhone = SM.rect(357, 146, 138, 30);
+label9.backgroundColor = "ClearWhite";
+label9.hidden = 0;
+label9.textAlignment = 1;
+label9.verticalAlignment = 1;
+label9.fontColor = "Black";
+label9.font = "Helvetica";
+label9.fontSize = 15;
+label9.value = "Decrypted";
+label9.format = "%";
+label9.locked = 0;
+
+labelEncrypted = SWLabelItem.new;
+labelEncrypted.framePortrait = SM.rect(103, 446, 222, 158);
+labelEncrypted.frameLandscape = SM.rect(147, 450, 244, 98);
+labelEncrypted.framePortraitPhone = SM.rect(19, 270, 282, 60);
+labelEncrypted.frameLandscapePhone = SM.rect(26, 180, 214, 60);
+labelEncrypted.backgroundColor = "Bisque";
+labelEncrypted.hidden = 0;
+labelEncrypted.textAlignment = 1;
+labelEncrypted.verticalAlignment = 1;
+labelEncrypted.fontColor = "Black";
+labelEncrypted.font = "Helvetica";
+labelEncrypted.fontSize = 15;
+labelEncrypted.value = SM.encrypt(textFieldString.value, textFieldKey.value);
+labelEncrypted.format = "%";
+labelEncrypted.locked = 0;
+
+labelDecrypted = SWLabelItem.new;
+labelDecrypted.framePortrait = SM.rect(399, 446, 222, 158);
+labelDecrypted.frameLandscape = SM.rect(579, 450, 244, 98);
+labelDecrypted.framePortraitPhone = SM.rect(19, 392, 282, 66);
+labelDecrypted.frameLandscapePhone = SM.rect(318, 180, 216, 60);
+labelDecrypted.backgroundColor = "Bisque";
+labelDecrypted.hidden = 0;
+labelDecrypted.textAlignment = 1;
+labelDecrypted.verticalAlignment = 1;
+labelDecrypted.fontColor = "Black";
+labelDecrypted.font = "Helvetica";
+labelDecrypted.fontSize = 15;
+labelDecrypted.value = SM.decrypt(labelEncrypted.value, textFieldKey.value);
+labelDecrypted.format = "%";
+labelDecrypted.locked = 0;

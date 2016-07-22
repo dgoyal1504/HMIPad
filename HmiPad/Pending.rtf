@@ -1,0 +1,158 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \
+- El bug 9 :\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\i \cf0 (JM) "Hi ha un bug amb el "rightButton". Quan tenim una cel\'b7la modificada (amb el puntet blau) i contraiem i expandim la secci\'f3 on est\'e0, es perd el valor "pendent de comitar". He estat mirant si ho podia reparar facilment per\'f2 no me n'he ensortit. Segurament sigui un petit detall i tu el detectar\'e0s rapidament."\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\i0 \cf0 (JM) es va arreglar tot evitant la crida al "dequeueReusableCellWithIdentifier:". Pertant no s'estan reutilitzant mai les cel\'b7les del tableview. \'c9s un mal menor ja que el tableView del configurador presenta poques cel\'b7les, per\'f2 \'e9s una cosa a arreglar en un futur no massa lluny\'e0.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET - Incorporat el protocol hasBullet - 
+\b0 (JL) 
+\b  
+\b0 Les celdes s'haurien de reutilitzar. Amb la nova incorporacio del popover flotant el nombre de celdes ja no esta limitat. S'ha de deixar el codi com abans pero utilitzant el mecanisme de filtre del canvi dels textfields que incorpora el "rightButton". S'ha de generalitzar d'aquesta manera per evitar que el mateix problema es produeixi per canvis de model. \
+\
+\
+-----------------\
+LLISTA PRE-VACANCES ESTIU 2012\
+\
+Llista de bugs o coses a mitg fer:\
+\
+
+\b FET 
+\b0 - Problema d'observaci\'f3 en el SWEnableSourceCell.\
+
+\b FET 
+\b0 - Encapsular la generaci\'f3 d'imatges resizades en el ManagedImageContext per a simplificar el proc\'e9s d'obtenci\'f3 de managed imatges.\
+
+\b FET 
+\b0 - Simplificar la comparaci\'f3 de Keys en els floating popovers. Arreglar els casos de NSSet amb un sol objecte en el moment d'entregar la Key.\
+
+\b FET 
+\b0 - Replantejar el sistema de cel\'b7les en el model browser (entre altres). Tenim XIBs repetits i per tant estem redefinint celles iguals en multiples llocs.\
+
+\b FET
+\b0 - Visualitzaci\'f3 de la llista de sources en el model browser: treure els sliders, el bot\'f3 enabled i el status i donar una aparen\'e7a de model browser.\
+
+\b PSEUDO-FET. QUEDA SOLS EL DELS SOURCES. 
+\b0 - Suprimir tots els storyboards que no actuin com a diagrama de flux. Per a definir interficie tenim els xibs!\
+
+\b FET 
+\b0 - Reparar el problema de crash amb la llista de tags de l'ull.\
+
+\b FET
+\b0 - Protocol d'observaci\'f3 en la llista de tags d'un source item (insert, delete, move).\
+
+\b FET
+\b0 - Undo + duplicate/copy/paste en la llista de tags del model browser.\
+
+\b FET
+\b0 - Observaci\'f3 en la llista de tags de l'ull.\
+- Millorar el ModelBrowser en la utilitzaci\'f3 de la lupa.\
+
+\b FET
+\b0 - Crear mecanisme de expressions de sistema (per permetre canvis de p\'e0gina per exemple).\
+
+\b FET
+\b0 - Mostrar alertes si hi ha problemes en la decodificaci\'f3 simb\'f2lica. (problema + l\'ednia del fitxer).\
+- Hidden items.\
+
+\b FET
+\b0 - Refer el controlador de insersi\'f3 (Bot\'f3 "+" de la nav bar) per tal d'afegir pagines, background items, alarmes, etc...\
+- Crear background items.\
+
+\b FET
+\b0 - Crear controlador de llista d'events (alarmes) i fer un sistema d'observaci\'f3 d'events per avisar nous events.\
+- Millorar la barra de cerca per tal de permetre cerques entre mes tipus d'items (items, pages, sources, tags, ...)\
+- Refer els items "vertical pipe" i "horizontal pipe".\
+\
+\
+\
+\
+\
+\
+\
+- Resoldre Aix\'f2:\
+\
+Sep  1 16:13:31 iPad-II hmipad[489] <Error>: *** Terminating app due to uncaught exception 'UIViewControllerHierarchyInconsistency', reason: 'A view can only be associated with at most one view controller at a time! View <UIPeripheralHostView: 0x1f815b60; frame = (0 340; 1024 428); autoresizesSubviews = NO; gestureRecognizers = <NSArray: 0x1f99bb00>; animations = \{ position=<CABasicAnimation: 0x1fc4c600>; \}; layer = <UIPeripheralHostLayer: 0x1f815ee0>> is associated with <UIViewController: 0x1fabdd70>. Clear this association before associating this view with <UIViewController: 0x1fc4b300>.'
+\i \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\i0 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f1\fs20 \cf0 Exception Type:  EXC_CRASH (SIGABRT)\
+Exception Codes: 0x0000000000000000, 0x0000000000000000\
+Crashed Thread:  0\
+\
+Last Exception Backtrace:\
+0   CoreFoundation                	0x3666029e __exceptionPreprocess + 158\
+1   libobjc.A.dylib               	0x3b23f97a objc_exception_throw + 26\
+2   CoreFoundation                	0x366601c0 +[NSException raise:format:] + 100\
+3   UIKit                         	0x35b93d6e -[UIView(Internal) _setViewDelegate:] + 206\
+4   UIKit                         	0x35b93c5e -[UIViewController setView:] + 398\
+5   hmipad                        	0x0018ee86 -[SWExpressionInputController inputAccesoryViewController] (SWExpressionInputController.m:254)\
+6   hmipad                        	0x0018f81e -[SWExpressionInputController setTextResponder:] (SWExpressionInputController.m:399)\
+7   hmipad                        	0x0013d4da -[SWObjectConfiguratorController roundedTextViewDidBeginEditing:] (SWObjectConfiguratorController.m:804)\
+8   UIKit                         	0x35cd3e78 -[UITextView becomeFirstResponder] + 552\
+9   UIKit                         	0x35c4dbdc -[UITextInteractionAssistant(UITextInteractionAssistant_Internal) setFirstResponderIfNecessary] + 116\
+10  UIKit                         	0x35e01e1c -[UITextInteractionAssistant(UITextInteractionAssistant_Internal) loupeGesture:] + 308\
+11  UIKit                         	0x35c4cd24 _UIGestureRecognizerSendActions + 124\
+12  UIKit                         	0x35c143d0 -[UIGestureRecognizer _updateGestureWithEvent:] + 388\
+13  UIKit                         	0x35e01474 ___UIGestureRecognizerUpdate_block_invoke_0543 + 44\
+14  UIKit                         	0x35b3882a _UIGestureRecognizerRemoveObjectsFromArrayAndApplyBlocks + 214\
+15  UIKit                         	0x35b3728e _UIGestureRecognizerUpdate + 1270\
+16  CoreFoundation                	0x366356c8 __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__ + 16\
+17  CoreFoundation                	0x366339bc __CFRunLoopDoObservers + 272\
+18  CoreFoundation                	0x36633d12 __CFRunLoopRun + 738\
+19  CoreFoundation                	0x365a6eb8 CFRunLoopRunSpecific + 352\
+20  CoreFoundation                	0x365a6d44 CFRunLoopRunInMode + 100\
+21  GraphicsServices              	0x33ef92e6 GSEventRunModal + 70\
+22  UIKit                         	0x35b832f4 UIApplicationMain + 1116\
+23  hmipad                        	0x000bbc9a main (main.m:16)\
+24  libdyld.dylib                 	0x35a02b1c start + 0\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\fs24 \cf0 I totally agree with Patick. However I do not believe there is even a check list to justify this. Too often when choosing a SCADA/HMI only big names are looked at or considered. I think that choice is primarily based on previously existing skills or maybe on the assumption that big names will offer the best available technology or set of features, which is not always the case.\
+\
+Other than plain inertia, the perception that big SCADA/HMI providers should be able to support their products for longer possibly plays a role on particular engineer choices, but this is not either guaranteed in this world of big acquisitions and buy outs. Additionally, some smaller company with a new, disruptive technology may break the status quo at any time.\
+\
+Ultimately, automation integrators and engineers that are likely to chose alternative, usually better HMI technology from less widespread sources are in turn the most innovative people, the ones that are free of prejudices and preconceptions, and they are finally able to make a choice simply based on objective facts.\
+\
+As a developer of native HMI apps for tablet devices (www.sweetwilliamsl.com) I am amazed on how often any web based client app is chosen over our inherently superior native implementation for displaying HMIs on an iPad device (HMI Pad). In my opinion this clearly indicates how driven by inertia are some automation engineers or managers when it is time to make a decision on what technology to use for HMI representation.\
+\
+John Lluch\
+SweetWilliam, S.L.\
+\
+\
+\pard\pardeftab720
+
+\fs26 \cf2 @Harold. Your points are very important ones. I can say that I've been on the two sides of the coin so I fully understand them. Maybe I went a bit too far on my previous post trying to justify myself. \
+\
+Ultimately, the HMI market is a tough one, specially for the smaller companies, because we are talking about products that carry an investment cost that goes beyond the mere purchase -such as training, support cost and even uncertainty cost-. So I recognize that change is difficult. Basically, we are agreeing on the same points, as we observe the same reality, except of course that I am currently on the opposite role. :-) \
+\
+Still, there are instances where an alternative product fits much better on a particular scenario. We are not trying to compete with the big Scadas but just provide a convenient (let me insist on the word "different") way to approach the particular need to display HMIs on off-the-shelf tablet devices such iPads. This is not well solved by the existing big players.\'94
+\fs24 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 \
+\
+\
+\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f1\fs20 \cf0 \
+}

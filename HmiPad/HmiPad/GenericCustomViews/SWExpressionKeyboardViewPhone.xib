@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6205" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Ery-Tp-o2S" customClass="SWExpressionKeyboardView">
+            <rect key="frame" x="0.0" y="0.0" width="568" height="162"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3GR-YC-11l" customClass="SWKeyboardKey">
+                    <rect key="frame" x="142" y="46" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="t9k-VO-C6U"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="aYO-J3-KfP"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="q2b-eW-Rj4" customClass="SWKeyboardKey">
+                    <rect key="frame" x="201" y="46" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="V53-E4-gOi"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="YLJ-f5-7xe"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3FR-Pq-D9V" customClass="SWKeyboardKey">
+                    <rect key="frame" x="262" y="46" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="piq-Iy-lWD"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="ZUV-VV-XP1"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3621" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PDF-7I-jnc" customClass="SWKeyboardKey">
+                    <rect key="frame" x="340" y="85" width="138" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="connectors">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="customKeyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="v8k-Q1-Mna"/>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="bWq-Ms-uc7"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="9810" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="UQ9-0m-zFa" customClass="SWKeyboardKey">
+                    <rect key="frame" x="18" y="85" width="138" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="seeker">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="customKeyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="npc-1R-c4K"/>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="Jw7-k5-mhc"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6OM-KJ-fcc" customClass="SWKeyboardKey">
+                    <rect key="frame" x="380" y="46" width="98" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="&quot;   &quot;">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="JKt-hX-Wjn"/>
+                        <action selector="quoteTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="kE7-WT-iW9"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wl4-YU-UwY" customClass="SWKeyboardTouchAndHoldKey">
+                    <rect key="frame" x="18" y="124" width="79" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="←">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yBW-Jg-m4g" customClass="SWKeyboardTouchAndHoldKey">
+                    <rect key="frame" x="399" y="124" width="79" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="→">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ffe-IL-CIP" customClass="SWKeyboardTouchAndHoldKey">
+                    <rect key="frame" x="484" y="46" width="68" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" image="backspace.png">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" id="HXm-Da-kbv" customClass="SWKeyboardKey">
+                    <rect key="frame" x="484" y="86" width="68" height="69"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="46"/>
+                    <state key="normal" image="return.png">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="introTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="Yje-nv-V36"/>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="ThX-Fa-MEq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XTs-os-0JO" customClass="SWKeyboardKey">
+                    <rect key="frame" x="321" y="46" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="JXb-Rc-N7O"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="G6G-2w-Z9A"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="s8e-lp-OP9" customClass="SWKeyboardKey">
+                    <rect key="frame" x="162" y="85" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="LPy-RH-qDa"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="uoc-95-lz5"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="51C-1X-qd9" customClass="SWKeyboardKey">
+                    <rect key="frame" x="221" y="85" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="vrB-pu-2NN"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="oMG-2A-4Bo"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1Yd-g0-LPd" customClass="SWKeyboardKey">
+                    <rect key="frame" x="280" y="85" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="5ZR-Kr-24d"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="juB-GM-L09"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="a0D-qp-yw0" customClass="SWKeyboardKey">
+                    <rect key="frame" x="103" y="124" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="jbj-Xx-c7Z"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="hFy-Us-rF5"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="efG-Sq-fSE" customClass="SWKeyboardKey">
+                    <rect key="frame" x="162" y="124" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="XQK-xe-ZY6"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="06F-CM-G4t"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oid-hv-jXv" customClass="SWKeyboardKey">
+                    <rect key="frame" x="342" y="7" width="48" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="7">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="jyv-Mg-ddb"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="OPy-l7-Jhc"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wZQ-D0-dHj" customClass="SWKeyboardKey">
+                    <rect key="frame" x="396" y="7" width="48" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="8">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="q0n-H4-Io3"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="k6l-YR-eNb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4Qi-Cy-iLy" customClass="SWKeyboardKey">
+                    <rect key="frame" x="450" y="7" width="48" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="9">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="aeQ-bd-T8j"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="cu9-8D-NP2"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eoF-dd-dxh" customClass="SWKeyboardKey">
+                    <rect key="frame" x="180" y="7" width="48" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="4">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="dfk-vp-Dd0"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="VXe-co-Ef0"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3hG-Pf-mtM" customClass="SWKeyboardKey">
+                    <rect key="frame" x="234" y="7" width="48" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="5">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="DKQ-hJ-ScL"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="lEI-8s-F0y"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dgn-sZ-vwb" customClass="SWKeyboardKey">
+                    <rect key="frame" x="288" y="7" width="48" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="6">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="v8l-07-ZPy"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="37x-h4-p02"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JvN-J1-Ixr" customClass="SWKeyboardKey">
+                    <rect key="frame" x="280" y="124" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="E">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="2DB-a5-KtV"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="40O-8s-1hQ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0zn-lt-q69" customClass="SWKeyboardKey">
+                    <rect key="frame" x="504" y="7" width="48" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="0">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="fW1-VE-wgU"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="fCl-16-DT7"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jDk-Mn-aVs" customClass="SWKeyboardKey">
+                    <rect key="frame" x="340" y="124" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title=".">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="koX-SL-VTH"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="O7h-8L-ERF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="g2z-dG-z7e" customClass="SWKeyboardKey">
+                    <rect key="frame" x="18" y="46" width="118" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="x x x">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="H9t-yY-V8n"/>
+                        <action selector="modeTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="OCN-P4-TRj"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hZU-Oe-SCd" customClass="SWKeyboardKey">
+                    <rect key="frame" x="221" y="124" width="53" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="$">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="HxG-j9-7A7"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="eY9-lK-w1K"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hsP-0y-hQL" customClass="SWKeyboardKey">
+                    <rect key="frame" x="18" y="7" width="48" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="1">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="1P4-uN-a3C"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="HgV-4i-K1R"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SmA-Kw-hwh" customClass="SWKeyboardKey">
+                    <rect key="frame" x="72" y="7" width="48" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="2">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="ucC-Vw-Xue"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="Clu-mx-ffy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RAY-Wq-ihp" customClass="SWKeyboardKey">
+                    <rect key="frame" x="126" y="7" width="48" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="3">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="keyTouchDown:" destination="Ery-Tp-o2S" eventType="touchDown" id="kQL-FO-7QU"/>
+                        <action selector="keyTouchUp:" destination="Ery-Tp-o2S" eventType="touchUpInside" id="8FN-tS-xuM"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="_backspaceButton" destination="ffe-IL-CIP" id="Hz2-E5-rzg"/>
+                <outlet property="_connectorsKey" destination="PDF-7I-jnc" id="XI2-Ph-wws"/>
+                <outlet property="_leftButton" destination="wl4-YU-UwY" id="dxA-Jg-wub"/>
+                <outlet property="_modeButton" destination="g2z-dG-z7e" id="bYU-WR-AtH"/>
+                <outlet property="_rightButton" destination="yBW-Jg-m4g" id="QXB-wa-uUa"/>
+                <outlet property="_seekerKey" destination="UQ9-0m-zFa" id="HAt-Tk-jyT"/>
+                <outletCollection property="leftKeypadButtons" destination="3GR-YC-11l" id="jbJ-5W-uwf"/>
+                <outletCollection property="leftKeypadButtons" destination="q2b-eW-Rj4" id="0M8-dx-aiO"/>
+                <outletCollection property="leftKeypadButtons" destination="3FR-Pq-D9V" id="ZcT-ME-O8l"/>
+                <outletCollection property="leftKeypadButtons" destination="XTs-os-0JO" id="ScE-Bs-5rb"/>
+                <outletCollection property="leftKeypadButtons" destination="s8e-lp-OP9" id="may-VZ-Dli"/>
+                <outletCollection property="leftKeypadButtons" destination="51C-1X-qd9" id="IQb-cF-HyV"/>
+                <outletCollection property="leftKeypadButtons" destination="1Yd-g0-LPd" id="hPN-G1-TPo"/>
+                <outletCollection property="leftKeypadButtons" destination="a0D-qp-yw0" id="qdD-u3-Y6M"/>
+                <outletCollection property="leftKeypadButtons" destination="efG-Sq-fSE" id="2bd-zS-Pis"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="backspace.png" width="27" height="27"/>
+        <image name="return.png" width="27" height="27"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination">
+            <size key="portraitSize" width="768" height="1024"/>
+            <size key="landscapeSize" width="1024" height="768"/>
+        </simulatedScreenMetrics>
+    </simulatedMetricsContainer>
+</document>

@@ -1,0 +1,902 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;\f2\fswiss\fcharset0 ArialMT;
+\f3\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red63\green110\blue116;\red100\green56\blue32;
+\red170\green13\blue145;\red13\green77\blue230;\red234\green234\blue234;\red37\green127\blue159;\red46\green13\blue110;
+}
+\paperw12240\paperh15840\margl1440\margr1440\vieww22280\viewh14600\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \
+[Aqui podem anar apuntant idees, bugs, millores, suger\'e8ncies o coses que comentem o pensem (aix\'ed tenim una refer\'e8ncia centralitzada)]\
+\
+----------------------------------\
+1. JLZ\
+\
+1 - Reutilitzar o recrear controladors p\'e0gines.\
+2 - Implementar el flow controller utilitzant setContentOffset del UIScrollView\
+
+\b FET
+\b0  3 - Per implementar Undo exitosament tot ha de passar pel model i ser observat per els controladors. Aix\'f2 incloeix la insercio, eliminacio de items, i p\'e0gines. En particular el canvi de posici\'f3 i mida ha de seguir tamb\'e9 aquesta norma. El canvi de p\'e0gina tamb\'e9 ha de passar per el model per evitar desorientaci\'f3 del usuari amb el undo.\
+
+\b FET
+\b0  4 - SWPage hauria de implementar el protocol ExpressionHolder, potencialment pot tenir expressions utilitzables per el usuari.\
+ \
+----------------------------------\
+2. 02-03-2012 JLZ\
+\
+
+\b FET
+\b0  1 - Jo eliminaria completament el SWKeyedItem i el substituiria per una jerarquia de clases (comen\'e7ant per el SWItem) que ens permetria implementar qualsevol tipus de item amb molt poc esfor\'e7, i amb comportament totalment determinista.\
+\
+----------------------------------\
+3. 04-03-2012 JLZ\
+\
+
+\b FET
+\b0  1 - He modificat el SWItem per suportar subclases amb array de items, he modificat SWSampleItem i SWRGBAItem, les clases queden enormement reduides. S'hauria de substituir SWKeyedItem per dues clases seguint el patro de les anteriorment esmentades per suportar SWColorItemView i SWSliderController. Aquestes \'faltimes modificarles per no fer servir indexos sino directament les referencies a les expresions.\
+\
+
+\b FET
+\b0  2 - Hi ha un petit bug en el SWItemConfigurationController perque no observa (crec que es aix\'f2) el  
+\f1\fs22 expressionSourceStringDidChange 
+\f0\fs24 aix\'f2 es rellevant quan posem una expressio que es refereix a un altre expressio del mateix item i canviem el identificador del mateix item.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 ----------------------------------\
+4. 12-03-2012 JMH\
+\
+1 - He afegit iCloud per\'f2 no ho he pogut provar ja que s'ha de fer amb un iPad i no amb el simulador. S'ha de testejar i veure si funciona o no.\
+2 - Falta fer la gesti\'f3 de conflictes quan es fan merges de diferents versions de iCloud.\
+\
+----------------------------------\
+5. 16-03-2012 JLZ\
+\
+
+\b FET
+\b0  - He trobat que la aplicaci\'f3 es penjava despres d'afegir una propietat a UIDocument. El problema era que la implementacio de 
+\f1\fs22 \CocoaLigature0 loadFromContents 
+\f0\fs24 \CocoaLigature1 depen de la longitud del data generat per el QuickCoder per determinar si \'e9s un document nou. Com que la longitud era m\'e9s llarga que la suposada per un document nou el document es descodificava amb tot a nil que \'e9s tal com s'havia creat. Una soluci\'f3 seria posar el codi necesari a initWithFileURL per inicialitzar les propietats de manera que el document nou ja es codifiqui amb tot inicialitzat. Per\'f2, per mantenir un patro similar a l'actual he canviat el 
+\f1\fs22 \CocoaLigature0 contentsForType
+\f0\fs24 \CocoaLigature1  per codificar amb versi\'f3 -1 si es tracta de un document nou. Durant la descodificacio es determina que el document s'ha d'inicialitzar com a nou exclusivament en base al numero de versi\'f3 prescindint de la longitud codificada.\
+\
+6. 18-03-2012 JLZ\
+\
+
+\b FET
+\b0  - Finalment he fet un canvi m\'e9s drastic. He creat una clase SWDocumentModel que engloba la funcionalitat 'model' del SWDocument. El SWDocument incorpora una \'fanica instancia de un SWDocumentModel. Als items i controladors s'utilitza la instancia se SWDocumentModel en lloc del SWDocument. Com que SWDocumentModel implementa el protocol QuickCoding en la seva totalitat, les seves referencies en els items i pagines es codifiquen/decodifiquen autom\'e0ticament sense haver de fer asignacions explicities del document, lo qual simplifica el codi global. El SWDocumentModel mant\'e9 per\'f2 una referencia al seu SWDocument per accedir a les propietats interesants de UIDocument com el undo manager.\
+\
+Tamb\'e9 he creat un SWItemBase del qual deriva SWItem. El SWItemBase gestiona el identificador per\'f2 no les expressions ni el posicionament en una pagina. El SWItemBase tamb\'e9 l'utilitza SWSourceItem. Tamb\'e9 he separat els metodes d'observaci\'f3 d'items i expressions.\
+\
+----------------------------------\
+7. 23-03-2012 JLZ \
+\
+Bugs pendents :\
+
+\b FET
+\b0  - solapament de 'rulers'\
+
+\b FET
+\b0  - rebot de items per 'rulers'\
+
+\b FET
+\b0  - offset desigual de 'rulers'\
+\
+- els textFields amb punts blaus no son poden anar amb celdes registrades.\
+\
+
+\b FET
+\b0  - efecte doble linea al insertar rows (ex. en SWSourceVariablesListControllers (no ho entenc))\
+
+\b FET
+\b0  - no es crida willMoveToSuperview:nil (ex. en SWSourceItemCell) fins que anem al menu de documents. Possiblement t\'e9 altres implicacions.\
+\
+
+\b FET
+\b0  - veure que passa amb identificadors incorrectes (no ascii)\
+\
+-----------------------------------\
+8. 27-03-2012 JMH (tot i sue m'ho has enviat per mail!)\
+\
+
+\b FET
+\b0  - Afegir botons Undo/Redo per fer el undo en la configuraci\'f3 del SourceItem\
+\
+
+\b FET
+\b0  - S'ha d'escollir d'una llista el "Protocol" en la configuraci\'f3 d'un sourceItem, com el encoding\
+\
+
+\b FET
+\b0  -
+\f2\fs26  Falten unes propietats que apuntin al SWSourceItem + index (o array de indexpaths, mira mes avall).\
+\
+\pard\pardeftab720
+
+\b \cf0 FET
+\b0  - Falta un camp que ha de ser la "Address". En pricipi un texte (per provar) despres ja ho sofisticarem. Es podria canviar el nom de la seccio "Type" per "PLC Tag" i posar-hi els camps "Address", "Type" i "Array Size".\
+\
+
+\b FET
+\b0  - Les Seccions de Enginyering Value i Raw value agruparles en una unica secci\'f3 anomenada "Scaling", les files podrien ser "Raw Min Value", "Raw Max Value", "Engineering Min Value", "Engineering Max Value", per aquest ordre.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \
+
+\b FET
+\b0  - 
+\f2\fs26 Encara penso que seria interessant disposar de la llista de variables al mateix temps que el configurador de variables. Imaginem que al configurador de variables li passem un array de indexpaths en lloc de un index. El integrador/usuari avan\'e7at podria seleccionar una serie de variables per canviar parametres de cop.\
+\
+- Imaginem que necesitem 10 valors INT. Simplement toquem '+' deu vegades per crearles, seleccionem les 10 variables i hi posem tipus INT, si canviem l'adressa es generen addresses de memoria consecutives per les 10 variables
+\f0\fs24 \
+\
+-----------------------------------\
+8. 07-04-2012 JLZ\
+\
+[Observacions: ]\
+\
+
+\b FET
+\b0  - treure els @synchronized.\
+\
+- utilitzar NSLocalizedString\
+\
+
+\b FET
+\b0  - treure del tot els metodes undo dels valors d'expressions.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - No m'acava de convencer que el SWDocumentController envii invocacions d'ell mateix al undo mananger. Segurament no passa res perque el SWDocumentController sempre hi \'e9s, pero crec que no \'e9s el design pattern correcte. Si no m'equivoco aquest \'e9s l'unic controlador de l'aplicaci\'f3 que utilitza el undomanager.. En particular la notificacio 
+\f1\fs22 kModelDidChangeNotification 
+\f0\fs24 no hauria d'existir i el cas aquest s'hauria de gestionar directament desde el propi model. Al mateix temps el model hauria de guardar en persistencia la p\'e0gina actual.\
+
+\b RESPOSTA: El model guarda en persist\'e8ncia la pagina actual. Es la property "selectedPageIndex". D'altra banda, la notificaci\'f3 kModelDidChangeNotification serveix per a ficar dins del undo manager els canvis de p\'e0gina per a anar a la p\'e0gina correcte i mostrar el undo o redo corresponent. Aix\'f2 vam dir que ho podiem eliminar tot agrupant molts canvis de p\'e0gina en una sola acci\'f3 undo o redo. D'altra banda, aix\'f2 t\'e9 un problema: no podem executar molts canvis de p\'e0gina a la vegada ja que es produirien animacions per a cada canvi, a m\'e9s que es carregarien els pageControllers amb tots els items corresponents a cada canvi de p\'e0gina. Aix\'ed que aquest punt encara \'e9s delicat i s'ha de resoldre d'alguna manera elegant.
+\b0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+
+\b DESESTIMAT
+\b0  - He vist que el SWFileRepresentation te el filename i el url. La meva primera interpretaci\'f3 al veure aquesta clase va ser que se suportava un filename no vinculat al path del url, pero he vist que no \'e9s aix\'ed. La clase assumeix que el filename que se li passa coincideix amb al ultim component del url. Aquesta assumci\'f3 no \'e9s correcte perque obliga a un patro determinat de utilitzacio. Seria millor decidir si el filename volem que sigui independent o no (jo crec que no cal) i ser consequents a la implementacio de la clase, en cas contrari no cal passar-li el filename.\
+
+\b RESPOSTA: La classe SWFileRepresentation est\'e0 inspirada en un exemple de Apple en quant a utilitzaci\'f3 de iCloud. Si ara mateix no pensem usar el iCloud, jo no em preocuparia massa. Podem obviar incl\'fas aquesta classe i manipular els URLs directament. Quan vulguem afegir iCloud al projecte, ja refarem aquesta classe \'e0 consci\'e8ncia del que necessitem.
+\b0 \
+\
+
+\b FET
+\b0  - En la majoria de llocs on s'utilitza indexOfObject (posiblement en tots) es podria utilitzar indexOfObjectIdenticalTo. A part de ser molt m\'e9s eficient, \'e9s conceptualment el que volem fer, doncs estem buscant un objecte concret, no un objecte que sigui "isEqual" a un altre. El mateix es aplicable a removeObject i removeObjectIdenticalTo.\
+
+\b OBSERVACI\'d3: He modificat els indexOfObject i els removeObject tal i om has dit. D'altra banda com no s\'e9 exactament com funciona (cosa que segurament aix\'f2 s\'ed ho sabr\'e0s) he fet: quan l'array cont\'e9 inst\'e0ncies de NSString i NSNumber no s\'e9 si puc comparar directament les inst\'e0ncies (i.e. cada tipus de NSString  i de NSNumber hauria de ser una inst\'e0ncia \'fanica), aix\'ed que he mantingut els indexOfOBject i els removeObject tal qual!.
+\b0 \
+\
+
+\b FET
+\b0  - Una Pregunta: He vist al SWPageController que els controladors dels item s'eliminen en llocs diferents dels childViewControllers i del _viewControllers, \'e9s correcte?. Podria causar algun problema en cas de un bug en un codi extern a la clase?.\
+
+\b RESPOSTA:  Haviem mogut codi de lloc i per error haviem separat linies de codi. Ja he mogut el [vc removeFromParentViewController] al seu lloc, i ara es fa tot com s'ha de fer.
+\b0 \
+\
+- Una Pregunta: En el SWLayoutController, es podrien fer servir *nomes* els metodes de "Managing the View Hierarchy" de UIView en lloc de utilitzar un array de _pageItems. Aquesta duplicitat, \'e9s per garantir el funcionament de les animacions ?\
+
+\b RESPOSTA: EL SWLayoutController est\'e0 deprecated. El vam substituir per el SWPageController. En aquesta \'faltima classe hi ha de totes formes una duplicitat dels controladors guardats a "childViewControllers" i l'array "_viewControllers". Aquesta duplicitat existeix des d'un inici, ja que l'ordre de _viewControllers \'e9s el mateix que el de l'array pages.items del model, i l'ordre de childViewControllers \'e9s l'ordre en el que els viewControllers s\'f3n afegits. En un principi no tenen per qu\'e8 ser el mateix, tot i que potser s\'ed que ho podriem fer aix\'ed. Aquest punt, no ha estat "pensat" encara. 
+\b0 \
+\
+
+\b FET
+\b0  - La profunditat de visualitzacio dels items no es mant\'e9 despres de un undo, crec que el problema esta a SWLayoutController. Potser esta fet expresament (es a dir no implementat) en espera de implementar el 'bring to back' i 'bring to front' ?\
+
+\b RESPOSTA: Correcte, la funcionalitat de "send to back" i "bring to front" encara no est\'e0 implementada. De fet, \'e9s una cosa que s'haur\'e0 de guardar en el model ja sigui l'ordre dels items en el page.items o mitjan\'e7ant un enter que guardi la posici\'f3. (Imagino que ara quan parles del SWLayoutController parles del SWPageController).
+\b0 \
+\
+
+\b FET
+\b0  - Vull implementar la observacio de plcTags en el SWVariableConfigurationController. No se com fer-ho a partir del StoryBoard. Tampoc no m'acava de convencer que els valors s'asignin en el en el willDisplayCell en lloc de en el cellForRowAtIndePath. Es podrien tenir les celdes amb un xib normal?\
+
+\b RESPOSTA: La observaci\'f3 d'es d'on la vols fer? En un principi no hi ha m\'e9s problema de fer-ho en un xib o storyboard. Si es fa mitjan\'e7ant un patr\'f3 delegate, \'e9s tan simple com definir el "delegate" com IBOutlet i fer la connexi\'f3 des del storyboard o xib. Si l'observaci\'f3 es fa mitjan\'e7ant un patr\'f3 d'observaci\'f3, l'observaci\'f3 es pot llan\'e7ar des del m\'e8tode (awakeFromNib:) de les vistes o des del "viewWillAppear" i "viewWillDisappear" dels controladors. En parlem + tard i acabem de definir-ho.
+\b0 \
+\
+- Tens rao en que el m\'e9tode 
+\f1\fs22 \CocoaLigature0 itemTypeAtIndex
+\f0\fs24 \CocoaLigature1  de la clase SWItem \'e9s una mica extrany. Hauriem de trobar un altre manera, pot ser creant una classe SWItemCenter que agrupes aquesta funcionalitat a traves de una sharedInstance. Aquesta instancia pot interrogar les clases dels items per obtenir informaci\'f3, com el nom i la descripcio.\
+
+\b RESPOSTA: Ja deia jo que et sembl\'e9s normal aix\'f2 de manipular "Class" com si res. Una opci\'f3 \'e9s fer aix\'f2 que dius, una shared instance que fos "inteligent" en quan a manipulaci\'f3 i coneixen\'e7a de items. Potser \'e9s la soluci\'f3 correcte, s\'ed. Un altre TODO a fer.
+\b0 \
+\
+- En les observacions del model no utilitzem sempre el mateix patro. Per la mantenibilitat futura del codi es important utilitzar un patro sistem\'e0tic en les observacions del model:\
+  . El view o controlador s'inicialitza a partir del model en el moment de la creacio/visualitzacio, quan encara no esta registrat com observador\
+  . El registre/desregistre ha de ser 'net', no s'ha de actualitzar el view/controlador en el moment de registrar. El view/controlador ja s'actualitzara en cas de *canvi* del model.\
+  . Prestar especial atencio a la paritat entre registre/desregistre, i controladors/views que no es destrueixen quan se suposa que s'han de destruir.\
+  . Utilitzar el patro de observacio *sempre* en tota presentacio de informacio que depen del model.\
+
+\b RESPOSTA: ok ^_^
+\b0 \
+\
+- En el SWSourceVariablesListController voldria permetre la multiselecci\'f3 sempre (editant o no) i utilitzar didSelectRowAtIndexPath i didDeselectRowAtIndexPath per presentar/actualitzar el SWVariableConfigurationController, en lloc de utilitzar el accessoryButtonTappedForRowWithIndexPath. El SWVariableConfigurationController s'actualitzaria cada vegada que canvies la seleccio, i es mantindria en tot moment d'acord amb les variables seleccionades.\
+
+\b RESPOSTA: el problema en aquest cas \'e9s que tenim celles que s\'f3n interactives (amb textfields que l'usuari pot manipular). En conseq\'fc\'e8ncia, l'usabilitat de la cella  esdev\'e9 confusa si pretenem que tingui textfields editables i que a m\'e9s sigui seleccionable, El accessoryButton ara per ara ens resolia aquest problema. En tot cas, estic d'acord que s'ha de fer alguna cosa per millorar l'usabilitat del controlador.
+\b0 \
+\
+[He fet: ] \
+\
+
+\b FET
+\b0  - Es pot implementar el ajust del offset del teclat de manera sencilla (si no em deixo res) observant les notificacions de UITextFieldTextDidBeginEditingNotification en el controlador de la pagina. Al rebre la notificacio comprovem que la pagina es un superview del textfield que ens passen, si es aixi (que sera sempre) ens guardem temporalement el textfield responsable. En els events del teclat calculem el offset necesari (respecte al textfield directament, no respecte al view del item) i tirem el layoutView de la pagina amunt si cal. Mes o menys el mateix que hi ha ara pero utilitzant les notificacions en lloc dels delegats amb cridades explicites.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 ( tenia curiositat per fer-ho i ho he implementat, tambe ho he fet funcionar en el cas del configurationController, tot i que amb alguna diferencia,  tambe he posat el keyboardoffset a dintre del SWKeyboardListener :-) )\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b \cf0 FET
+\b0  - Encara quedava el problema de "no es crida willMoveToSuperview:nil (ex. en SWSourceItemCell) fins que anem al menu de documents". Aquest problema es degut a que no s'allibera el SWSplitViewController que mant\'e9 el controlador de pagina. Per solucionarlo he eliminat la propietat 
+\f1\fs22 \cf2 \CocoaLigature0 _sourceItemsSplitViewController
+\f0\fs24 \cf0 \CocoaLigature1  del SWDocumentController i en el seu lloc he creat un metode en una categoria de UIViewController que torna el SWSplitViewController. Com que no hi ha res que ret\'e9 el splitView un cop es fa dismiss, tot el seu contingut s'allibera incluint les celdes.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 La implementacio anterior posiblement tenia el bug de que el _sourceItemsSplitViewController podia quedar corromput si el model canviava de pagina mentre el split s'estava presentant.\
+La implementacio actual seria m\'e9s neta si es prescindeix dels delegats i es posa tota la funcionalitat dintre de 
+\f1\fs22 \CocoaLigature0 SWSourceItemsController 
+\f0\fs24 \CocoaLigature1 i
+\f1\fs22 \CocoaLigature0  \cf3 SWSourceVariablesListController
+\f0\fs24 \cf0 \CocoaLigature1 \
+que sembla conceptualment lo correcte perque els sourceItems no han d'estar involucrats a un 
+\f1\fs22 \CocoaLigature0 SWDocumentController 
+\f0\fs24 \CocoaLigature1 en particular tambe s'eliminaria el protocol 
+\f1\fs22 \cf3 \CocoaLigature0 SWSourcesListControllerDelegate \cf0  
+\f0\fs24 \CocoaLigature1 i
+\f1\fs22 \cf3 \CocoaLigature0  \cf4 SWSourceVariablesListControllerDelegate
+\f0\fs24 \cf0 \CocoaLigature1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b \cf0 FET
+\b0  - No he pogut reproduir el problema que vas mencionar dels observadors  registrats al willMoveToSuperview de la celda (en lloc de al willDisplayCell del delegat de la taula). Estic segur que es indiferent fer-ho de una o un altre manera. Les crides a willMoveToSuperview s\'f3n sempre aparellades, i prefereixo utilitzar aquest m\'e9tode perque afegir/treure observacions queda confinat al mateix lloc. L'unic que he trobat es que el willMoveToSuperview es crida just abans del willDisplayCell, i per tant aquest \'faltim no es un bon lloc per inicialitzar les propietats del model de la celda.\
+Curiosament, he trobat que amb la taula procedent del storyboard es pot cridar el super de cellForRowAtIndexPath dintre de la propia implementacio (?!) i per tant podem inicialitzar les celdes aqu\'ed. Tens alguna explicaci\'f3 per aixo? Aix\'f2 ho soluciona tot i es pot prescindir del willDisplayCell per aix\'f2.\
+\
+\
+[To Do: ]\
+\
+
+\b FET
+\b0  - Implementar una millor manera (generica) de reportar source errors de expressions\
+
+\b FET
+\b0  - Posar tot UILabels a la llista de variables, la configuracio nom\'e9s des del configurador de variables \
+
+\b FET
+\b0  - Actualitzacio en model de la configuracio variables tenint en compte multiple selection\
+
+\b FET
+\b0  - Implementar la observacio del model a la configuracio de variables\
+
+\b FET
+\b0  - Observar el canvi del PlcTag per actualitzar l'adre\'e7a i  tipus en la llista de variables\
+\
+- Que funcioni el addressAsString en tots els casos (incluit EIPPCC)\
+\
+- Acavar de implementar la validacio en tots els textFields\
+
+\b \
+FET
+\b0  - Treure el leak de CreateAddressAndTypeString\
+
+\b FET
+\b0  - Mirar com es pot resoldre el format del valor del tag segons tipus\
+\
+- Desabilitar l'acceptacio del RightItem quan hi hagi errors.\
+
+\b \
+FET
+\b0  - Que el bubble view senyali un lloc m\'e9s entenedor\
+\
+
+\b FET
+\b0  - La writting expression que funcioni\
+\
+- Decidir que es fa amb el undos del SourceItem\
+- Decidir que es fa amb els errors dels valors de expressions\
+\
+[Altres coses :]\
+\
+- Veure com integrar (de moment) el codi dels fitxers amb el SWDocument. L'objectiu es exportar i importar arxius de texte (SymbolicCoder)\
+- Veure si es poden reutilitzar xibs per celdes iguals (o similars) (en alguns casos ja es fa per\'f2 no en tots)\
+\
+\
+-----------------------------------\
+8. 29-04-2012 JLZ\
+\
+
+\b FET 
+\b0 - El SWItemCenter el trobo massa complicat, en realitat la mateixa funcionalitat es podria implementar amb un simple array en lloc de un enum amb un switch. No s\'e9 si els enums es mantenen en previsi\'f3 d'alguna cosa. Per altra banda em sembla que en lloc d'haver-hi un ItemCenter hi hauria d'haver un ItemControllerCenter i aleshores ens adonariem que el SWItem no cal que sapiga res del(s) seu(s) controlador(s). Te sentit?. Es a dir que el ItemControllerCenter fos el responsable de decidir/determinar quin controlador es el adequat per cada item, i vice-versa. A m\'e9s es podria extendre a futurs items sense part visible.\
+\
+-----------------------------------\
+8. 13-05-2012 JLZ\
+\
+
+\b FET
+\b0  - Existeix encara un motiu per tenir el metode addItemObserver i a m\'e9s el m\'e9tode addSWObjectObserver?  Crec que es podria consolidar en un sol metode.\
+\
+-----------------------------------\
+8. 19-05-2012 JLZ\
+\
+To do: \
+\
+A +initExpressionNames investigar la possibilitat de crear dinamicament els metodes de clase que tornen les expressions, utilitzant class_addMethod amb NSSelectorFromString.\
+A plotGroup filtrar no canvis, fer un protocol asimilable a DB\
+\
+Bugs. \
+\
+
+\b FET
+\b0  - El funcionament standard del menu en text fields el menu presenta les opcions de sendBack i bringFront que no tenen sentit. El menu sembla semi trencat (pero no estic segur) particularment el menu de cut/copy a vegades no apareix despres de seleccionar, pero no estic segur de si nosaltres tenim la culpa. \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\i \cf0 ===> Aix\'f2 \'e9s cosa del m\'e8tdoe "
+\f3\i0\fs22 \CocoaLigature0 - (\cf5 BOOL\cf0 )canPerformAction:(\cf5 SEL\cf0 )action withSender:(\cf5 id\cf0 )sender
+\f0\i\fs24 \CocoaLigature1 " i de qui \'e9s en el moment de fer apareixer el menu el first responder. En un principi, les accions "bringFront" i "sendBack"  sols les sap respondre el SWPageController quan ell \'e9s el first responder. Quan s'accedeix al menu d'un textfield, el firstresponder ho \'e9s ell. Aix\'ed que s\'ed: no te cap sentit que apareguin aquestes opcions. 
+\i0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b \cf0 FET 
+\b0 - El Undo despres de duplicat multiple peta. Per duplicats simples aparentment funciona.\
+
+\b FET 
+\b0 - El Undo de bring to front i send to back no funciona/no implementat\
+\
+Millores\
+\
+
+\b FET 
+\b0 - El 'Edit Frame', 'End Editing' hauria d'actuar globalment, ara fa toggles individuals.\
+
+\b FET 
+\b0 - Els rulers no s'han de mostrar inter items seleccionats si els movem o resizem a l'hora\
+
+\b NO ENTENC EL PROBLEMA 
+\b0 - El seleccionador de items perd la seleccio quan el navegador va a la dreta. No es el comportament habitual/esperat.\
+- Continuem sense utlitzar NSLocalizedString. El projecte s'esta tornant complexe i cada cop ser\'e0 mes engorros localitzar-lo. El plist tamb\'e9 s'ha de localitzar.\
+
+\b FET 
+\b0 - El duplicate i el paste hauria de deixar seleccionats els items nous en lloc dels vells.\
+
+\b FET 
+\b0 - Els items creats de nou haurien d'estar seleccionats amb blau i gris a la creacio.\
+\
+Coses a discutir\
+\
+- En el mode multiple selection el item es deselecciona al tornar a tocar-lo, sembla lo correcte pero la aparicio del menu es antiintuitiva perque s'ha de deseleccionar un item primer i reseleccionarlo per tornar a veure el menu. Pot-ser en aquest mode el menu hauria d'estar sempre present, o b\'e9 no permetre la deseleccio de items excepte tocant la pantalla\
+\
+\
+-----------------------------------\
+8. 23-05-2012 JLZ\
+\
+Bug:\
+\
+- Els ItemControllers i els PageControllers (i possiblement tamb\'e9 els views associats) continuen en memoria despres de canviar de p\'e0gina. En una versi\'f3 de proves aix\'f2 es acceptable pero no per una versi\'f3 comercial. S'hauria de fer desapareixer de memoria els controladors i views que no son visibles en cada moment a l'estil de UITableView. En el nostre cas no cal reutilitzar-los perque les pagines son molt diferents com per que sigui possible reutilitzar-ne el contingut de manera efectiva. L'unic que hem de tenir permanentment en memoria es el model. Eliminar de memoria els controladors no visibles pot reduir la performance en projectes petits (o potser no, s'ha de veure) pero el que es segur es que mantenir-ho tot en memoria no es viable per projectes grans. Com a molt, si per raons de 'performance' es justifica, podem mantenir 'vius' nom\'e9s els controladors de pagina de la dreta i l'esquerra de la actual, es a dir com a m\'e0xim 3 pagines en memoria en qualsevol moment, pero no crec que sigui necesari. Si despres d'implementar aix\'f2 veiem que el canvi de pagina s'encalla una mica, podem pensar una estrategia amb la presentaci\'f3 d'alguna animaci\'f3 falsa o progress control mentre es crea la pagina nova que s'ha de mostrar. Per exemple animar la aparicio de una pagina (vuida) que contingui una imatge suau (per guanyar temps) i fer apareixer el contingut real de la pagina nova just quan ha acabat la animaci\'f3. \
+\
+\
+Millores:\
+\
+- El Undo despres de crear item fa un efecte visual extrany. Passa desde que es van incorporar les animacions a la seleccio de frame. L'efecte es veu molt evident amb el switch item pero passa amb tots. El probrema es que per alguna rao el frame del item es redueix visiblement i sense animacio abans/durant del fade-out.\
+\
+-----------------------------------\
+8. 26-05-2012 JLZ\
+\
+Problema:\
+\
+- Els Views de la selecci\'f3 els hem plantejat malament. Haurien d'apareixer a dalt de tot igual que els rulers independentment de la profunditat del items. Suposo que lo correcte seria dibuixar-los en un view/layer per sobre de la pagina (igual que els rulers)\
+\
+Millores:\
+\
+- Quan el toolbar estava a dalt alguns toolBarItems eren botons per aprofitar les sombres ja presents en alguna de les icones.\
+\
+Bug:\
+\
+- En alguns casos peta el pageController al fer undos multiples. Reproduir el problema i solucionar-lo.\
+\
+\
+-----------------------------------\
+8. 23-06-2012 JLZ\
+\
+Millores/bugs en el ColorPicker / ColorList / FontPicker\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - El tab bar de dalt s'ha d'integrar amb el popover\
+
+\b FET
+\b0  - El selector del alpha genera massa decimals, inclus quan el numero es rod\'f3, amb format  %1.3g n'hi ha d'haver prou\
+
+\b ???\'bf?\'bf?\'bf?\'bf?\'bf? ???\'bf\'bf\'bf
+\b0 - El selector del alpha deixa de ser operatiu despres de seleccionar zero.\
+
+\b FET
+\b0  - El ColorList mant\'e9 (incorrectament) la seleccio anterior inclus despres d'haver canviat el valor en el ColorPicker. \
+
+\b FET 
+\b0 - Si es torna a tocar el color seleccionat la celda queda (incorrectament) seleccionada.\
+
+\b FET 
+\b0 - Seria interessant disposar de un petit quadre de color al costat de cada nom.\
+
+\b PROBLEMA NO DETECTAT 
+\b0 - El ColorList es penja despres d'anar al ColorPicker i tornar sense canviar res.\
+
+\b FET 
+\b0 - La deseleccio del ColorList hauria de ser animada per coherencia amb totes les aplicacions.\
+
+\b ? 
+\b0 - La seleccio del ColorList no es prou evident, seria millor fer-la mantinguent la celda seleccionada en lloc de utilitzar un 'tick', o be posar el tick o un altre icona per davant.\
+
+\b FET
+\b0 - La seleccio del ColorList te les celdes massa altes: fer igual que el FontPicker\
+
+\b L'expressi\'f3 \'e9s de tipus "color" i per aix\'f2 hi surt. El fet de que hi posem un array \'e9s algo independent. Idees?
+\b0 - Hi ha un problema amb el array de colors de un SWTrend, apareix el boto del color pero en aquest cas no hauria de apareixer.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+Millores en el FontPicker\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - El table view s'hauria de colocar en el lloc de la font seleccionada en el moment de apareixer. (El ColorList ho fa, diferent implementacio?)\
+
+\b FET 
+\b0 - La seleccio actual hauria de desapareixer quan es tria una altre font. La primera vegada podem tenir dos ticks a l'hora. (Aix\'f2 no passa amb el ColorList, diferent implementacio?)\
+
+\b FET 
+\b0 - La deselecci\'f3 hauria de ser animada, s'aplica el mateix que en el cas del ColorList.\
+
+\b ? 
+\b0 - La selecci\'f3 actual no es prou clara, s'aplica el mateix que en el cas del ColorList.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+Millores en el ValueTypeEnumCell\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 He fet un intent per\'f2 no entenc com ho volem posar exactament. De fet, ara queda bastant malament. 
+\b0 - El texte de la dreta no hauria de ser un UIButton sino un TextField, preferentment un ValueTextView, seguint la tonica ja utilitzada en el SourceItem per casos similars (com la seleccio del tipus de tag del PLC).\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\
+A part de lo anterior hem de pensar quina ha de ser la integracio dels pickers amb els 'puntets blaus', o si el funcionament actual ja est\'e0 be.\
+Segueix sent engorros que els popovers no es puguin moure, a vegades creen situacions rares, o fins i tot imposibilitat d'utilitzar el configurador.\
+En el configurador actual continua sense agradarme \
+\
+\
+----------------------------------------\
+9. 25-06-2012 JMH\
+\
+SWItemConfigurationController:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - 
+\b Es perqu\'e8 al regenerar la celda tornem a posar el valor del model, s'hauria de fer diferent 
+\b0 Hi ha un bug amb el "rightButton". Quan tenim una cel\'b7la modificada (amb el puntet blau) i contraiem i expandim la secci\'f3 on est\'e0, es perd el valor "pendent de comitar". He estat mirant si ho podia reparar facilment per\'f2 no me n'he ensortit. Segurament sigui un petit detall i tu el detectar\'e0s rapidament.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+----------------------------------------\
+10. 26-06-2012\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - En el ColorPicker o FontPicker, marcar la sel\'b7lecci\'f3 posant un background de color lightblue, juntament amb el checkmark.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+----------------------------------------\
+11. 27-06-1012\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET. 
+\b0 - Crear una nova branca per a provar els configuradors flotants (inspirarse amb  {\field{\*\fldinst{HYPERLINK "https://github.com/cocopon/CQMFloatingController"}}{\fldrslt \cf6 \ul \ulc6 https://github.com/cocopon/CQMFloatingController}}\cf6 \ul \ulc6 )\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \ulnone ----------------------------------------\
+12. 5-07-2012\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET
+\b0  - Pensar qu\'e8 passa amb entorns retina el resize d'imatges (cat. UIImage+Resize)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+----------------------------------------\
+13. 24-07-2012\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - Una \'fanica inst\'e0ncia del model browser permesa.\
+
+\b FET
+\b0 - Pages: afegeir opcions al menu de p\'e0gina de longPressure: copiar, duplicar, configurar, eliminar.\
+
+\b FET 
+\b0 - Suprimir la edition bar i utilitzar sols la nav bar del doc controller. Veure Empti.xib.\
+
+\b FET
+\b0 - Eliminar el bot\'f3 de p\'e0gina de la nav bar i refer el menu de "items" per afegir p\'e0gines.\
+
+\b FET 
+\b0 - Agrupar els botons de multi-selecction, autoalign, etc.. en un sol bot\'f3 en la navBar.\
+
+\b FET 
+\b0 - Creaci\'f3 d'una barra lateral (estil FaceTime iPad) per visualitzar els sources (tags inclosos) i les alarmes. Aquesta barra es mostra amb un gesture de 2 dits i a trav\'e9s d'un bot\'f3.\
+
+\b FET 
+\b0 - Color dels header views de les seccions del model browser: han de concordar amb el color del popover.\
+
+\b FET 
+\b0 - Replantejar les cel\'b7les utilitzades en el model browser. (sembla estar tot una mica repetit-liat).\
+
+\b FET
+\b0 - Utilitzar els RoundedTextView per mostrar la qunatitat de "values" o "items" en el model browser.\
+
+\b FET
+\b0 - Refer el controlador de configuradors de tags.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 - Provar un longTouch als items per mostrar el configurador.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - Els undo han de comunicar quina acci\'f3 s'ha fet quan s'executen.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 ----------------------------------------\
+14. 20-08-2012\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - Arreglar tema selectedPageIndex.\
+
+\b FET 
+\b0 - Arreglar configurador de sources. Fer-ho tipus Page.\
+
+\b FET 
+\b0 - S'ha de trobar la bona idea per la lupa.\
+
+\b FET 
+\b0 - Refer el controlador d'afegir items.\
+
+\b FET 
+\b0 - Ha desaparescut la barra de cerca del model browser.\
+
+\b FET
+\b0 - Tractar els sources per sets, no individualment!\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 ----------------------------------------\
+15. 27-08-2012\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - observaci\'f3/undo PLC tags\
+\pard\pardeftab720
+\cf0 - implementar al menys 1 background item\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 - edit al configurador de lupa\
+
+\b FET 
+\b0 - ordenacio de items al reves, a dalt el que esta a sobre\
+\pard\pardeftab720
+\cf0 - insercio al final de la seleccio, en lloc de al final de tot (pages, alarms, tags) (en el cas dels items insercio sempre a dalt)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - recordar el ultim estat del model browser\
+\pard\pardeftab720
+\cf0 \
+i en m\'e9s grans trets:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - implementar singleton items. El que ara anomenem internament "System Expressions" podrien ser en realitat singletons amb els seus Values i Expressions, per exemple podriem tenir els seguents: $Document, $Alarms, $System\'85.; aleshores hi hauria coses com $Document.pageName, $System.pulse1s, $Alarms.activeCount. La majoria serien SWValues pero alguns serien SWExpressions, com per exemple el $Document.pageName.\
+- pestanya inspector - no estic del tot conven\'e7ut que aix\'f2 sigui una bona alternativa - em preocupa la possible intromissi\'f3 excessiva (i permanent) a la interface que fa el integrador. Torno a ser partidari de posar un view a dalt, pero *nomes* amb el numero de alarmes i el estat de conexi\'f3.\
+
+\b FET 
+\b0 - posar al menys totes les "system expressions" que te el ScadaMobile\
+\pard\pardeftab720
+\cf0 - bug del "circular reference" que va trovar el Borja (m'ho miro jo)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 - guardar el valor de les expressions i altres (ex llistat de alarmes) de manera separada al model actual.\
+
+\b FET 
+\b0 - arreglar el bug del "paste" amb els symbols que no troba\
+
+\b FET 
+\b0 - avisar al usuari del errors de descodificacio simb\'f3lica (pot ser simplement un alert view per ara)\
+\pard\pardeftab720
+\cf0 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 ----------------------------------------\
+\pard\pardeftab720
+\cf0 16. 10-09-2012\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - Long pressure s'activa sobre un item (quan hauria de ser sols en una pagina).\
+
+\b FET 
+\b0 - L'ordre de la selecci\'f3 de l'item ha de ser en funci\'f3 dels mateixos items i no de la gerarquia de helper cells.\
+
+\b FET 
+\b0 - En mode edit apretem "Done" i no es deseleccionen els items.\
+
+\b FET 
+\b0 - Usar les observacions per sel\'b7leccionar els items.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 ----------------------------------------\
+\pard\pardeftab720
+\cf0 17. 12-09-2012\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\b \cf0 FET 
+\b0 - La sel\'b7lecci\'f3 d'items va via model! problemes en el copy & paste & duplicate i tamb\'e9 en el afegir nou items.\
+
+\b FET 
+\b0 - El men\'fa d'items sols ha d'apareixer un cop!\
+
+\b FET
+\b0 - S'ha de fer dismis en els textfield quan s'entra en mode edit.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 ----------------------------------------\
+\pard\pardeftab720
+\cf0 18. 30-10-2012\
+\
+\pard\pardeftab720
+
+\b \cf0 FET
+\b0  - Els projectes s'han de poder canviar de nom\
+- Treure la seleccio de protocol dels sources ja creats\
+- Em sona que en algun lloc es pot editar un value que no s'hauria de poder ( en el $System )\
+- Guardar simbolic en el moment de anar a files->projects (aix\'ed el tenim actualitzat)\
+- Posar opcio de "Clear Project Cache" i "Clear Image Cache"\
+\
+\
+19. 20-02-2013\
+\
+- Afegir un tab mes al inspector per propietats del projecte\
+- La lupa del object configurator ha de desactivarse amb els punts blaus\
+- En el titol de la pagina posar el nom de la propietat+item si estem en mode edit, i el titol si estem en mode no edit\
+\
+\
+20. 1-4-2013\
+\
+- Afegir un "Review app" --> mail al developer\
+- Afegir un "Love app" --> app store review\
+\
+\
+21. 13-5-2013\
+\
+Grzegorz\
+\
+Another thing that I see are:\
+\
+1 - no possibility to change background color of BAR LEVEL (only White)\
+2- \'a0no possibility to change the thickness of pipe (set at 3mm)\
+3- \'a0no possibility to make invisible button without glass effect\
+4- \'a0unable to download the entire folder of graphics from the server (possible only downloading individual files)\
+5- \'a0no possibility to export graphics to the project file\
+6- \'a0no possibility\'a0save server address of graphics in the project file\
+\
+7 - It would be nice to have the opportunity to set the default home page for the application start.\
+\
+
+\b FET
+\b0  -Avui. Guardar al anar al costat\
+\
+
+\b FET 
+\b0 - Treure Access Level\
+\
+
+\b FET 
+\b0 - Clear image cache\
+
+\b NO 
+\b0 - Clear project cache\
+
+\b FET 
+\b0 - Clear receipts cache\
+
+\b FET (+o-) 
+\b0 - Image "blank document"\
+
+\b FET 
+\b0 - Variable de sistema Music player\
+- Variable de sistema interfaceOrientation\
+
+\b FET 
+\b0 - M\'e9s informaci\'f3 a la capsalera del document\
+\
+
+\b FET 
+\b0 - Treure "Delete Pending Receipts" de HmipadR\
+
+\b FET 
+\b0 - Ordenar per dates en el cas de projectes no acava d'anar\
+
+\b FET 
+\b0 - Mirar llibreta\
+\
+
+\b FET 
+\b0 - Acabar downloads\
+
+\b FET 
+\b0 - item pagina\
+
+\b FET 
+\b0 - teclat\
+
+\b FET 
+\b0 - marcar a on va la encriptaci\'f3\
+
+\b FET 
+\b0 - exemples\
+
+\b FET 
+\b0 - bug <unknown> a simbolic\
+
+\b FET
+\b0 -- revisar bug canvi de arxiu mateix nom\
+
+\b FET 
+\b0 - revisar upload projecte sense fitxers\
+
+\b FET 
+\b0 - posar tots els textes\
+
+\b FET 
+\b0 - revisar 
+\f1\fs22 \CocoaLigature0 _copyFromInternalFileFullPath 
+\f0\fs24 \CocoaLigature1 posible bug al copiar un aset o document a iTunes que ja hi sigui (crec que s'elimina el original)\
+
+\b FET 
+\b0 - implementar defaults() monitoringState\
+\
+\
+\
+\pard\pardeftab720
+
+\f3\fs28 \cf0 \cb7 - (\cf8 NSData\cf0  *)readDataOfLength:(\cf8 NSUInteger\cf0 )length\
+\pard\pardeftab720
+
+\f0\fs24 \cf0 \cb1 \
+\
+\pard\pardeftab720
+
+\b \cf0 FET 
+\b0 - mides petites segons grzegorz, \
+
+\b FET 
+\b0 -
+\b  
+\b0 seleccionar automatic\
+
+\b FET 
+\b0 - la seleccio de enums (veure shape)\
+\
+
+\b FET 
+\b0 - el tipus de lletre dels object configurators\
+
+\b FET 
+\b0 - revisar connections\
+r
+\b FET 
+\b0 - evisar tags\
+
+\b FET 
+\b0 - revisar alarmes\
+r
+\b FET 
+\b0 - evisar toolbaritem\
+
+\b FET 
+\b0 - revisar colorpicker\
+\
+view mode timeout\
+\
+A HMI Draw, despres de activation code created donar opcio de 'go to project'\
+A HMI View, despres de redemption complete donar opcio de obrir el projecte nou.\
+\
+A HMI Draw en els Number Fields fer que el format no tingui en compte el texte.\
+\
+
+\b FET 
+\b0 - Posar pickers moderns,\
+Mes tipus de Grafics,\
+Guardar i llegir de fitxer.\
+\
+\
+CODI TAISA\
+\
+Proves_Taisa\
+58725473\
+\
+
+\b FET 
+\b0 - Maths.ceil\
+\
+
+\b FET 
+\b0 - num.ceil\
+
+\b FET 
+\b0 - num.floor\
+
+\b FET 
+\b0 - range.begin\
+
+\b FET 
+\b0 - range.end\
+
+\b FET 
+\b0 - array.min\
+
+\b FET 
+\b0 - array.max\
+\
+array[range]\
+\
+
+\b FET
+\b0  - animatedImage\
+rotaci\'f3 de texte normal, left, right\
+
+\b FET (+o-)
+\b0  - prioritat a la cache\
+
+\b FET 
+\b0 - back / forward al web view\
+supported orientation depenent de iPhone/iPad\
+
+\b FET
+\b0  - auto login a usuaris\
+
+\b FET
+\b0  - no visualitzar tags a HMI view\
+En el View, els binary, i els valuesSymbolic i els valuesBinary s'haurien d'encriptar, si no, es poden treure del view i posar al draw\
+\
+veure  
+\f1\fs22 \CocoaLigature0 _buttonPropertiesForContext en HMIView\
+\pard\pardeftab720
+
+\f0\fs24 \cf0 \CocoaLigature1 els que estan seleccionats no tenen reveal (d'esborrar) ni esquerra\
+\
+\
+\
+\pard\tx528\pardeftab528\pardirnatural
+
+\f1\fs22 \cf9 \CocoaLigature0 contentsOfDirectoryAtURL\
+\
+\pard\pardeftab720
+
+\f0\fs24 \cf0 \CocoaLigature1 Micrologix, incorporar lectura del que falta "DLG instruction"\
+\
+Incorporar un contador "up-down counter"\
+\
+\
+Bugs - Activate desde "current project" mirar si esta logat \
+          - Activate desde "edit project" mirar si est\'e0 logat.\
+\
+ \
+\
+}

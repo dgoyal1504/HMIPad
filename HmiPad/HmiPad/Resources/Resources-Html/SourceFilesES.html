@@ -1,0 +1,53 @@
+<table cellpadding=10px>
+    <tr> 
+        <td>
+            <label>
+                <b>Plantillas de Ejemplo</b><br>
+                <br>
+                Con la instalacion de ${SW_DISPLAY_NAME} se suministran plantillas de ejemplo.
+                Se pueden borrar en cualquier momento y recrear más adelante si es necesario pulsando el botón "Cargar Ejemplos" 
+                debajo de este párrafo. Usa tus propios nombres para tus proyectos para evitar que los archivos se reemplacen al cargar los Ejemplos<br>
+                <br>
+                <input type="button" onclick="loadTemplates()" value="Cargar Ejemplos"/><br>
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>
+                <br>
+                <b>Descarga de Archivos (${SW_DISPLAY_NAME} -> PC)</b><br>
+                <br>
+                Haz click sobre un archivo para bajarlo de nuevo a tu ordenador.
+                Usa 'Borrar' para eliminar archivos de tu iPhone o iPod.
+            </label>
+        </td>
+    </tr>
+    <tr> 
+        <td id='sourceTable'>
+        </td> 
+    </tr>
+    <tr>
+        <td>
+            <label>
+                <br>
+                <b>Subida de Archivos (PC -> ${SW_DISPLAY_NAME})</b><br>
+                <br>
+                Pulsa el boton de abajo y selecciona un archivo para trasferirlo desde tu PC hasta tu iPhone o iPod touch.
+                Si necesitas enviar cambios en el archivo que acabas de subir, usa "Re-enviar archivo" despues de guardar en Excel.
+            </label>
+        </td>
+    </tr>
+    <tr> 
+        <td>   
+            <form action="/" method="post" enctype="multipart/form-data" name="formSources" target="postframe" onError="alertError()">
+                <table width="100%">
+                    <tr>
+                        <td align="left"> <input type="file" name="sourcefile" id="file" size=40 onChange="submitFormToServer(this)"/> </td>
+                        <td align="right"> <input type="button" value="Re-enviar Archivo" onClick="submitFormToServer(this)" /> </td>
+                    </tr>
+                </table>
+            </form>
+        </td> 
+    </tr>
+</table>

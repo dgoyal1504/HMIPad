@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="BZM-x8-Yyh">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <scenes>
+        <!--Files View Controller-->
+        <scene sceneID="pmN-H5-A8P">
+            <objects>
+                <tableViewController id="hnj-7j-V1q" customClass="FilesViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="m6g-7b-22U">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="hnj-7j-V1q" id="M8b-pw-xBp"/>
+                            <outlet property="delegate" destination="hnj-7j-V1q" id="1Lk-He-fG8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="VdY-dW-57q"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zua-cV-tbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-847" y="-227"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DEF-O1-Ylw">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="BZM-x8-Yyh" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="cCs-M7-Wu4"/>
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="biA-Nz-zlX">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hnj-7j-V1q" kind="relationship" relationship="rootViewController" id="Iy7-LC-5Xt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zPT-A4-o3z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1952" y="-227"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

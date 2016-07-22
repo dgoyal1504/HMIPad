@@ -1,0 +1,53 @@
+<table cellpadding=10px>
+    <tr> 
+        <td>
+            <label>
+                <b>Example Templates</b><br>
+                <br>
+                Example template projects are provided with the installation of the ${SW_DISPLAY_NAME} package.
+                They can be deleted at any time and recreated later by clicking on the 'Load Examples' button after this paragraph.
+                You should use your own custom names for your projects to prevent them to be removed when reloading the examples.<br>
+                <br>
+                <input type="button" onclick="loadTemplates()" value="Load Examples"/><br>
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>
+                <br>
+                <b>File Download (${SW_DISPLAY_NAME} -> PC)</b><br>
+                <br>
+                Click or Right-Click on a file name in the list to download it to your computer.
+                Click "Delete" to remove a file from your iOS device.
+            </label>
+        </td>
+    </tr>
+    <tr> 
+        <td id='sourceTable'>
+        </td> 
+    </tr>
+    <tr>
+        <td>
+            <label>
+                <br>
+                <b>File Upload (PC -> ${SW_DISPLAY_NAME})</b><br>
+                <br>
+                Click on the button below to transfer a file from your PC to your iOS Device.
+                Commit further changes on the chosen file, for example after saving it from Excel, by using the "Re-submit File" button.
+            </label>
+        </td>
+    </tr>
+    <tr> 
+        <td>   
+            <form action="/" method="post" enctype="multipart/form-data" name="formSources" target="postframe" onError="alertError()">
+                <table width="100%">
+                    <tr>
+                        <td align="left"> <input type="file" name="sourcefile" id="file" size=40 onChange="submitFormToServer(this)"/> </td>
+                        <td align="right"> <input type="button" value="Re-submit File" onClick="submitFormToServer(this)" /> </td>
+                    </tr>
+                </table>
+            </form>
+        </td> 
+    </tr>
+</table>

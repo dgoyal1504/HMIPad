@@ -1,0 +1,162 @@
+# %encoding UTF-8
+# %version 1020200
+
+Project.document = SWObject.new(Project_document);
+
+Project_document = SWDocumentModel.new;
+Project_document.selectedPageIndex = 0;
+Project_document.interfaceIdiom = 0;
+Project_document.system = SWCollection.new($Project, $System, $Location, $Motion, $Player, $Scanner, $UsersManager);
+Project_document.sources = SWCollection.new();
+Project_document.pages = SWCollection.new(page);
+Project_document.backgroundItems = SWCollection.new();
+Project_document.alarms = SWCollection.new();
+Project_document.users = SWCollection.new();
+Project_document.projectUser = -1;
+Project_document.dataLoggers = SWCollection.new();
+Project_document.embeddedAssets = 0;
+Project_document.fileList = [];
+Project_document.projectID = 0;
+
+$Project = SWSystemItemProject.new;
+$Project.currentPageIdentifier = "";
+$Project.title = "Bar code scanner";
+$Project.shortTitle = "Example";
+$Project.allowedOrientation = 0;
+$Project.allowedOrientationPhone = 0;
+
+$System = SWSystemItemSystem.new;
+
+$Location = SWSystemItemLocation.new;
+
+$Motion = SWSystemItemMotion.new;
+
+$Player = SWSystemItemPlayer.new;
+$Player.play = 0;
+$Player.stop = 0;
+$Player.repeat = 0;
+$Player.title = "";
+$Player.url = "";
+
+$Scanner = SWSystemItemScanner.new;
+$Scanner.scan = button_scan.value;
+$Scanner.scanResult = "http://www.sweetwilliamsl.com";
+
+$UsersManager = SWSystemItemUsersManager.new;
+$UsersManager.login = 0;
+$UsersManager.enableAutoLogin = 1;
+$UsersManager.backgroundColor = "";
+$UsersManager.backgroundImage = "";
+$UsersManager.companyTitle = "";
+$UsersManager.companyLogo = "";
+
+page = SWPage.new;
+page.pageIdentifier = "";
+page.title = "Example";
+page.shortTitle = "TITLE";
+page.modalStyle = 0;
+page.pageTransitionStyle = 3;
+page.enabledInterfaceIdiom = 0;
+page.color = "PapayaWhip";
+page.image = "";
+page.imageRatio = 1;
+page.hidden = 0;
+page.uuid = "215CA6F3-53A4-4BB9-A9D2-2C229DC507A1";
+page.items = SWCollection.new(button_scan, label_scan, group5);
+
+button_scan = SWButtonItem.new;
+button_scan.framePortrait = SM.rect(324, 130, 120, 72);
+button_scan.frameLandscape = SM.rect(182, 171, 160, 60);
+button_scan.framePortraitPhone = SM.rect(102, 113, 120, 66);
+button_scan.frameLandscapePhone = SM.rect(19, 35, 120, 56);
+button_scan.backgroundColor = "ClearWhite";
+button_scan.hidden = 0;
+button_scan.continuousValue = 0;
+button_scan.enabled = 1;
+button_scan.verificationText = "";
+button_scan.style = 0;
+button_scan.value = 0;
+button_scan.color = "SandyBrown";
+button_scan.title = "scan";
+button_scan.textAlignment = 1;
+button_scan.verticalAlignment = 1;
+button_scan.font = "Helvetica-Light";
+button_scan.fontSize = 35;
+button_scan.image = "";
+button_scan.aspectRatio = 2;
+button_scan.animationDuration = 0.5;
+button_scan.active = 1;
+button_scan.linkToPage = "";
+button_scan.locked = 0;
+
+label_scan = SWLabelItem.new;
+label_scan.framePortrait = SM.rect(146, 286, 476, 60);
+label_scan.frameLandscape = SM.rect(381, 171, 442, 60);
+label_scan.framePortraitPhone = SM.rect(21, 20, 282, 62);
+label_scan.frameLandscapePhone = SM.rect(151, 35, 376, 56);
+label_scan.backgroundColor = "Cornsilk";
+label_scan.hidden = 0;
+label_scan.textAlignment = 1;
+label_scan.verticalAlignment = 1;
+label_scan.fontColor = "Black";
+label_scan.font = "Helvetica-Light";
+label_scan.fontSize = 20;
+label_scan.value = $Scanner.scanResult;
+label_scan.format = "%";
+label_scan.locked = 0;
+
+group5 = SWGroupItem.new;
+group5.framePortrait = SM.rect(25, 489, 718, 174);
+group5.frameLandscape = SM.rect(119, 451, 774, 160);
+group5.framePortraitPhone = SM.rect(13, 240, 298, 182);
+group5.frameLandscapePhone = SM.rect(4, 126, 552, 127);
+group5.backgroundColor = "ClearWhite";
+group5.hidden = 0;
+group5.locked = 0;
+group5.items = SWCollection.new(shape10, label43);
+
+shape10 = SWShapeItem.new;
+shape10.framePortrait = SM.rect(0, 0, 718, 174);
+shape10.frameLandscape = SM.rect(0, 0, 774, 160);
+shape10.framePortraitPhone = SM.rect(0, 0, 298, 182);
+shape10.frameLandscapePhone = SM.rect(0, 0, 552, 127);
+shape10.backgroundColor = "ClearWhite";
+shape10.hidden = 0;
+shape10.animate = 0;
+shape10.fillStyle = 0;
+shape10.strokeStyle = 0;
+shape10.shadowStyle = 3;
+shape10.gradientDirection = 3;
+shape10.aspectRatio = 3;
+shape10.fillColor1 = "WhiteSmoke";
+shape10.fillColor2 = "gray";
+shape10.fillImage = "";
+shape10.cornerRadius = 15;
+shape10.lineWidth = 2;
+shape10.strokeColor = "grey";
+shape10.gridColumns = 1;
+shape10.gridRows = 1;
+shape10.shadowOffset = 1;
+shape10.shadowBlur = 5;
+shape10.shadowColor = "lightgrey";
+shape10.opacity = 1;
+shape10.blink = 0;
+shape10.locked = 0;
+
+label43 = SWLabelItem.new;
+label43.framePortrait = SM.rect(45, 16, 640, 142);
+label43.frameLandscape = SM.rect(28, 12, 718, 136);
+label43.framePortraitPhone = SM.rect(8, 15, 282, 152);
+label43.frameLandscapePhone = SM.rect(9, 9, 534, 110);
+label43.backgroundColor = "WhiteSmoke";
+label43.hidden = 0;
+label43.textAlignment = 0;
+label43.verticalAlignment = 0;
+label43.fontColor = "#464646";
+label43.font = "HelveticaNeue-Thin";
+label43.fontSize = 20;
+label43.value = "This example demonstrates the use of the Bar code scanner. We use a button to activate the camera and read the code.
+
+Objects used: button, label, system expressions.";
+label43.format = "%";
+label43.locked = 0;

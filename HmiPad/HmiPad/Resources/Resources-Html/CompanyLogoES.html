@@ -1,0 +1,35 @@
+<table cellpadding=10px>
+    <tr>
+        <td>
+            <label class="font1">
+                <b>Logo de Empresa</b><br>
+                <br>
+                Escoje una imagen adecuada tal como el logo de tu empresa (png, jpg, gif) para mostrar arriba de la ventana principal de ${SW_DISPLAY_NAME}.
+                Los mejores resultados se obtienen con archivos png de fondo transparente con 40 pixeles de altura. En dispositivos 'retina display' una imagen de 80 pixels de altura se mostrará a completa resolución.<br>
+            </label>
+        </td>
+    </tr>
+    <tr> 
+        <td>   
+            <form action="/" method="post" enctype="multipart/form-data" name="formLogo" target="postframe" onError="alertError()">
+                <table width="100%" class="font1"> 
+                    <tr>
+                        <td align="left" class="font1"> 
+                            <input type="checkbox" name="logoselection" value="on" onClick="submitFormToServer(this)"/>
+                            <input type="hidden" name="logodata" value=""/>Muestra Imagen en Cabecera
+                        </td>
+                        <td align="center" width=280 height=44px class="headerRow"> <img id='logoImage' src="" height=40px/> </td>
+                    </tr>
+                    <tr>
+                        <td align="left"> <input type="file" name="logofile" id="file" size=40px onChange="submitFormToServer(this)"/>
+                            <input type="button" value="Re-enviar archivo" onClick="submitFormToServer(this)" /> 
+                        </td>
+                        <td align="right"> <input type="button" name="logoreset" value="Usar imagen por defecto" onClick="submitFormToServer(this)" />
+                        </td>
+                                                        
+                    </tr>
+                </table>
+            </form>
+        </td> 
+    </tr>
+</table>

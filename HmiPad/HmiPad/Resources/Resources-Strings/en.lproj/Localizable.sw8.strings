@@ -1,0 +1,387 @@
+/* 
+  Localized.strings
+  PageController
+
+  Created by Joan on 05/04/12.
+  Copyright (c) 2012 SweetWilliam SL. All rights reserved.
+*/
+
+/* AppDelegate */
+
+"CouldNotCreateApplicationSupportDir" = "Application Support Directory could not be created.";
+"CouldNotCreateDefaultSettings" = "Default settings or user profiles could not be created.";
+"CouldNotCreateDefaultFiles" = "User files directory or default templates could not be created.";
+"CouldNotRedeemForLocalUser" = "Activation Code Redemptions are not allowed for the default user. You must register and log into a custom user account before being able to redeem an activation code.";
+"AskUpdateExamples" = "Updated project examples are available for this version of the app.\nDo you want to move them to the projects section now?\n(You can download the latest project examples at any time)";
+"WelcomeMessage" =  "Welcome to %@. This is the first time the application has launched. It has just configured itself with default settings and templates";
+"WelcomeMessageR" =  "Welcome to %@. To start downloading projects you must log into an end user account.\n\nTo create an account start by tapping on \"Manage Accounts\" on the Application Panel.\n\nTo log into an existing end user account tap on \"Current Account\"";
+
+"%d%sUnacknowledged" = "%d Alarm%s Not Acknowledged";
+"AlarmSoundLast30Sec" = "Alarm sound will last for 30 seconds, tap OK to stop";
+"LessThan1minuteLeft" = "Background process will be suspended in one minute. You can open the app to continue execution";
+"LessThan10secLeft" = "Background process will be suspended in 10 seconds. You can open the app to continue execution";
+
+"YouDoNotHavePermission" = "You do not have permission to view this project. The project will be closed";
+"YouDoNotHavePermissionNoDone" = "Could not connect to the ${SW_DISPLAY_NAME} server to check for permissions to view this project. The project will be closed";
+
+"IntegratorTimeoutTitle" = "View mode timeout";
+"IntegratorTimeoutMessage" = "\nProjects are not allowed to stay on view mode for a long period of time on the HMI Draw app.\n\nPlease consider buying an activation code if you are done with editing or you plan to deploy this project for unrestricted use on the HMI View app.";
+
+"IntegratorTimeoutMessageLocal" = "\nProjects are not allowed to stay on view mode for a long period of time on the HMI Draw app.\n\nPlease sign in with an user account before deploying this project for unrestricted viewing time";
+
+/* Expressions */
+
+"RpnBuilderMissingEndBracket1" = "Missing trailing ')' after function arguments";
+"RpnBuilderTooManyArguments" = "Too Many Arguments in method or function call";
+"RpnBuilderTooManySymbols" = "Too Many Symbols in expression";
+"RpnBuilderMissingEndSqBracket1" = "Missing trailing ']' in indexed access";
+"RpnBuilderUnknownIdentifier" = "Unknown method identifier";
+"RpnBuilderExpectingMethod" = "Expecting property or method identifier following dot operator";
+"RpnBuilderMissingEndCrBracket" = "Missing trailing '}' in embedded tag";
+"RpnBuilderSymbolSyntaxError" = "Symbol Syntax Error";
+"RpnBuilderSymbolExpected" = "Symbol expected";
+"RpnBuilderMissingEndBracket2" = "Missing trailing ')' in expression";
+"RpnBuilderMissingEndSqBracket2" = "Missing trailing ']' in array specifier";
+"RpnBuilderExpectingPrimitive" = "Expecting constant, string constant, symbol, or opening bracket following";
+"RpnBuilderMissingSemilocon" = "Missing ':' in ternary operator";
+"RpnBuilderExtraChars" = "Extra characters following expression";
+"RpnBuilderNoExpression" = "Expression expected";
+"RpnBuilderConstantExpressionError" = "Could not evaluate constant expression";
+"RpnBuilderUnknownParsingError" = "Unspecified parsing error";
+"RpnBuilderPre%@Post%@" = "%@, found: '%@'";
+
+"RpnLinkerSymbolNotFound" = "Symbol not found";
+"RpnLinkerUnknownError" = "Unspecified commit error";
+"RpnLinkerPre%@Ref%@" = "%@ (object was referenced from: '%@')";
+    
+"ValueStateInvalid" = "Invalid Value";
+"ExpressionInvalid" = "Could not evaluate due to invalid references";
+
+"ExpressionStateUnknownIdentifier" = "Symbol not known";
+"ExpressionStateCircularReference" = "Circular reference found";
+"ExpressionStateInvalidSource" = "Could not evaluate due to invalid references";
+"ExpressionStatePendingSource" = "Undefined result due to pending references";
+"ExpressionStateBadQualitySource" = "Undefined result due to source tag error";
+"ExpressionStateDisconnectedSource" = "Undefined result due to disconnected source";
+"ExpressionStateWrongRpn" = "Internal RPN Interpreter error";
+"ExpressionStateTooComplex" = "Too complex, reduce number of nested operators or parenthesis";
+
+"RpnInterpreterIncompatibleType" = "Incompatible type for operator";
+"RpnInterpreterIncompatibleTypeForMethod" = "Incompatible type for method call";
+"RpnInterpreterArrayBoundsError" = "Array index out of bounds";
+"RpnInterpreterStringBoundsError" = "String subscript index out of bounds";
+"RpnInterpreterHashBoundsError" = "Hash key not found";
+"RpnInterpreterNumArgumentsError" = "Wrong number of arguments in method or function call";
+"RpnInterpreterArgumentsTypeError" = "Wrong argument type in method or function call";
+"RpnInterpreterBitNumArguments" = "Wrong number of arguments for bit access, must be one single numeric argument";
+"RpnInterpreterBitArgumentsType" = "Argument for bit access must be numeric";
+"RpnInterpreterStringNumArguments" = "Wrong number of arguments for substring or character access, must be one or two";
+"RpnInterpreterStringArgumentsType" = "Arguments for substring or character access must be numeric";
+"RpnInterpreterArrayNumArguments" = "Wrong number of arguments for array indexed access, must be one or two";
+"RpnInterpreterArrayArgumentsType" = "Arguments for array indexed access must be numeric";
+"RPNVaErrorHashArgumentsTypeError" = "Wrong argument type for hash key";
+"RpnInterpreterHashOddNumItems" = "Missing key-value pair in hash constructor";
+"RpnInterpreterHashItemsTypeError" = "Wrong key type in hash constructor";
+"RpnInterpreterHashNumArguments" = "Wrong number of arguments for hash indexed access, must be one";
+"RpnInterpreterEnumerableItemsTypeError" = "Wrong or inconsistent item types for enumerating method call";
+"RpnInterpreterEnumerableNumItems" = "Not enough items for enumerating method call, must have at least one";
+
+"RpnInterpreterUnknownError" = "Unspecified expression Error";
+
+/* Symbolic decoder */
+
+"SymbolicUnarchiverErrorParsingExpression" = "Error while parsing expression";
+"SymbolicUnarchiverErrorExtraChars" = "Extra characters after text";
+"SymbolicUnarchiverErrorUnknownEncoding" = "Unknown string encoding";
+"SymbolicUnarchiverErrorUnsupportedEncoding" = "Unsupported string encoding";
+"SymbolicUnarchiverErrorExpectedTokenAfterDot" = "Expecting token after dot operator";
+"SymbolicUnarchiverErrorExpectedToken" = "Expecting symbol";
+"SymbolicUnarchiverErrorExpectedAsignOper" = "Expecting '=' operator after";
+"SymbolicUnarchiverErrorExpectedDotOper" = "Expecting dot operator following";
+"SymbolicUnarchiverErrorExpectedNewMethodCall" = "Expecting 'new' method call after";
+"SymbolicUnarchiverErrorExpectedOpenBracket" = "Expecting opening bracket after";
+"SymbolicUnarchiverErrorExpectedTokenOrCloseBracket" = "Expecting symbolic token or closing bracket after";
+"SymbolicUnarchiverErrorUnknownClass" = "Unknown class";
+"SymbolicUnarchiverErrorInvalidClass" = "Invalid class";
+"SymbolicUnarchiverErrorUnknownSymbol" = "Unknown symbol";
+"SymbolicUnarchiverErrorDuplicatedSymbol" = "Duplicated Symbol";
+"SymbolicUnarchiverUnspecifiedError" = "Unspecified parsing error";
+
+"SymbolicUnarchiverErrorObjectNotFoundForSymbol" = "Object definition not found for symbol";
+"SymbolicUnarchiverErrorObjectWrongTypeAssignedToValue" = "Wrong assignment type to value";
+"SymbolicUnarchiverErrorNonConstantExpressionForValue" = "Non constant expression assigned to constant value";
+"SymbolicUnarchiverErrorCommitExpressionsError" = "Errors were found while linking expressions";
+"SymbolicUnarchiverErrorCustomObjectError" = "Errors were found while initializing objects";
+
+"SymbolicUnarchiverPre%@Post%@" = "%@, found: '%@'";
+"SymbolicUnarchiverSym%@Used%@" = "'%@' (object was referenced from '%@')";
+"SymbolicUnarchiverWrong%@Kind%@" = "'%@' (assignment type should be '%@')";
+
+/* SWPlayerCenter */
+
+"PlayListNotFound%@" = "Playlist \"%@\" was not found on the iPod-Library" ;
+"Audio%@NotFoundInPlaylist%@" = "\"%@\" not found on the \"%@\" playlist of the iPod-Library" ;
+"Audio%@NotPlayable" = "\"%@\" is FairPlay encoded or not playabe by this app" ;
+"AudioFile%@NotFound" = "\"%@\" was not found on the documents category" ;
+"Audio%@NotFound" = "\"%@\" not found or could not be played" ;
+
+/* PDVViewer */
+
+"PdfViewerMain" = "Web/Document Viewer Component";
+
+/* SWSourceItem */
+
+"MonitorSwitchedOff" = "Monitoring is switched off for this tag on the connections tab";
+"NoActiveConnection" = "No connection is active for this tag. Check the connections tab";
+
+/* HTTPServerSubclass */
+
+"HTTPServerWifiReachabilityError" = "Your iOS device must be connected to a local Wifi Network";
+
+/* URLDownloadObject */
+
+"LoadProjectWarningMessage%@" = "\"%@\" will be loaded into projects and will replace any existing file with the same name";
+"LoadActivationCodeWarningMessage%@" = "\"%@\" contains an activation code and will be redeemed for this device";
+"LoadActivationCodeErrorMessage%@" = "\"%@\" contains an invalid activation code and can not be redeemed in this device";
+"LoadAssetWarningMessage%@" = "\"%@\" will be loaded into assets and will replace any existing file with the same name";
+
+/* FilesViewController */
+
+"EndUserSectionMessage" = "You can register with the Integrators Server to download projects specially made for you by an Integrator";
+"LogToManageFiles" = "You can register with the Integrators Server to distribute projects you create for your End Users";
+
+"FilesViewControllerMainLabel" = "Files can be transferred between ${SW_DISPLAY_NAME} and a PC using the http link provided below.\n\nApple's Bonjour technology is supported for Safari browser.";
+
+"FilesViewControllerMainLabel2" = "\nNOTE: The device will not go to the 'lock' state while the server is ON. The server will be stopped when the app is not active.";
+"FileServer" = "File Server";
+"CategoriesList" = "Projects and associated assets in this section are stored locally and available to authorized users";
+
+"RedeemedCategoriesList" = "Projects are downloaded from the Integrators Server through redemption of activation codes provided by Integrators";
+
+"CategoriesRemoteList" = "Projects and other assets in this section belong to the logged in user and are stored in the cloud. The Integrators Service lets you share projects and assets among devices and to distribute them to end users";
+"CategoriesRemoteListR" = "Assets in this section belong to the logged in user and are stored in the cloud";
+"ConfirmDownloadFile %@" = "Confirm Download File %@";
+"MessageICloud" = "You can use the iCloud Service to store files that will persist among all your iOS devices";
+"MessageExtFilesView" = "You can use external services such as iTunes file sharing to store files that may persist among all your iOS devices";
+"MessageFileServer" = "To move files between ${SW_DISPLAY_NAME} and a PC turn on the server and point your Web Browser to the IP address that will appear just below. Bonjour technology is supported for Safari browser.";
+/*"MessageTableEmpty" = "You are currently logged in as a project user. Some options are only available to users who are logged into the integrators server. You may log into an existing integrators server account to have the full set of available options.";*/
+
+"MessageTableEmpty" = "You are currently logged in as a Project User. Some options are only available to HMI Pad server users. You may log into this project admin user to get full access to the app";
+
+/* UIViewControllerPresenter */
+
+"NoICloudUserAlert" = "\nAn Apple iCloud account is required to activate projects.\n\nPlease, open the Settings App then tap on 'iCloud' to enter your existing Apple iCloud account credentials or to create a new one";
+
+/* SettingsViewController */
+
+"ReviewAppMailMessageSubject" = "[Technical Support] My Review on ${SW_DISPLAY_NAME}";
+"ReviewAppMailMessageBodyFormat" = "Hi Support Team,\n\n";
+
+/*"AlarmsSectionMessage" = "Turn on Keep Connected to continue communications while using another app. Turn on Background Process for extended running time with an optional tick sound in the background";*/
+"AlarmsSectionMessage" = "Turn on Keep Connected to continue communications while using another app";
+"CommsSectionMessage" = "You can change the port number used by the embedded Web Server in case you find a conflict with another app";
+"MaintenanceSectionMessage" = "Clear image cache when you find some image not updating after renaming or importing it";
+"MigrateSectionMessage" = "Starting from Version 3.0, remote projects and assets are stored using Apple Cloud Kit infrastructure. All your projects, assets, and activations that were stored in the integrators service must be moved to now iCloud.\n\nMove your remote projects, assets and activations to HMI Pad iCloud now to continue using the app.";
+"FeedbackSectionMessage" = "We love your feedback!. Please tell us what you liked the most or what we can improve";
+
+
+/* AuxiliarFilesViewController */
+
+"SelectSourceFiles" = "You can tap on 'open' to work with the related project. After entering edit mode the actions menu will give you options to move, copy or rename projects";
+
+"SelectSourceFilesR" = "Tap on 'open' to work with a project.";
+"EmptySelectSourceFiles" = "Projects in this list are stored localy. You can start creating an HMI project by tapping on the '+' icon";
+"EmptySelectSourceFilesR" = "Projects in this list are stored localy. You can ask an automation integrator to create an HMI project for you";
+"SelectRecipeFiles" = "Recipes allow for custom configurations in PLC programs as well as fetching data from PLCs. Selected recipe files are displayed on the home tab";
+"SelectDocumentFiles" = "Projects may use files in this section to present user interface elements such as images. Files marked as selected are linked to the current project and will be transferred to the Integrators Service along with the project.";
+"SelectDatabases" = "Databases contain historical data or alarms that have been retrieved during application runs. Data is stored in SQLite tables.";
+"SelectDatabasesR" = "Databases contain historical data or alarms that have been retrieved during application runs. Data is stored in SQLite tables."; 
+"SelectRemoteSourceFiles" = "Projects in this list are stored in the Integrators Service. You can download them back at any time";
+"SelectRemoteAssetsFiles" = "Files in this list are stored in the Integrators Service. You can download them back at any time";
+"SelectRemoteActivationCodes" = "Activation Codes are stored in the Integrators Service and allow you to deploy projects to end users";
+"SelectRemoteRedemptions" = "Redemptions represent project instances you are granted to view through redemption of activation codes. You can reuse a redemption by deleting it and redeeming its associated activation code";
+
+"SelectITunesFiles" = "Use iTunes file sharing to move files to this section.";
+
+/*"MessageRefreshAction" = "Several Example Templates are automatically added to the Projects List on first install to help your development. App updates will preserve your current Selection and Projects List.\nUse the buttons below to load or remove the examples for this version of the app"; */
+
+"MessageRefreshAction" = "Several Example Projects are available for download and will be added to the list.\nSome projects may add Assets such as images to the Assets section.\nUse the buttons below to start downloading the latest examples";
+
+"MessageShareAction" = "Action Menu";
+"MessageAddAction" = "Add";
+"MessageTrashAction" = "Selected files will be permanently deleted. This action can NOT be undone. Are you sure you want to proceed with this operation?";
+"MessageTrashRedemptionAction" = "Selected redemption will be removed. After deleting a redemption you can re-enable it on this or another device by entering the associated activation code. Are you sure you want to proceed with this operation?";
+"MessageDownloadAction" = "File Download";
+
+"MailMessageSubject" = "Files from ${SW_DISPLAY_NAME}";
+"MailMessageFrom" = "Message from ${SW_DISPLAY_NAME}";
+"MailPleaseFindAttached" = "Please, find attached the following files:\n";
+
+"AlertPerformActionWarning" = "This action is only allowed on this item when no project is open. Do you want to close the current project now?";
+
+"AlertRenameTitle" = "Rename";
+"AlertRenameMessage" = "";
+"AlertRenameTitle2" = "New Project";
+"AlertRenameMessage2" = "Enter a file name for your project";
+
+"FileViewerViewNoProject" = "No project";
+
+/* ManageAccountsController */
+
+"ManageAccountsSectionEditAccountMessage" = "Tap to edit current account data";
+/*"ManageAccountsSectionNewAccountMessage" = "Recently used user accounts are listed above. Local accounts are restricted for testing purposes with no need to register as a new user.\n Tap on \"new account\" to create and register users who are able to use project activation codes.";
+*/
+"ManageAccountsSectionNewAccountMessage" = "Create and register a new user with the Integrators Service";
+
+"ManageAccountsSectionRedemCodeMessage" = "As a registered user you can download and view custom projects specifically developed for you by an Automation Integrator or yourself. Automation Integrators are able to provide activation codes you can redeem to access to projects";
+"ManageAccountsSectionSubscriptionMessage" = "As an Automation Integrator you can distribute projects you created for your customers. Before you do so you need to subscribe to the Integrators Service";
+
+
+/* SWUploadViewController */
+
+//"UploadViewControllerMessage" = "You can upload projects and associated files to the Integrators Service and generate activation codes to deploy on end users devices. Tap on the button below to upload or update the current project on the Integrators Service";
+
+//"UploadViewControllerMessage" = "You can Distribute projects and associated files to End Users by uploading them to the Integrators Service. As an Integrator you deliver Activation Codes to End Users to deploy and run projects on End User's devices. End Users are able to redeem Activation Codes and download projects you created. Projects are delivered encrypted, will only run on particular devices, and can not be edited by End Users. Start by tapping on \"UPLOAD PROJECT\" button below";
+
+//"UploadViewControllerMessage" = "As a systems integrator you create Activation Codes for your clients to run your Projects on end user's devices. You can distribute Projects and associated Assets to end users by uploading them to the Integrators Service. Projects on end user's devices are run-only, encrypted instances that are attached to particular devices.\nYou can also create activations for projects on this device by purchasing a Local Activation Code. A Project becomes unlocked upon Redeeming an Activation Code. Tap on the \"UPLOAD PROJECT\" button below to start uploading the current Project to the Integrator's Service";
+
+"UploadViewControllerMessage" = "To distribute Projects and associated Assets start by uploading them to the Integrators Service. Then you can buy Activation Codes for your clients to view your Projects on end user's devices.";
+
+
+"ActivationCodeAlertTitle" = "New Activation Code";
+"ActivationCodeAlertMessage" = "Enter a Label Identifier for this Activation Code";
+/* you are about to create.";*/
+/*Identifiers can not be changed after activation code creation.";*/
+/* Identifiers will be shown on Activation Code listings and to End Users upon Activation Code Redemption";*/
+
+
+"ActivationCodeMailMessageSubject" = "Activation Code for HMI Pad Project";
+"ActivationCodeBodyFormat%@%@%@" = "Paste the following code or tap on the attached file to install your project on the HMI View app:\n\nDescription: %@\nCode: %@\nDate: %@";
+
+/* SWRedeemViewController */
+
+/*"RedeemViewControllerMessage" = "By Redeeming an Activation Code the associated Project and Asset files will be automatically installed and unlocked on your device. Tap on \"Redeem Now\" to start downloading and unlocking the associated Project.";*/
+
+"RedeemViewControllerMessage" = "You can install and unlock a HMI project developed for you by your system integrator by simply entering an Activation Code. Tap on \"Enter Code\" or \"Redeem Now\" to start. Once the process is completed the associated project will be listed on the Local Storage section, and new redemption will appear on the Integrators Service section";
+
+
+"RedeemViewControllerProjectMessage" = "Update the current Project with the latest changes implemented by your systems integrator. A new instance of a project will be created without affecting the current project.\nTap on \"Update Now\" to start downloading";
+
+"RedeemCodeAlertTitle" = "Code Redemption";
+"RedeemCodeAlertMessage" = "Enter an Activation Code";
+
+"OpenRedeemedProjectTitle" = "Open Project";
+"OpenRedeemedProjectMessage" = "Project \"%@\" was successfully downloaded. Do you want to open it now?";
+
+/* SWSubscribeViewController */
+
+"SubscribeViewControllerMessage" = "As an Automation Integrator you can distribute projects you created for your customers. Before you do so you need to subscribe to the Integrators Service";
+
+
+/* EditAccountTableController */
+
+"ActionSheetDeleteTitle%@" = "A request to delete User \"%@\" and all associated projects will be sent to the Integrators Server.\nThis action can NOT be undone. Are you sure you want to proceed with this operation?";
+
+"ActionSheetDeleteTitleOther%@" = "User \"%@\" will be deleted from the app record but will remain on the Integrators Server for later use if available.\nTo completely delete an User Account you must log in first. Are you sure you want to proceed with this operation?";
+
+"MessageFooterICloudAccount" = "Configure your HMI Pad iCloud account with an username and email that will identify you on the integrators service.";
+
+/* DownloadFromServerController */
+
+"MessageServerDownload" = "Enter a remote http or ftp server path and the file name you want to download from it";
+"MessageDownload" = "Tap on the button above to begin downloading";
+
+/* SWModelBrowserController */
+
+"ModelBrowserFooter" = "The Model Browser Provides an Overview of the Project and Gives Quick Access to all Objects. From Here you Can Create, Delete, Rearrange and Configure Everything\n\nConfiguration Panels for Individual Objects such as Pages, Items or Alarms are also Accessible from this Panel\n\nUndo/Redo is Thoroughly Available for all Changes on the Project";
+
+"ModelBrowserFooter2" = "Find an object property by browsing the model on this panel and tap to create a simple link to the selected item property. Or use one of the data pickers (if available) to choose a constant value";
+
+
+/* SWArrayTypeBrowserController */
+
+"FooterStringArrayTypeAlarm" = "Add, remove, duplicate and configure Alarms from this panel. Alarms appear on the Alarm Viewer sorted by the time they were triggered";
+"FooterStringArrayTypeProjectUser" = "Add, remove, duplicate and configure Project Users from this panel. You can set user access levels to provide restricted access to project features";
+"FooterStringArrayTypeDatabase" = "Databases are special objets designed to store persistent historical data. Authorized users can export database files for later analysis";
+"FooterStringArrayTypeRestApiItems" = "REST Apis allow you to connect to remote servers to fetch or store information in a open, standarized way";
+"FooterStringArrayTypeBackgroundItems" = "Add, remove, duplicate and configure Background Items from this panel. Background Items are non visual instances of objects that provide additional functionality";
+"FooterStringArrayTypePages" = "Add, remove, duplicate and rearrange pages from this panel. Page order on the Page Viewer matches the order you set on this panel";
+"FooterStringArrayTypeSources" = "Add, remove and duplicate Connectors from this panel. A Connector represents a link to a PLC using a particular communications protocol. Connectors are displayed on the Connectors Viewer in the order you set on this panel. Connectors have an associated list of Tags you can connect through expressions with other object instances such as Items on screen";
+"FooterStringArrayTypeSystem" = "Link your interface objects to System Items to enhance user experience or to enable particular features on your projects";
+"FooterStringArrayTypeList" = "FooterStringArrayTypeList";
+
+"FooterStringArrayTypeAlarm2" = "Alarm selection panel";
+"FooterStringArrayTypeProjectUser2" = "User selection panel";
+"FooterStringArrayTypeDatabase2" = "Database selection panel";
+"FooterStringArrayTypeRestApiItems2" = "REST API selection panel";
+"FooterStringArrayTypeBackgroundItems2" = "Item selection panel";
+"FooterStringArrayTypePages2" = "Page selection panel";
+"FooterStringArrayTypeSources2" = "Source selection panel";
+"FooterStringArrayTypeSystem2" = "System Items selection panel";
+"FooterStringArrayTypeList2" = "FooterStringArrayTypeList";
+
+/* SWPageBrowserController */
+
+"PageBrowserFooter" = "Configure this page and its items from this panel. Item order in this list matches depth arrangement on screen. Items on top of the list are front most on the screen";
+"PageBrowserFooter2" = "Page Selection";
+
+/* SWSourceVariablesBrowserController */
+
+"SourceVariablesListControllerFooter" = "Configure this PLC Connector and associated PLC Tags from this panel. Tags can be edited simultaneously by making a selection and tapping on the configure icon.";
+"SourceVariablesListControllerFooter2" = "Source Tags Selection";
+
+/* SWItemConfigurationController */
+
+"ItemConfigurationFooter" = "Connect with other objects through expressions and configure individual properties for this object using this panel";
+
+/* SWSourceItemConfiguratorController*/
+
+"SourceItemConfigurationFooter" = "Configure communication settings and other properties for this PLC Connector";
+
+/* SWSourceNodeConfiguratorController*/
+
+"SourceNodeConfigurationFooter" = "Define PLC Tag properties such as tag address, data type and scaling. Configure writing to this tag by entering an expression into the 'write_expression' field. Perform bulk replacement of tag properties by opening this panel with a multiple selection of tags";
+
+/* SWObjectBroswerController */
+
+"ObjectBrowserFooter" = "Tap on a value to create a link to the selected Item Property on the associated configuration panel";
+"ObjectBrowserFooter2" = "Tap on a value to create a link to the selected Item Property on the associated configuration panel";
+
+/* SWExamplesViewController */
+
+"ExamplesViewControllerFooter" = "A number of example projects and templates are available for download.\nSome projects may add Assets such as images to the Assets section.\nAssets with existing names will be overwritten.\n\nTap on a category to start downloading, a list of available projects will appear, then chose an item. ";
+
+
+/* SWEventViewController */
+
+"EventsViewControllerFooter" = "Red color means active and not acknowledged; Dark Red means active and acknowledged; Gray means not active and not acknowledged. Alarms disappear from this list when not active and acknowledged";
+
+/* SWHistoEventViewController */
+
+"HistoEventsViewControllerFooter" = "Historical alarms from the last two months.\nRed color indicate times when alarms became active; Green color indicate inactived alarms";
+
+/* SWSourcesViewController */
+
+"SourcesViewControllerFooter" = "Defined PLC Connectors are listed in this section. You can determine communications performance by looking at the rps and cps figures.\n'cps' is the number of communication frames per second that are sent to the PLC at any given time.\n'rps' is the number of read cycles per second.\nOptimum performance is obtained when the green bar for 'rps' nears full mark";
+
+"SourcesViewControllerFooterView" = "PLC Connectors are listed in this section";
+
+"SourcesViewControllerFooterEmpty" = "Defined PLC Connectors will be listed in this section. You can create PLC connectors from the Model Browser (loupe icon on the top bar) >> Connectors >> '+' >> PLC connector";
+
+"SourcesViewControllerFooterEmptyView" = "PLC Connectors are listed in this section";
+
+/* SWSourceTagsViewController */
+
+"SourceTagsViewControllerFooter" = "Browse PLC tag values for the selected PLC Connector from this panel. All tag values are presented real time for debugging purposes. This list will not appear on the HMI View app";
+
+"SourceTagsViewControllerFooterEmpty" = "PLC tag values for the selected PLC Connector will appear on this panel.\nYou can create tags from the Model Browser >> Connectors >> your plc connector >> '+'";
+
+
+/* UIPasteboard (Generic) */
+
+"PasteError" = "COULD NOT PASTE";
+"PasteErrorDescription" = "Unable to paste due to incomplete copied objects or containing invalid references";
+"DuplicateError" = "COULD NOT DUPLICATE";
+"DuplicateErrorDescription" = "Unable to duplicate due to incomplete original objects or containing invalid references";
+
+

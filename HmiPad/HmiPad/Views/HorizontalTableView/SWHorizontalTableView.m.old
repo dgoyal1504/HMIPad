@@ -1,0 +1,600 @@
+//
+//  SWHorizontalTableView.m
+//  HmiPad
+//
+//  Created by Joan Martín Hernàndez on 3/27/12.
+//  Copyright (c) 2012 Augia Engineering. All rights reserved.
+//
+
+#import "SWHorizontalTableView.h"
+
+#define DEFAULT_ROW_WIDTH 200
+
+@interface SWHorizontalTableView ()
+
+// Manipulating cells
+- (void)_reuseCell:(SWHorizontalTableViewCell*)cell;
+- (SWHorizontalTableViewCell*)_reusableCellWithIdentifier:(NSString*)identifier;
+- (void)_deployCellAtIndex:(NSInteger)index usingRange:(NSRange)range;
+- (void)_undeployCellAtIndex:(NSInteger)index usingRange:(NSRange)range;
+- (BOOL)_computeVisibleCells;
+- (NSInteger)_rangeIndexFromIndex:(NSInteger)index inRange:(NSRange)range;
+- (NSInteger)_indexFromRangeIndex:(NSInteger)index inRange:(NSRange)range;
+
+// Manipulating the geometry
+- (NSInteger)_rowAtOffset:(CGFloat)offset;
+- (CGSize)_computeContentSize;
+- (CGPoint)_positionForCellAtIndex:(NSInteger)index;
+- (CGRect)_frameForCellAtIndex:(NSInteger)index;
+- (NSRange)_visibleRowsWithOffset:(CGFloat)offset;
+- (BOOL)_isIndex:(NSInteger)index inRange:(NSRange)range;
+
+// Gesture recognizement
+- (void)_didRecognizeTapGesture:(UITapGestureRecognizer*)gestureRecognizer;
+- (void)_didRecognizeLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer;
+
+@end
+
+@implementation SWHorizontalTableView
+@synthesize style = _style;
+@synthesize dataSource = _dataSource;
+@synthesize delegate = _tableViewDelegate;
+@synthesize rowWidth = _rowWidth;
+@synthesize editing = _editing;
+
+- (id)initWithFrame:(CGRect)frame{
+    return [self initWithFrame:frame style:SWHorizontalTableViewStylePlain];
+}
+
+- (id)initWithFrame:(CGRect)frame style:(SWHorizontalTableViewStyle)style
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        _style = style;
+        _rowWidth = DEFAULT_ROW_WIDTH;
+        _numberOfRows = 0;
+        _visibleCells = [NSMutableArray array];
+        _lastSelectedRow = NSNotFound;
+        _selectedRow = NSNotFound;
+        _editing = NO;
+        self.alwaysBounceHorizontal = YES;
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_didRecognizeTapGesture:)];
+        tapGesture.numberOfTapsRequired = 1;
+        tapGesture.numberOfTouchesRequired = 1;
+        [self addGestureRecognizer:tapGesture];
+        
+        UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_didRecognizeLongPressGesture:)];
+        [self addGestureRecognizer:longPressGesture];
+        
+        
+    }
+    return self;
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    _style = SWHorizontalTableViewStylePlain;
+    _rowWidth = DEFAULT_ROW_WIDTH;
+    _numberOfRows = 0;
+    _visibleCells = [NSMutableArray array];
+    _lastSelectedRow = NSNotFound;
+    _selectedRow = NSNotFound;
+    _editing = NO;
+    self.alwaysBounceHorizontal = YES;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_didRecognizeTapGesture:)];
+    tapGesture.numberOfTapsRequired = 1;
+    tapGesture.numberOfTouchesRequired = 1;
+    [self addGestureRecognizer:tapGesture];
+    
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_didRecognizeLongPressGesture:)];
+    [self addGestureRecognizer:longPressGesture];
+        
+    if (_dataSource) {
+        _numberOfRows = [_dataSource numberOfRowsInTableView:self];
+        self.contentSize = [self _computeContentSize];
+    }
+}
+
+- (void)dealloc
+{
+    // TODO
+}
+
+#pragma mark - Properties 
+
+- (void)setDelegate:(id<SWHorizontalTableViewDelegate>)delegate
+{
+    [super setDelegate:delegate];
+    _tableViewDelegate = delegate;
+}
+
+- (void)setEditing:(BOOL)editing
+{
+    [self setEditing:editing animated:NO];
+}
+
+#pragma mark - Overriden Methods
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    // Recomputing content size
+    self.contentSize = [self _computeContentSize];
+    
+    // Recomputing visibleRows
+    BOOL changes = [self _computeVisibleCells];
+    (void)changes;
+    
+    if (!CGRectEqualToRect(_lastFrame, self.frame)) {
+        for (NSInteger i=0; i<_visibleCells.count; ++i) {        
+            
+            NSInteger index = [self _indexFromRangeIndex:i inRange:_visibleRows];
+            
+            if (index != NSNotFound) {
+                SWHorizontalTableViewCell *cell = [_visibleCells objectAtIndex:i];
+                cell.frame = [self _frameForCellAtIndex:index];   
+            }
+        }
+    }
+
+    _lastFrame = self.frame;
+}
+
+//- (void)setContentOffset:(CGPoint)contentOffset
+//{
+//    //[self _computeVisibleCells];
+//    [super setContentOffset:contentOffset];
+//}
+
+
+#pragma mark - Main Methods
+
+- (void)reloadData
+{
+    for (SWHorizontalTableViewCell*cell in _visibleCells) {
+        [cell removeFromSuperview];
+        [self _reuseCell:cell];
+    }
+
+    self.contentOffset = CGPointMake(0, 0);
+    
+    _numberOfRows = [_dataSource numberOfRowsInTableView:self];    
+    
+    [self setNeedsLayout];
+}
+
+- (SWHorizontalTableViewCell*)dequeueCellWithReusableIdentifier:(NSString*)identifier
+{
+    return [self _reusableCellWithIdentifier:identifier];
+}
+
+- (NSInteger)numberOfRows
+{
+    return _numberOfRows;
+}
+
+- (NSInteger)indexForCell:(SWHorizontalTableViewCell*)cell
+{
+    NSInteger visibleCellIndex = [_visibleCells indexOfObject:cell];
+    
+    if (visibleCellIndex != NSNotFound) {
+        visibleCellIndex = [self _indexFromRangeIndex:visibleCellIndex inRange:_visibleRows];
+    }
+    
+//    for (NSNumber *idx in _visibleCells) {
+//        SWHorizontalTableViewCell *visibleCell = [_visibleCells objectForKey:idx];
+//        
+//        if (visibleCell == cell) {
+//            return idx.integerValue;
+//        }
+//    }
+//    return NSNotFound;
+    
+    return visibleCellIndex;
+}
+
+- (UITableViewCell*)cellForRowAtIndex:(NSInteger)index
+{
+    BOOL isIndexInRange = [self _isIndex:index inRange:_visibleRows];
+    NSInteger rangeIndex = [self _rangeIndexFromIndex:index inRange:_visibleRows];
+        
+    if (!isIndexInRange)
+        return nil;
+
+    if (_visibleCells.count == 0 || rangeIndex >= _visibleCells.count || rangeIndex < 0)
+        return nil;
+    
+    return [_visibleCells objectAtIndex:rangeIndex];
+}
+
+- (NSArray*)visibleCells
+{    
+    return _visibleCells;
+}
+
+- (NSIndexSet*)indexesForVisibleRows
+{
+    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+    
+    for (NSInteger index = _visibleRows.location; index < _visibleRows.location + _visibleRows.length; index++) {
+        [indexSet addIndex:index];
+    }
+    
+    return indexSet;
+}
+
+- (void)deselectRowAtIndex:(NSInteger)index animated:(BOOL)animated
+{    
+    
+    SWHorizontalTableViewCell *cell = [self cellForRowAtIndex:index];
+    
+    if (cell) {
+        [cell setSelected:NO animated:animated];
+    }
+    
+    _lastSelectedRow = _selectedRow;
+    _selectedRow = NSNotFound;
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    _editing = editing;
+    
+    // TODO
+}
+
+- (void)insertRowsAtIndexes:(NSIndexSet*)indexes withRowAnimation:(SWHorizontalTableViewRowAnimation)animation
+{
+    // TODO
+}
+
+- (void)deleteRowsAtIndexes:(NSIndexSet*)indexes withRowAnimation:(SWHorizontalTableViewRowAnimation)animation
+{
+    // TODO
+}
+
+- (void)moveRowAtIndex:(NSInteger)index toIndex:(NSInteger)newIndex
+{
+    NSInteger finalIndex = newIndex;
+    
+    if ([_tableViewDelegate respondsToSelector:@selector(tableView:targetIndexForMoveFromRowAtIndex:toProposedIndex:)]) {
+        finalIndex = [_tableViewDelegate tableView:self targetIndexForMoveFromRowAtIndex:index toProposedIndex:newIndex];
+    }
+    
+    // TODO
+}
+
+#pragma mark - Private Methods
+
+- (void)_reuseCell:(SWHorizontalTableViewCell*)cell
+{
+    [cell prepareForReuse];
+    
+    NSMutableArray*cells = [_reusableTableCells valueForKey:cell.reuseIdentifier];
+    
+    if (!cells) {
+        cells = [NSMutableArray array];
+        [_reusableTableCells setValue:cells forKey:cell.reuseIdentifier];
+    }
+    
+    [cells addObject:cell];
+}
+
+- (SWHorizontalTableViewCell*)_reusableCellWithIdentifier:(NSString*)identifier
+{
+    SWHorizontalTableViewCell*cell = nil;
+    
+    NSMutableArray*cells = [_reusableTableCells valueForKey:identifier];
+    
+    if (cells.count > 0) {
+        cell = [cells lastObject];
+        [cells removeObject:cell];
+    }
+    
+    return cell;
+}
+
+- (void)_deployCellAtIndex:(NSInteger)index usingRange:(NSRange)range
+{    
+    SWHorizontalTableViewCell *cell = [self cellForRowAtIndex:index];
+    
+    if (cell) {
+        //NSLog(@"[84jfk2] WARNING: Can't deploy a cell already deployed");
+        return;
+    }
+    
+    if (index >= _numberOfRows || index < 0 || _numberOfRows == 0)
+        return;
+
+    cell = [_dataSource tableView:self cellForRowAtIndex:index];
+    
+    cell.frame = [self _frameForCellAtIndex:index];
+        
+    if (_selectedRow == index) {
+        [cell setSelected:YES animated:NO];
+    }
+    
+    NSInteger visibleCellIndex = [self _rangeIndexFromIndex:index inRange:range];
+    
+    if (visibleCellIndex < 0) {
+        if (visibleCellIndex + 1 == 0) {
+            visibleCellIndex = 0;
+        } else {
+            NSLog(@"[kdi294] WARINING: Can't deploy a cell if it is not contiguous to other deployed cells");
+            return;
+        }
+    } else if (visibleCellIndex >= _visibleCells.count) {
+        if (visibleCellIndex == _visibleCells.count) {
+            // Nothing to do
+        } else {
+            NSLog(@"[atr532] WARINING: Can't deploy a cell if it is not contiguous to other deployed cells");
+            return;
+        }
+    } else {
+        NSLog(@"[66x732] WARINING: Can't deploy a cell in a position different than an extrem.");
+        return;
+    }
+            
+    [_visibleCells insertObject:cell atIndex:visibleCellIndex];
+
+    if ([_tableViewDelegate respondsToSelector:@selector(tableView:willDisplayCell:forRowAtIndex:)])
+        [_tableViewDelegate tableView:self willDisplayCell:cell forRowAtIndex:index];
+    
+    [self addSubview:cell];
+    [self sendSubviewToBack:cell];
+}
+
+- (void)_undeployCellAtIndex:(NSInteger)index usingRange:(NSRange)range
+{    
+    SWHorizontalTableViewCell *cell = [self cellForRowAtIndex:index];
+    
+    if (!cell) {
+        //NSLog(@"Anything to undeploy at index %d", index);
+        return;
+    }
+
+    NSInteger visibleCellIndex = [self _rangeIndexFromIndex:index inRange:range];
+
+    [cell removeFromSuperview];
+    
+    if (visibleCellIndex == 0) {
+        
+        SWHorizontalTableViewCell *removedCell = [_visibleCells objectAtIndex:0];
+        
+        [_visibleCells removeObjectAtIndex:0];
+        
+        if (removedCell != cell) {
+            NSLog(@"[asdffd] UNESTABLE STATE!!!");
+        }
+        
+    } else if (visibleCellIndex == _visibleCells.count - 1) {
+        
+        SWHorizontalTableViewCell *removedCell = [_visibleCells lastObject];
+        
+        [_visibleCells removeLastObject];
+        
+        if (removedCell != cell) {
+            NSLog(@"[dffdsa] UNESTABLE STATE!!!");
+        }
+        
+        
+    } else {
+        NSLog(@"[ppppp1] WARINING: Can't undeploy a cell if it is not contiguous to other deployed cells");
+        return;
+    }
+    
+    [self _reuseCell:cell];
+}
+
+- (BOOL)_computeVisibleCells
+{
+    // Recomputing visibleRows
+    NSRange newRange = [self _visibleRowsWithOffset:self.contentOffset.x];
+    
+    // If range is the same, nothing to do.
+    if (newRange.location == _visibleRows.location && newRange.length == _visibleRows.length) {
+        return NO;
+    }
+        
+    // If no rows, nothing to do
+    if (_numberOfRows == 0)
+        return NO;
+    
+    NSInteger newFirstCell = newRange.location;
+    NSInteger newLastCell = newRange.location + newRange.length - 1;
+    
+    NSInteger firstCell = _visibleRows.location;
+   
+    // MANIPULATING LOCATION
+    if (firstCell != newFirstCell) {
+        
+        while (firstCell != newFirstCell) {
+            
+            NSRange oldRange = _visibleRows;
+            
+            if (firstCell > newFirstCell) {
+            
+                [self _deployCellAtIndex:firstCell-1 usingRange:oldRange];
+                _visibleRows = NSMakeRange(firstCell - 1, _visibleRows.length + 1);
+                
+            } else if (firstCell < newFirstCell) {
+                
+                [self _undeployCellAtIndex:firstCell usingRange:oldRange];
+                _visibleRows = NSMakeRange(firstCell + 1, _visibleRows.length - 1);
+                
+            } else {
+                // Nothing to do
+            }
+            
+            firstCell = _visibleRows.location;
+        }
+    }
+
+     NSInteger lastCell = _visibleRows.location + _visibleRows.length - 1;
+    
+    // MANIPULATING LENGTH
+    if (lastCell != newLastCell) {
+        
+        while (lastCell != newLastCell) {
+            
+            NSRange oldRange = _visibleRows;
+            
+            if (lastCell > newLastCell) {
+                
+                [self _undeployCellAtIndex:lastCell usingRange:oldRange];
+                _visibleRows = NSMakeRange(_visibleRows.location, _visibleRows.length-1);
+                
+            } else if (lastCell < newLastCell) {
+                
+                [self _deployCellAtIndex:lastCell+1 usingRange:oldRange];
+                _visibleRows = NSMakeRange(_visibleRows.location, _visibleRows.length+1);
+                
+            } else {
+                // Nothing to do
+            }
+            
+            lastCell = _visibleRows.location + _visibleRows.length - 1;
+        }
+    }
+    
+    return YES;
+}
+
+- (NSInteger)_rangeIndexFromIndex:(NSInteger)index inRange:(NSRange)range;
+{
+//    if (index < range.location)
+//        return NSNotFound;
+//    
+//    if (index >= range.location + range.length)
+//        return NSNotFound;
+    
+    
+    NSInteger value = index - range.location;
+    return value;
+}
+
+- (NSInteger)_indexFromRangeIndex:(NSInteger)index inRange:(NSRange)range
+{
+//    if (index < 0)
+//        return NSNotFound;
+//    
+//    if (index >= range.length)
+//        return NSNotFound;
+    
+    return range.location + index;
+}
+
+- (BOOL)_isIndex:(NSInteger)index inRange:(NSRange)range
+{
+    if (index < range.location)
+        return NO;
+    
+    if (index >= range.location + range.length)
+        return NO;
+    
+    return YES;
+}
+
+- (NSInteger)_rowAtOffset:(CGFloat)offset
+{
+    NSInteger rowIndex = (NSInteger)(offset/_rowWidth);
+    
+    return rowIndex;
+}
+
+- (CGSize)_computeContentSize
+{
+    CGSize size = CGSizeMake(_numberOfRows* _rowWidth, self.frame.size.height);
+    return size;
+}
+
+- (CGPoint)_positionForCellAtIndex:(NSInteger)index
+{
+    CGPoint point = CGPointMake(index * _rowWidth, 0);
+    return point;
+}
+
+- (CGRect)_frameForCellAtIndex:(NSInteger)index
+{
+    CGRect frame = CGRectZero;
+    frame.origin = [self _positionForCellAtIndex:index];
+    frame.size = CGSizeMake(_rowWidth, self.frame.size.height);
+    
+    return frame;
+}
+
+- (NSRange)_visibleRowsWithOffset:(CGFloat)offset
+{
+    NSInteger startRow = [self _rowAtOffset:offset];
+    NSInteger endRow = [self _rowAtOffset:(offset + self.frame.size.width)];
+    
+    startRow = startRow<0?0:startRow;
+    endRow = endRow<0?0:endRow;
+    
+    endRow++;
+    
+    return NSMakeRange(startRow, endRow - startRow);
+}
+
+- (void)_didRecognizeTapGesture:(UITapGestureRecognizer*)gestureRecognizer
+{
+    CGPoint point = [gestureRecognizer locationInView:self];
+    
+    NSInteger index = [self _rowAtOffset:point.x];
+    
+    SWHorizontalTableViewCell *cell = [self cellForRowAtIndex:index];
+    
+    if (cell) {
+        
+        _lastSelectedRow = _selectedRow;
+        _selectedRow = index;
+        
+        SWHorizontalTableViewCell *lastCell = [self cellForRowAtIndex:_lastSelectedRow];
+        
+        if (lastCell) {
+            if ([_tableViewDelegate respondsToSelector:@selector(tableView:willDeselectRowAtIndex:)])
+                [_tableViewDelegate tableView:self willDeselectRowAtIndex:_lastSelectedRow];
+        
+            [lastCell setSelected:NO];
+            
+            if ([_tableViewDelegate respondsToSelector:@selector(tableView:didDeselectRowAtIndex:)])
+                [_tableViewDelegate tableView:self didDeselectRowAtIndex:_lastSelectedRow];
+        }
+    
+        if ([_tableViewDelegate respondsToSelector:@selector(tableView:willSelectRowAtIndex:)])
+            [_tableViewDelegate tableView:self willSelectRowAtIndex:_selectedRow];
+        
+        [cell setSelected:YES];
+        
+        if ([_tableViewDelegate respondsToSelector:@selector(tableView:didSelectRowAtIndex:)])
+            [_tableViewDelegate tableView:self didSelectRowAtIndex:_selectedRow];
+    }
+}
+
+- (void)_didRecognizeLongPressGesture:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    CGPoint point = [gestureRecognizer locationInView:self];
+    
+    NSInteger index = [self _rowAtOffset:point.x];
+    
+    (void)index;
+    
+    BOOL canMove = NO;
+    
+    if ([_dataSource respondsToSelector:@selector(tableView:canMoveRowAtIndex:)])
+        canMove = [_dataSource tableView:self canMoveRowAtIndex:index];
+    
+    if (!canMove) 
+        return;
+    
+    NSLog(@"Should Move Here");
+    
+    // TODO
+}
+
+@end
