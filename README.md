@@ -1,6 +1,9 @@
 # HMIPad
 Full Source Code of the HMI Draw / HMI View apps.
 
+# Links
+HMI Draw app: https://itunes.apple.com/us/app/hmi-draw/id604708439?ls=1&mt=8
+Web Site: http://www.sweetwilliamsl.com
 
 # License
 There's no explicit license so the code is open with no restrictions for any private or commercial use. The code is provided "as is" (or "as it was"). It was tested to compile on XCode version 6.3. Newer XCode versions were not tested.
